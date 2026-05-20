@@ -42,28 +42,53 @@ header h1 {
 /* NAVBAR */
 
 nav {
-    background-color: #004f2e;
+	background: #006b3f;
 }
 
 nav ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
+	list-style: none;
+	display: flex;
+	margin: 0;
+	padding: 0;
 }
 
 nav li {
-    border-right: 1px solid rgba(255,255,255,0.2);
+	border-right: 1px solid rgba(255,255,255,0.2);
 }
 
 nav a {
-    display: block;
-    padding: 14px 20px;
-    color: white;
-    transition: background 0.2s;
+	display: block;
+	padding: 14px 20px;
+	color: white;
+	text-decoration: none;
 }
 
 nav a:hover {
-    background-color: #007c49;
+	background: #00884f;
+}
+
+/* botão hambúrguer */
+
+.menu-toggle {
+	display: none;
+	background: none;
+	border: none;
+	color: white;
+	font-size: 2rem;
+	padding: 10px 20px;
+	cursor: pointer;
+}
+
+/* botão almôndegas */
+
+.side-toggle {
+	display: none;
+	background: none;
+	border: none;
+	color: #006b3f;
+	font-size: 2rem;
+	padding: 10px 20px;
+	cursor: pointer;
 }
 
 /* LAYOUT */
@@ -118,6 +143,22 @@ main h2 {
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
+}
+
+main h3 {
+    margin-top: 8px;
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+main a:link {
+    color: #006b3f;
+}
+
+main a:visited {
+    color: #003f6b;
 }
 
 /* FOOTER */
@@ -188,4 +229,37 @@ footer {
         flex-direction: column;
         text-align: center;
     }
+
+	.menu-toggle {
+		display: block;
+	}
+
+	.side-toggle {
+		display: block;
+	}
+
+	#nav-menu {
+		display: none;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	#nav-menu.active {
+		display: flex;
+	}
+
+	#side-menu {
+		display: none;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	#side-menu.active {
+		display: flex;
+	}
+
+	nav li {
+		border-right: none;
+		border-top: 1px solid rgba(255,255,255,0.2);
+	}
 }

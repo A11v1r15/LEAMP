@@ -22,6 +22,17 @@
     <link rel="stylesheet" href="css/main.css">
 	<link rel="icon" type="image/png" href="img/Logo Ler é a minha praia.png">
 </head>
+<script>
+
+	function toggleMenu(menuId) {
+
+		document
+			.getElementById(menuId)
+			.classList
+			.toggle("active");
+	}
+
+</script>
 <body>
 
 	<header>
@@ -34,27 +45,35 @@
 	</header>
 
 	<nav>
-		<ul>
+		<button class="menu-toggle" onclick="toggleMenu('nav-menu')">
+			☰
+		</button>
+		<ul id="nav-menu">
 			<li><a href="?">Início</a></li>
 			<li><a href="?p=livros">Livros</a></li>
 			<li><a href="?p=ranking">Ranking</a></li>
 			<li><a href="?p=eventos">Eventos</a></li>
-			<li><a href="?p=contato">Contato</a></li>
+			<li><a href="?p=contatos">Contato</a></li>
 		</ul>
 	</nav>
 
 	<div class="container">
 
 		<aside>
-			<h2>Menu</h2>
+			<button class="side-toggle" onclick="toggleMenu('side-menu')">
+				⋯
+			</button>
+			<div id="side-menu">
+				<h2>Menu</h2>
 
-			<ul>
-				<li><a href="#">Painel</a></li>
-				<li><a href="#">Meu Perfil</a></li>
-				<li><a href="#">Leituras</a></li>
-				<li><a href="#">Certificados</a></li>
-				<li><a href="#">Configurações</a></li>
-			</ul>
+				<ul>
+					<li><a href="#">Painel</a></li>
+					<li><a href="#">Meu Perfil</a></li>
+					<li><a href="#">Leituras</a></li>
+					<li><a href="#">Certificados</a></li>
+					<li><a href="#">Configurações</a></li>
+				</ul>
+			</div>
 		</aside>
 
 		<main>
