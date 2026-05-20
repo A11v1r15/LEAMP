@@ -4,7 +4,7 @@
 
 ?>
 
-<h2>Erro 404</h2>
+<h2 style="color: #c90c0f;">Erro 404</h2>
 
 <p>
 	A página solicitada não existe.

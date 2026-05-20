@@ -14,15 +14,46 @@
 
 <h2>Livros</h2>
 
-<ul>
-	<?php foreach ($livros as $livro): ?>
+<table id="tabelaLivros">
 
-		<li>
-			<a href="?p=livro&id=<?= $livro["id"] ?>">
-				<?= htmlspecialchars($livro["title"]) ?>
-			</a>
-			→ <?= htmlspecialchars($livro["author"]) ?>
-		</li>
+	<thead>
+		<tr>
+			<th>Título</th>
+			<th>Autor</th>
+			<th>Status</th>
+		</tr>
+	</thead>
 
-	<?php endforeach; ?>
-</ul>
+	<tbody>
+
+		<?php foreach ($livros as $livro): ?>
+
+			<tr>
+
+				<td>
+					<a href="?p=livro&id=<?= $livro["id"] ?>">
+						<?= htmlspecialchars($livro["title"]) ?>
+					</a>
+				</td>
+
+				<td>
+					<?= htmlspecialchars($livro["author"]) ?>
+				</td>
+
+				<td>
+					<?= htmlspecialchars($livro["status"]) ?>
+				</td>
+
+			</tr>
+
+		<?php endforeach; ?>
+
+	</tbody>
+
+</table>
+
+<script>
+
+	new DataTable("#tabelaLivros");
+
+</script>
