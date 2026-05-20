@@ -8,6 +8,7 @@
 	ob_start();
 	include $arquivo;
 	$conteudo = ob_get_clean();
+	include_once "includes/supabase.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
