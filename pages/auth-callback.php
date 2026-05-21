@@ -34,7 +34,7 @@
 					token: session.access_token
 		})});
 
-		window.location = "/admin";
+		window.location = "/user";
 	}
 
 	finalizarLogin();

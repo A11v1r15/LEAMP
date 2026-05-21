@@ -192,6 +192,14 @@ quote:after {
 	font-size: 1.5rem;
 }
 
+.profile-picture {
+	border-radius: 50%;
+	width: 64px;
+	height: 64px;
+	object-fit: cover;
+	margin-top: 16px;
+}
+
 /* FOOTER */
 
 footer {

@@ -1,10 +1,12 @@
 <?php
 	$titulo = "Página não encontrada";
 	$quotes = array(
-		"Nem todos que vagueiam estão perdidos-O Senhor dos Anéis",
+		"Nem todos que vagueiam estão perdidos-O Senhor dos Anéis: A sociedade do anel",
 		"Quem sou eu no mundo? Ah, essa é a grande charada-Alice no País das Maravilhas",
 		"O vazio tem o valor de espaço e de limites-A Hora da Estrela",
-		"Sempre a mesma coisa. Ora uma faísca de esperança, ora o mar de desespero que ruge-A Morte de Ivan Ilitch"
+		"Sempre a mesma coisa. Ora uma faísca de esperança, ora o mar de desespero que ruge-A Morte de Ivan Ilitch",
+		 "O essencial é invisível aos olhos-O pequeno príncipe",
+		 "A minha alma é um labirinto escuro-Dom Casmurro",
 		);
 	$quote = $quotes[array_rand($quotes)];
 ?>
