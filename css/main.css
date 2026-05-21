@@ -170,6 +170,24 @@ main a:visited {
 	background-color: #FFFFFF;
 }
 
+quote {
+	margin-top: 8px;
+	font-family: "Roboto Slab", serif;
+	font-optical-sizing: auto;
+	font-weight: 700;
+	font-style: normal;
+}
+
+quote:before {
+	content: "“";
+	font-size: 1.5rem;
+}
+
+quote:after {
+	content: "„";
+	font-size: 1.5rem;
+}
+
 /* FOOTER */
 
 footer {
