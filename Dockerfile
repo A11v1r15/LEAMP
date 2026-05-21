@@ -2,11 +2,10 @@ FROM php:8.5-apache
 
 RUN a2enmod rewrite
 
-RUN echo '<Directory /var/www/html>\
-    AllowOverride All\
-</Directory>' \
->> /etc/apache2/apache2.conf
+RUN printf '<Directory /var/www/html>\n\
+    AllowOverride All\n\
+</Directory>\n' >> /etc/apache2/apache2.conf
 
-COPY . /var/www/html
+COPY . /var/www/html/
 
-EXPOSE 80
+CMD ["apache2-foreground"]
