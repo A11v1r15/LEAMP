@@ -8,4 +8,7 @@ RUN printf '<Directory /var/www/html>\n\
 
 COPY . /var/www/html/
 
+RUN mkdir -p /var/www/html/cache \
+    && chmod -R 777 /var/www/html/cache
+
 CMD ["apache2-foreground"]
