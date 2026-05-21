@@ -28,6 +28,7 @@
 	<link rel="stylesheet" href="css/main.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script src="https://cdn.datatables.net/2.3.1/js/dataTables.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 	<link rel="icon" type="image/png" href="img/Logo Ler é a minha praia.png">
 </head>
 <script>
@@ -38,6 +39,25 @@
 			.getElementById(menuId)
 			.classList
 			.toggle("active");
+	}
+
+	const supabaseClient = supabase.createClient(
+		<?php echo "\"".$SUPABASE_URL."\","."\"".$SUPABASE_KEY."\""?>
+	);
+
+	async function loginGoogle() {
+
+		await supabaseClient.auth.signInWithOAuth({
+
+			provider: "google",
+
+			options: {
+				redirectTo:
+					window.location.origin +
+					"/auth-callback"
+			}
+
+		});
 	}
 
 </script>
@@ -75,7 +95,7 @@
 				<h2>Menu</h2>
 
 				<ul>
-					<li><a href="#">Painel</a></li>
+					<li><a href="google-login">Login</a></li>
 					<li><a href="#">Meu Perfil</a></li>
 					<li><a href="#">Leituras</a></li>
 					<li><a href="#">Certificados</a></li>
