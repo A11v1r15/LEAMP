@@ -100,7 +100,7 @@
 						<li><a href="/user"><?= $_SESSION["user"]["name"] ?></a></li>
 						<li><a href="/logout">Sair</a></li>
 					<?php else: ?>
-						<li><a href="/google-login">Login</a></li>
+						<li><a onclick="loginGoogle()">Login</a></li>
 					<?php endif; ?>
 				</ul>
 			</div>
