@@ -9,6 +9,8 @@ $data = json_decode(
 
 $_SESSION["user"] = [
 	"email" => $data["email"],
+	"name" => $data["name"],
+	"avatar" => $data["avatar"],
 	"token" => $data["token"]
 ];
 

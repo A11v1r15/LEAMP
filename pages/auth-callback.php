@@ -28,12 +28,11 @@
 						"application/json"
 				},
 				body: JSON.stringify({
-					email: email,
-					token:
-						session.access_token
-				})
-			}
-		);
+					email: session.user.email,
+					name: session.user.user_metadata?.full_name,
+					avatar: session.user.user_metadata?.avatar_url,
+					token: session.access_token
+		})});
 
 		window.location = "/admin";
 	}

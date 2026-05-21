@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	$path = trim(
 		parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH),
 		"/"
@@ -95,11 +96,12 @@
 				<h2>Menu</h2>
 
 				<ul>
-					<li><a href="google-login">Login</a></li>
-					<li><a href="#">Meu Perfil</a></li>
-					<li><a href="#">Leituras</a></li>
-					<li><a href="#">Certificados</a></li>
-					<li><a href="#">Configurações</a></li>
+					<?php if (isset($_SESSION["user"])): ?>
+						<li><a href="/admin"><?= $_SESSION["user"]["name"] ?></a></li>
+						<li><a href="/logout">Sair</a></li>
+					<?php else: ?>
+						<li><a href="/google-login">Login</a></li>
+					<?php endif; ?>
 				</ul>
 			</div>
 		</aside>
