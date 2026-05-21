@@ -170,6 +170,10 @@ main a:visited {
 	background-color: #FFFFFF;
 }
 
+#tabelaLivros tbody tr:hover {
+	background-color: #BBFFB8;
+}
+
 quote {
 	margin-top: 8px;
 	font-family: "Roboto Slab", serif;

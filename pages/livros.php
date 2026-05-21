@@ -24,7 +24,7 @@
 	<thead>
 		<tr>
 			<th>Título</th>
-			<th>Autor</th>
+			<th>Autores</th>
 			<th>Status</th>
 		</tr>
 	</thead>
@@ -58,7 +58,5 @@
 </table>
 
 <script>
-
-	new DataTable("#tabelaLivros");
-
+	new DataTable("#tabelaLivros", {language: {url: "/assets/datatables.json"}});
 </script>
