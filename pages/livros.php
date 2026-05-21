@@ -31,7 +31,7 @@
 			<tr>
 
 				<td>
-					<a href="?p=livro&id=<?= $livro["id"] ?>">
+					<a href="/livro?id=<?= $livro["id"] ?>">
 						<?= htmlspecialchars($livro["title"]) ?>
 					</a>
 				</td>
