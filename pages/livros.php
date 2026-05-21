@@ -1,9 +1,14 @@
 <?php
 	require_once "includes/supabase.php";
+	require_once "includes/cache.php";
 
 	$titulo = "LÉAMP - Livros";
 
-	$livros = supabaseGet("Test?select=*");
+	$livros = cacheGet("livros");
+	if ($livros === null) {
+		$livros = supabaseGet("Test?select=*");
+		cacheSet("livros", $livros);
+	}
 	if (!is_array($livros)) {
 		$livros = [];
 	}
