@@ -38,7 +38,7 @@ $loan = supabaseGet(
 <?php endif;?>
 
 <?php 
-if (!empty($loan)) {
+if (!empty($loan)):
 
 	$reader_id = $loan[0]["reader"];
 
@@ -49,9 +49,22 @@ if (!empty($loan)) {
 	file_put_contents('php://stderr', print_r($user, TRUE));
 
 	$name = $user[0]["name"] ?? "desconhecido";
-
-	echo "<p style='color:red'>";
-	echo "Emprestado para: $name";
-	echo "<img src='".$user[0]["avatar"]."' alt='Foto de perfil' class='profile-picture'/>";
-	echo "</p>";
-} ?>
+ ?>
+	<div class="loan-card">
+		<img
+			src="<?= htmlspecialchars($user[0]["avatar"]) ?>"
+			class="loan-avatar"
+			alt="Avatar"
+		>
+		<div class="loan-info">
+			<div class="loan-title">
+				Emprestado para
+				<?= htmlspecialchars($name) ?>
+			</div>
+			<div class="loan-deadline">
+				Até
+				<?= date("d/m/Y", strtotime($loan[0]["deadline"])) ?>
+			</div>
+		</div>
+	</div>
+<?php endif;?>

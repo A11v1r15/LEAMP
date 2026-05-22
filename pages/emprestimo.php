@@ -7,7 +7,7 @@ requireAdmin();
 
 $titulo = "Novo empréstimo";
 
-$users = supabaseGet("users?select=uuid,name", $_SESSION["user"]["token"]);
+$users = supabaseGet("users?select=uuid,name,avatar", $_SESSION["user"]["token"]);
 $book_id = $_GET["id"] ?? null;
 $book = supabaseGet("books?id=eq.$book_id&select=*");
 
@@ -62,10 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 	<p>
 		Deadline:
-		<?= date(
-			"d/m/Y H:i",
-			strtotime("+10 days")
-		) ?>
+		<?= date("d/m/Y", strtotime("+10 days")) ?>
 	</p>
 
 	<input type="hidden" name="book_id" value="<?= $book_id ?>">

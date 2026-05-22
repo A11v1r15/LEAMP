@@ -199,6 +199,63 @@ blockquote:after {
 	object-fit: cover;
 }
 
+.loan-card {
+
+	display: flex;
+
+	align-items: center;
+
+	gap: 12px;
+
+	padding: 12px 16px;
+
+	margin-top: 16px;
+
+	border-radius: 16px;
+
+	background: #fff3cd;
+
+	border-left:
+		6px solid #ffc107;
+
+	box-shadow:
+		0 2px 8px rgba(0,0,0,0.08);
+
+	width: fit-content;
+}
+
+.loan-avatar {
+
+	width: 56px;
+
+	height: 56px;
+
+	border-radius: 50%;
+
+	object-fit: cover;
+}
+
+.loan-info {
+
+	display: flex;
+
+	flex-direction: column;
+}
+
+.loan-title {
+
+	font-weight: bold;
+
+	font-size: 1rem;
+}
+
+.loan-deadline {
+
+	color: #666;
+
+	font-size: 0.9rem;
+}
+
 /* FOOTER */
 
 footer {
