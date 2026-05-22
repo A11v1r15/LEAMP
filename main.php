@@ -8,12 +8,11 @@
 	$pagina = $path ?: "inicio";
 	$arquivo = "pages/" . $pagina . ".php";
 	if (!file_exists($arquivo)) {
+		http_response_code(404);
 		$arquivo = "pages/404.php";
 	}
 	$titulo = "Ler é a Minha Praia";
-	ob_start();
-	include $arquivo;
-	$conteudo = ob_get_clean();
+	include_once "includes/auth.php";
 	include_once "includes/supabase.php";
 ?>
 <!DOCTYPE html>
@@ -43,7 +42,7 @@
 	}
 
 	const supabaseClient = supabase.createClient(
-		<?php echo "\"".$SUPABASE_URL."\","."\"".$SUPABASE_KEY."\""?>
+		<?php echo "\"".$SUPABASE_URL."\","."\"".$SUPABASE_ANON_KEY."\""?>
 	);
 
 	async function loginGoogle() {
@@ -90,24 +89,27 @@
 
 		<aside>
 			<button class="side-toggle" onclick="toggleMenu('side-menu')">
-				⋯
+				⋮
 			</button>
 			<div id="side-menu">
 				<h2>Menu</h2>
 
 				<ul>
-					<?php if (isset($_SESSION["user"])): ?>
-						<li><a href="/user"><?= $_SESSION["user"]["name"] ?></a></li>
+					<?php if (isLogged()): ?>
+						<li><a href="/perfil"><?= $_SESSION["user"]["name"] ?></a></li>
 						<li><a href="/logout">Sair</a></li>
 					<?php else: ?>
 						<li><a onclick="loginGoogle()">Login</a></li>
+					<?php endif; ?>
+					<?php if (isAdmin()): ?>
+						<li><a href="/doar">Adicionar livros</a></li>
 					<?php endif; ?>
 				</ul>
 			</div>
 		</aside>
 
 		<main>
-			<?= $conteudo ?>
+			<?php include $arquivo; ?>
 		</main>
 
 	</div>

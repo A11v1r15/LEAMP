@@ -6,7 +6,7 @@
 
 	$livros = cacheGet("livros");
 	if ($livros === null) {
-		$livros = supabaseGet("Test?select=*");
+		$livros = supabaseGet("books?select=*");
 		cacheSet("livros", $livros);
 	}
 	if (!is_array($livros)) {

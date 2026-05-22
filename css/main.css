@@ -174,7 +174,7 @@ main a:visited {
 	background-color: #BBFFB8;
 }
 
-quote {
+blockquote {
 	margin-top: 8px;
 	font-family: "Roboto Slab", serif;
 	font-optical-sizing: auto;
@@ -182,12 +182,12 @@ quote {
 	font-style: normal;
 }
 
-quote:before {
+blockquote:before {
 	content: "“";
 	font-size: 1.5rem;
 }
 
-quote:after {
+blockquote:after {
 	content: "„";
 	font-size: 1.5rem;
 }

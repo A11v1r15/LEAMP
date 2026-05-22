@@ -15,6 +15,6 @@
 
 <p>
 	<?php
-		echo "<quote>".explode("-", $quote)[0]."</quote><p style='text-indent: 20%;'>".explode("-", $quote)[1]."</p>";
+		echo "<blockquote>".explode("-", $quote)[0]."</blockquote><p style='text-indent: 20%;'>".explode("-", $quote)[1]."</p>";
 	?>
 </p>

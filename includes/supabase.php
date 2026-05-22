@@ -1,47 +1,65 @@
 <?php
 
 $SUPABASE_URL = "https://exriifeecupaansgczgp.supabase.co";
-$SUPABASE_KEY = "sb_publishable_KpCIiH4-5AOu-rWwZU8KOw_NJ1qTfhr";
+$SUPABASE_ANON_KEY = "sb_publishable_KpCIiH4-5AOu-rWwZU8KOw_NJ1qTfhr";
 
-function supabaseGet($endpoint)
-{
-	global $SUPABASE_URL, $SUPABASE_KEY;
+function supabaseGet($endpoint, $userToken = null) {
 
-	$url = $SUPABASE_URL . "/rest/v1/" . $endpoint;
+	global $SUPABASE_URL;
+	global $SUPABASE_ANON_KEY;
 
-	$ch = curl_init($url);
+	$auth = $userToken ?? $SUPABASE_ANON_KEY;
 
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$curl = curl_init();
 
-	curl_setopt($ch, CURLOPT_HTTPHEADER, [
-		"apikey: $SUPABASE_KEY",
-		"Authorization: Bearer $SUPABASE_KEY",
-		"Content-Type: application/json",
+	curl_setopt_array($curl, [
+		CURLOPT_URL =>
+			"$SUPABASE_URL/rest/v1/$endpoint",
+
+		CURLOPT_RETURNTRANSFER => true,
+
+		CURLOPT_HTTPHEADER => [
+			"apikey: $SUPABASE_ANON_KEY",
+			"Authorization: Bearer $auth",
+			"Content-Type: application/json"
+		]
 	]);
 
-	$response = curl_exec($ch);
-	$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	$response = curl_exec($curl);
 
-	if ($response === false) {
-		$err = curl_error($ch);
+	return json_decode($response, true);
+}
 
-		return [
-			"error" => true,
-			"message" => $err,
-		];
-	}
+function supabasePost($table, $data, $userToken = null) {
 
-	$data = json_decode($response, true);
+	global $SUPABASE_URL;
+	global $SUPABASE_ANON_KEY;
 
-	if ($httpCode < 200 || $httpCode >= 300) {
-		return [
-			"error" => true,
+	$auth = $userToken ?? $SUPABASE_ANON_KEY;
 
-			"httpCode" => $httpCode,
+	$curl = curl_init();
 
-			"response" => $data ?? $response,
-		];
-	}
+	curl_setopt_array(
+		$curl,
+		[
+			CURLOPT_URL => "$SUPABASE_URL/rest/v1/$table",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_POST => true,
+			CURLOPT_POSTFIELDS => json_encode($data),
+			CURLOPT_HTTPHEADER => [
+				"apikey: $SUPABASE_ANON_KEY",
+				"Authorization: Bearer $auth",
+				"Content-Type: application/json",
+				"Prefer: return=representation"
+			]
+		]
+	);
 
-	return is_array($data) ? $data : [];
+	$response =
+		curl_exec($curl);
+
+	return json_decode(
+		$response,
+		true
+	);
 }

@@ -28,13 +28,14 @@
 						"application/json"
 				},
 				body: JSON.stringify({
+					uuid: session.user.id,
 					email: session.user.email,
-					name: session.user.user_metadata?.full_name,
-					avatar: session.user.user_metadata?.avatar_url,
+					name: session.user.user_metadata.full_name,
+					avatar: session.user.user_metadata.avatar_url,
 					token: session.access_token
-		})});
+			})});
 
-		window.location = "/user";
+		window.location = "/perfil";
 	}
 
 	finalizarLogin();

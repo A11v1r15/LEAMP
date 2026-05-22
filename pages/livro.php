@@ -9,7 +9,7 @@ if (!$id) {
 	return;
 }
 
-$livro = supabaseGet("Test?id=eq.$id&select=*");
+$livro = supabaseGet("books?id=eq.$id&select=*");
 
 if (!$livro) {
 	echo "Livro não encontrado";
