@@ -25,11 +25,11 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.css"/>
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="/css/main.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script src="https://cdn.datatables.net/2.3.1/js/dataTables.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-	<link rel="icon" type="image/png" href="img/Logo Ler é a minha praia.png">
+	<link rel="icon" type="image/png" href="/img/Logo Ler é a minha praia.png">
 </head>
 <script>
 
@@ -64,7 +64,7 @@
 <body>
 
 	<header>
-		<img src="img/Logo Ler é a minha praia.png" alt="Logo Ler é a minha praia">
+		<img src="/img/Logo Ler é a minha praia.png" alt="Logo Ler é a minha praia">
 
 		<div>
 			<h1>LER É A MINHA PRAIA</h1>
@@ -119,7 +119,7 @@
 		<div class="footer-content">
 
 			<div class="footer-logos">
-				<img src="img/Logo IFCE Campus Camocim.png" alt="IFCE Campus Camocim">
+				<img src="/img/Logo IFCE Campus Camocim.png" alt="IFCE Campus Camocim">
 			</div>
 
 			<div class="footer-text">
@@ -137,7 +137,7 @@
 			</div>
 
 			<div class="footer-logos">
-				<img src="img/Logo Eu Faço Parte.png" alt="Eu Faço Parte">
+				<img src="/img/Logo Eu Faço Parte.png" alt="Eu Faço Parte">
 			</div>
 		</div>
 
