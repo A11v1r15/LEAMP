@@ -78,6 +78,7 @@
 		</button>
 		<ul id="nav-menu">
 			<li><a href="/">Início</a></li>
+			<li><a href="/instrucoes">Instruções</a></li>
 			<li><a href="/livros">Livros</a></li>
 			<li><a href="/ranking">Ranking</a></li>
 			<li><a href="/eventos">Eventos</a></li>

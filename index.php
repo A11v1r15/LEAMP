@@ -8,4 +8,4 @@ if ($path !== "/" && file_exists($file)) {
 	return false;
 }
 
-include __DIR__ . "/main.php";
+include __DIR__ . "/pages/main.php";

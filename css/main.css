@@ -123,6 +123,7 @@ aside li {
 
 aside a {
 	color: #333;
+	cursor: pointer;
 }
 
 aside a:hover {

@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	</select>
 
 	<p>
-		Deadline:
+		Data limite:
 		<?= date("d/m/Y", strtotime("+10 days")) ?>
 	</p>
 

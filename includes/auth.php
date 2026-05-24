@@ -24,6 +24,6 @@
 		if (!isAdmin()) {
 			http_response_code(403);
 			include "pages/403.php";
-			return false;
+			exit;
 		}
 	}

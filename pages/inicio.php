@@ -17,3 +17,8 @@
 	Aqui você poderá acompanhar leituras,
 	eventos, rankings e atividades do projeto.
 </p>
+<br>
+<p>
+	Veja os <a href="/termos">Termos de Serviço</a>
+	e as <a href="/privacidade">Políticas de Privacidade</a>
+</p>
