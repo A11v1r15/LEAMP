@@ -1,0 +1,71 @@
+.book-header {
+	display: flex;
+	gap: 24px;
+	align-items: center;
+	margin-bottom: 24px;
+}
+
+.book-cover {
+	width: 120px;
+	height: 180px;
+	object-fit: cover;
+	border-radius: 12px;
+	box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.book-author {
+	margin-top: 8px;
+	color: #666;
+	font-size: 1.1rem;
+}
+
+.book-status {
+	display: inline-block;
+	margin-top: 12px;
+	padding: 6px 14px;
+	border-radius: 999px;
+	font-weight: bold;
+	font-size: 0.9rem;
+}
+
+.book-status.disponível {
+	background: #d1e7dd;
+	color: #0f5132;
+}
+
+.book-status.emprestado {
+	background: #fff3cd;
+	color: #664d03;
+}
+
+.action-button {
+	display: inline-block;
+	margin-bottom: 24px;
+	padding: 12px 18px;
+	border-radius: 14px;
+	background: #198754;
+	color: white !important;
+	text-decoration: none;
+	font-weight: bold;
+	transition: transform 0.2s, filter 0.2s;
+}
+
+.action-button:hover {
+	transform: translateY(-2px);
+	filter: brightness(1.05);
+}
+
+.return-button {
+	padding: 10px 16px;
+	border-radius: 12px;
+	background: #c90c0f;
+	color: white !important;
+	text-decoration: none;
+	font-weight: bold;
+	transition: transform 0.2s, filter 0.2s;
+}
+
+.return-button:hover {
+	transform: translateY(-2px);
+	filter: brightness(1.05);
+}

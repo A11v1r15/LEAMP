@@ -58,8 +58,5 @@ function supabasePost($table, $data, $userToken = null) {
 	$response =
 		curl_exec($curl);
 
-	return json_decode(
-		$response,
-		true
-	);
+	return json_decode($response, true);
 }

@@ -200,61 +200,86 @@ blockquote:after {
 	object-fit: cover;
 }
 
+/* ERROS */
+
+h2.error {
+	margin-bottom: 16px;
+	color: #c90c0f;
+	font-family: "Roboto Slab", serif;
+	font-optical-sizing: auto;
+	font-weight: 500;
+	font-style: normal;
+}
+
+/* LOAN CARDS */
+
 .loan-card {
-
 	display: flex;
-
 	align-items: center;
-
 	gap: 12px;
-
 	padding: 12px 16px;
-
 	margin-top: 16px;
-
 	border-radius: 16px;
-
 	background: #fff3cd;
-
-	border-left:
-		6px solid #ffc107;
-
-	box-shadow:
-		0 2px 8px rgba(0,0,0,0.08);
-
+	border-left: 6px solid #ffc107;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 	width: fit-content;
 }
 
 .loan-avatar {
-
 	width: 56px;
-
 	height: 56px;
-
 	border-radius: 50%;
-
 	object-fit: cover;
 }
 
 .loan-info {
-
 	display: flex;
-
 	flex-direction: column;
 }
 
 .loan-title {
-
 	font-weight: bold;
-
 	font-size: 1rem;
 }
 
 .loan-deadline {
-
 	color: #666;
-
 	font-size: 0.9rem;
+}
+
+/* FORMULÁRIOS */
+
+.action-button {
+	display: inline-block;
+	margin-bottom: 24px;
+	padding: 12px 18px;
+	border-radius: 14px;
+	background: #198754;
+	color: white !important;
+	text-decoration: none;
+	font-weight: bold;
+	transition: transform 0.2s, filter 0.2s;
+}
+
+.action-button:hover {
+	transform: translateY(-2px);
+	filter: brightness(1.05);
+}
+
+.return-button {
+	padding: 10px 16px;
+	border-radius: 12px;
+	background: #c90c0f;
+	color: white !important;
+	text-decoration: none;
+	font-weight: bold;
+	transition: transform 0.2s, filter 0.2s;
+}
+
+.return-button:hover {
+	transform: translateY(-2px);
+	filter: brightness(1.05);
 }
 
 /* FOOTER */

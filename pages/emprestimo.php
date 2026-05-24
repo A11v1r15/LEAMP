@@ -40,38 +40,65 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 ?>
+<link rel="stylesheet" href="/css/emprestimo.css">
 
 <h2>
 	Empréstimo de <?=$book[0]["title"]?>
 </h2>
 
-<form method="POST">
+<div class="loan-page">
+	<form class="loan-form" method="POST">
 
-	<label>
-		Leitor:
-	</label>
+		<label>
+			Leitor:
+		</label>
 
-	<select name="reader" required>
-		<option value="">
-			Selecione o leitor
-		</option>
-
-		<?php foreach ($users as $u): ?>
-			<option value="<?= $u["uuid"] ?>">
-				<?= $u["name"] ?>
+		<select name="reader" id="reader-select" required>
+			<option value="">
+				Selecione o leitor
 			</option>
-		<?php endforeach; ?>
-	</select>
 
-	<p>
-		Data limite:
-		<?= date("d/m/Y", strtotime("+10 days")) ?>
-	</p>
+			<?php foreach ($users as $u): ?>
+				<option
+					value="<?= $u["uuid"] ?>"
+					data-name="<?= htmlspecialchars($u["name"]) ?>"
+					data-avatar="<?= htmlspecialchars($u["avatar"]) ?>"
+				>
+					<?= $u["name"] ?>
+				</option>
+			<?php endforeach; ?>
+		</select>
 
-	<input type="hidden" name="book_id" value="<?= $book_id ?>">
+		<div id="reader-preview" class="loan-card hidden">
+			<img
+				id="preview-avatar"
+				class="loan-avatar"
+				src=""
+				alt="Avatar"
+			>
+			<div class="loan-info">
+				<div
+					id="preview-name"
+					class="loan-title"
+				>
+				</div>
+				<div class="loan-deadline">
+					Até
+					<?= date(
+						"d/m/Y",
+						strtotime("+10 days")
+					) ?>
+				</div>
+			</div>
+		</div>
 
-	<button type="submit">
-		Registrar empréstimo
-	</button>
+		<input type="hidden" name="book_id" value="<?= $book_id ?>">
 
-</form>
+		<button type="submit">
+			Registrar empréstimo
+		</button>
+
+	</form>
+</div>
+
+<script src="/js/emprestimo.js"></script>

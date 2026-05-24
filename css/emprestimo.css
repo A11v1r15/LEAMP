@@ -1,0 +1,66 @@
+.loan-page {
+	max-width: 600px;
+	margin: auto;
+	padding: 24px;
+}
+
+.loan-form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 24px;
+	border-radius: 24px;
+	background: white;
+	box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.loan-form select {
+	padding: 12px;
+	border-radius: 12px;
+	border: 1px solid #ccc;
+	font-size: 1rem;
+}
+
+.loan-form button {
+	padding: 14px;
+	border: none;
+	border-radius: 14px;
+	background: #198754;
+	color: white;
+	font-size: 1rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: transform 0.2s, filter 0.2s;
+}
+
+.loan-form button:hover {
+	transform: translateY(-2px);
+	filter: brightness(1.05);
+}
+
+.loan-card {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 14px;
+	border-radius: 18px;
+	background: #fff3cd;
+	border-left: 6px solid #ffc107;
+	animation: fadeIn 0.2s ease;
+}
+
+.hidden {
+	display: none;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
