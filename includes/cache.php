@@ -23,11 +23,6 @@ function cacheGet($nome, $tempo = 86400) {
 }
 
 function cacheSet($nome, $dados) {
-
 	$arquivo = "cache/" . $nome . ".json";
-
-	file_put_contents(
-		$arquivo,
-		json_encode($dados)
-	);
+	file_put_contents($arquivo, json_encode($dados));
 }

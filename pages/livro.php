@@ -10,7 +10,13 @@ if (!$id) {
 	return;
 }
 
-$livro = supabaseGet("books?id=eq.$id&select=*");
+$livro = supabaseGet(
+	"books?".
+	"id=eq.$id".
+	"&select=*",
+	
+	$_SESSION["user"]["token"]
+);
 
 if (!$livro) {
 	echo "<h2 class='error'>Livro não encontrado</h2>";
@@ -56,53 +62,31 @@ if ($loan) {
 
 <div class="book-header">
 	<div class="book-meta">
-		<h2>
-			<?= htmlspecialchars(
-				$livro["title"]
-			) ?>
-		</h2>
+		<h2><?= htmlspecialchars($livro["title"]) ?></h2>
 
 		<div class="book-author">
-			<?= htmlspecialchars(
-				$livro["author"]
-			) ?>
-
+			<?= htmlspecialchars($livro["author"]) ?>
 		</div>
 
-		<div class="
-			book-status
-			<?= strtolower(
-				$livro["status"]
-			) ?>
-		">
-			<?= htmlspecialchars(
-				$livro["status"]
-			) ?>
+		<div class="book-status <?= strtolower($livro["status"]) ?>">
+			<?= htmlspecialchars($livro["status"]) ?>
 		</div>
 	</div>
 </div>
 
 <?php
-if (
-	isAdmin() &&
-	$livro["status"] ==
-		"Disponível"
-):
+	if (isAdmin() && $livro["status"] == "Disponível"):
 ?>
 
-	<a
-		href="/emprestimo?id=<?= $livro["id"] ?>"
-		class="action-button"
-	>
-		Emprestar livro
-	</a>
+<a
+	href="/emprestimo?id=<?= $livro["id"] ?>"
+	class="action-button">Emprestar livro
+</a>
 
 <?php endif; ?>
 
 <?php if ($loan && $user): ?>
-
 	<div class="loan-card">
-
 		<img
 			src="<?= htmlspecialchars(
 				$user["avatar"]
@@ -110,7 +94,6 @@ if (
 			class="loan-avatar"
 			alt="Avatar"
 		>
-
 		<div class="loan-info">
 			<div class="loan-title">
 				Emprestado para
@@ -120,24 +103,13 @@ if (
 			</div>
 
 			<div class="loan-deadline">
-				Até
-				<?= date(
-					"d/m/Y",
-					strtotime(
-						$loan["deadline"]
-					)
-				) ?>
+				Até <?= date("d/m/Y", strtotime($loan["deadline"])) ?>
 			</div>
 		</div>
-
 		<?php if (isAdmin()): ?>
 			<a
 				href="/devolucao?id=<?= $loan["id"] ?>"
-				class="
-					return-button
-				"
-			>
-				↩ Devolver
+				class="return-button">↩ Devolver
 			</a>
 		<?php endif; ?>
 	</div>

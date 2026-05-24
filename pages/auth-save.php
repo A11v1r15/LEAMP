@@ -14,14 +14,15 @@ $token = $data["token"];
 $uuid = $data["uuid"];
 
 $user = supabaseGet(
-	"users?uuid=eq.$uuid&select=*",
+	"users?".
+	"uuid=eq.$uuid".
+	"&select=*",
 	$token
 );
 
 if (empty($user)) {
 	supabasePost(
-		"users",
-		[
+		"users", [
 			"uuid" => $uuid,
 			"role" => "Leitor",
 			"name" => $name,

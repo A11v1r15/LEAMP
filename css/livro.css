@@ -38,34 +38,7 @@
 	color: #664d03;
 }
 
-.action-button {
-	display: inline-block;
-	margin-bottom: 24px;
-	padding: 12px 18px;
-	border-radius: 14px;
-	background: #198754;
-	color: white !important;
-	text-decoration: none;
-	font-weight: bold;
-	transition: transform 0.2s, filter 0.2s;
-}
-
-.action-button:hover {
-	transform: translateY(-2px);
-	filter: brightness(1.05);
-}
-
-.return-button {
-	padding: 10px 16px;
-	border-radius: 12px;
-	background: #c90c0f;
-	color: white !important;
-	text-decoration: none;
-	font-weight: bold;
-	transition: transform 0.2s, filter 0.2s;
-}
-
-.return-button:hover {
-	transform: translateY(-2px);
-	filter: brightness(1.05);
+.book-status.pendente {
+	background: #fff3cd;
+	color: #660303;
 }

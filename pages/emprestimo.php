@@ -7,9 +7,20 @@ requireAdmin();
 
 $titulo = "Empréstimo - LÉAMP";
 
-$users = supabaseGet("users?select=uuid,name,avatar", $_SESSION["user"]["token"]);
+$users = supabaseGet(
+	"users?".
+	"select=uuid,name,avatar",
+
+	$_SESSION["user"]["token"]
+);
 $book_id = $_GET["id"] ?? null;
-$book = supabaseGet("books?id=eq.$book_id&select=*");
+$book = supabaseGet(
+	"books?".
+	"id=eq.$book_id".
+	"&select=*",
+	
+	$_SESSION["user"]["token"]
+);
 if ($book[0]["title"]) {
 	$titulo = "Empréstimo: ".$book[0]["title"]." - LÉAMP";
 }
@@ -31,12 +42,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$_SESSION["user"]["token"]
 	);
 
-	echo "<p>Empréstimo registrado!</p>";
-
-	file_put_contents(
-		"php://stderr",
-		print_r($result, true)
+	supabasePatch(
+		"books?".
+		"id=eq.$book_id",
+		[
+			"status" => "Emprestado"
+		],
+		$_SESSION["user"]["token"]
 	);
+
+	echo "<p>Empréstimo registrado!</p>";
+//	file_put_contents("php://stderr", print_r($result, true));
 }
 
 ?>
@@ -83,11 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				>
 				</div>
 				<div class="loan-deadline">
-					Até
-					<?= date(
-						"d/m/Y",
-						strtotime("+10 days")
-					) ?>
+					Até<?= date("d/m/Y", strtotime("+10 days"))?>
 				</div>
 			</div>
 		</div>

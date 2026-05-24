@@ -6,7 +6,10 @@
 
 	$livros = cacheGet("livros");
 	if ($livros === null) {
-		$livros = supabaseGet("books?select=*");
+		$livros = supabaseGet(
+			"books?".
+			"select=*"
+		);
 		cacheSet("livros", $livros);
 	}
 	if (!is_array($livros)) {
@@ -30,31 +33,16 @@
 	</thead>
 
 	<tbody>
-
 		<?php foreach ($livros as $livro): ?>
-
 			<tr>
-
-				<td>
-					<a href="/livro?id=<?= $livro["id"] ?>">
-						<?= htmlspecialchars($livro["title"]) ?>
-					</a>
-				</td>
-
-				<td>
-					<?= htmlspecialchars($livro["author"]) ?>
-				</td>
-
-				<td>
-					<?= htmlspecialchars($livro["status"]) ?>
-				</td>
-
+				<td><a href="/livro?id=<?= $livro["id"] ?>">
+					<?= htmlspecialchars($livro["title"]) ?>
+				</a></td>
+				<td><?= htmlspecialchars($livro["author"]) ?></td>
+				<td><?= htmlspecialchars($livro["status"]) ?></td>
 			</tr>
-
 		<?php endforeach; ?>
-
 	</tbody>
-
 </table>
 
 <script>
