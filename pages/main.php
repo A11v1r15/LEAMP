@@ -1,4 +1,5 @@
 <?php
+	date_default_timezone_set("America/Fortaleza");
 	session_start();
 	$path = trim(
 		parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH),
@@ -115,6 +116,7 @@
 						<li><a onclick="loginGoogle()">Login</a></li>
 					<?php endif; ?>
 					<?php if (isAdmin()): ?>
+						<li><a href="/emprestimos">Lista de empréstimos</a></li>
 						<li><a href="/doar">Adicionar livros</a></li>
 					<?php endif; ?>
 				</ul>

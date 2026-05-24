@@ -64,11 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	/* renovar */
 
 	if ($action === "renew") {
-		$new_deadline =
-			date(
-				"c",
-				strtotime("+10 days")
-			);
+		$new_deadline = date("c", strtotime("+10 days"));
 
 		supabasePatch(
 			"loans?".

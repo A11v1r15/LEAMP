@@ -1,5 +1,5 @@
 <?php
-	$titulo = "Página não encontrada";
+	$titulo = "Página não encontrada - LÉAMP";
 	$quotes = array(
 		"Nem todos que vagueiam estão perdidos→O Senhor dos Anéis: A sociedade do anel",
 		"Quem sou eu no mundo? Ah, essa é a grande charada→Alice no País das Maravilhas",

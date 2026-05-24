@@ -162,17 +162,17 @@ main a:visited {
 	color: #353098;
 }
 
-#tabelaLivros thead {
+table thead {
 	background-color: #2D6C40;
 	color: #FFFFFF;
 }
 
-#tabelaLivros tr:nth-child(even) {
-	background-color: #FFFFFF;
+tbody tr:nth-child(even) {
+	background-color: #FFFFFF !important;
 }
 
-#tabelaLivros tbody tr:hover {
-	background-color: #BBFFB8;
+table tbody tr:hover {
+	background-color: #BBFFB8 !important;
 }
 
 blockquote {
