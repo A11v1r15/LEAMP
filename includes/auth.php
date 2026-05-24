@@ -26,7 +26,6 @@
 
 	function requireLogged() {
 		if (!isLogged()) {
-			http_response_code(403);
 			throw new HttpError(
 				403, "pages/403.php"
 			);
@@ -35,7 +34,6 @@
 
 	function requireAdmin() {
 		if (!isAdmin()) {
-			http_response_code(403);
 			throw new HttpError(
 				403, "pages/403.php"
 			);

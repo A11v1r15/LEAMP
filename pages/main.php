@@ -9,7 +9,6 @@
 	$pagina = $path ?: "inicio";
 	$arquivo = "pages/" . $pagina . ".php";
 	if (!file_exists($arquivo)) {
-		http_response_code(404);
 		$status = 404;
 		$arquivo = "pages/404.php";
 	}
@@ -22,7 +21,6 @@
 		$conteudo = ob_get_clean();
 	} catch (HttpError $e) {
 		$status = $e->status;
-		http_response_code($status);
 		ob_clean();
 		ob_start();
 		require $e->page;

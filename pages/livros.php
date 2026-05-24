@@ -2,7 +2,7 @@
 	require_once "includes/supabase.php";
 	require_once "includes/cache.php";
 
-	$titulo = "LÉAMP - Livros";
+	$titulo = "Livros - LÉAMP";
 
 	$livros = cacheGet("livros");
 	if ($livros === null) {
