@@ -4,16 +4,30 @@
 		parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH),
 		"/"
 	);
+	$status = 200;
 
 	$pagina = $path ?: "inicio";
 	$arquivo = "pages/" . $pagina . ".php";
 	if (!file_exists($arquivo)) {
 		http_response_code(404);
+		$status = 404;
 		$arquivo = "pages/404.php";
 	}
 	$titulo = "Ler é a Minha Praia";
 	include_once "includes/auth.php";
 	include_once "includes/supabase.php";
+	try {
+		ob_start();
+		require $arquivo;
+		$conteudo = ob_get_clean();
+	} catch (HttpError $e) {
+		$status = $e->status;
+		http_response_code($status);
+		ob_clean();
+		ob_start();
+		require $e->page;
+		$conteudo = ob_get_clean();
+	}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -110,7 +124,7 @@
 		</aside>
 
 		<main>
-			<?php include $arquivo; ?>
+			<?= $conteudo ?>
 		</main>
 
 	</div>

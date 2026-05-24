@@ -2,6 +2,8 @@
 <?php 
 	include_once "includes/auth.php";
 	requireLogged();
+
+	$titulo = "Perfil - LÉAMP";
 ?>
 
 <h2>Olá, <?= $_SESSION["user"]["name"] ?>!</h2>

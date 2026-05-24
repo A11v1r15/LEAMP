@@ -1,5 +1,5 @@
 <?php
-$titulo = "Termos de Serviço";
+$titulo = "Termos de Serviço LÉAMP";
 ?>
 
 <h2>Termos de Serviço</h2>

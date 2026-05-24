@@ -1,6 +1,6 @@
 <?php
 
-	$titulo = "LÉAMP - Contatos";
+	$titulo = "Contatos - LÉAMP";
 
 ?>
 

@@ -18,7 +18,7 @@ if (!$livro) {
 
 $livro = $livro[0];
 
-$titulo = "LÉAMP - ".$livro["title"];
+$titulo = $livro["title"]." - LÉAMP";
 
 $loan = supabaseGet(
 	"loans?book_id=eq.$id&is_active=eq.true&select=*",

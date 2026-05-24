@@ -5,11 +5,14 @@ require_once "includes/supabase.php";
 
 requireAdmin();
 
-$titulo = "Novo empréstimo";
+$titulo = "Empréstimo - LÉAMP";
 
 $users = supabaseGet("users?select=uuid,name,avatar", $_SESSION["user"]["token"]);
 $book_id = $_GET["id"] ?? null;
 $book = supabaseGet("books?id=eq.$book_id&select=*");
+if ($book[0]["title"]) {
+	$titulo = "Empréstimo: ".$book[0]["title"]." - LÉAMP";
+}
 
 /* envia formulário */
 
