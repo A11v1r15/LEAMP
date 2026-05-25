@@ -1,7 +1,40 @@
 <?php
 
+require_once "includes/auth.php";
+
 $SUPABASE_URL = "https://exriifeecupaansgczgp.supabase.co";
 $SUPABASE_ANON_KEY = "sb_publishable_KpCIiH4-5AOu-rWwZU8KOw_NJ1qTfhr";
+
+function supabaseNormalizeResponse($response) {
+	if (is_string($response)) {
+		$decoded = json_decode($response, true);
+		return $decoded ?? $response;
+	}
+	return $response;
+}
+
+function supabaseIsAuthError($response) {
+	$response = supabaseNormalizeResponse($response);
+	if (!is_array($response)) {
+		return false;
+	}
+	$message = $response["message"] ?? "";
+	return (
+		str_contains($message, "JWT expired") ||
+		str_contains($message, "Invalid JWT") ||
+		str_contains($message, "not authenticated") ||
+		str_contains($message, "Auth")
+	);
+}
+
+function supabaseHandleAuthError($response) {
+	if (supabaseIsAuthError($response)) {
+		session_destroy();
+		throw new HttpError(
+			401, "pages/401.php"
+		);
+	}
+}
 
 function supabaseGet($endpoint, $userToken = null) {
 
@@ -23,6 +56,8 @@ function supabaseGet($endpoint, $userToken = null) {
 	]);
 
 	$response = curl_exec($curl);
+
+	supabaseHandleAuthError($response);
 
 	return json_decode($response, true);
 }
@@ -51,6 +86,8 @@ function supabasePost($table, $data, $userToken = null) {
 
 	$response = curl_exec($curl);
 
+	supabaseHandleAuthError($response);
+
 	return json_decode($response, true);
 }
 
@@ -77,6 +114,8 @@ function supabasePatch($endpoint, $data, $userToken = null) {
 	]);
 
 	$response = curl_exec($curl);
+
+	supabaseHandleAuthError($response);
 
 	return json_decode($response, true);
 }

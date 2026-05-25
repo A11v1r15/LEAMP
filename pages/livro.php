@@ -1,7 +1,6 @@
 <?php
 
 	require_once "includes/supabase.php";
-	require_once "includes/auth.php";
 	include_once "includes/ui.php";
 
 	$id = $_GET["id"] ?? null;
@@ -16,7 +15,7 @@
 		"id=eq.$id".
 		"&select=*",
 		
-		$_SESSION["user"]["token"]
+		$_SESSION["user"]["token"] ?? null
 	);
 
 	if (!$livro) {
@@ -34,7 +33,7 @@
 		"&is_active=eq.true" .
 		"&select=*",
 
-		$_SESSION["user"]["token"]
+		$_SESSION["user"]["token"] ?? null
 	);
 
 	$loan = $loan[0] ?? null;
@@ -52,7 +51,7 @@
 			"uuid=eq.$reader_id" .
 			"&select=name,avatar",
 
-			$_SESSION["user"]["token"]
+			$_SESSION["user"]["token"] ?? null
 		);
 
 		$user = $user[0] ?? null;
