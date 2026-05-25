@@ -39,7 +39,9 @@
 					<?= htmlspecialchars($livro["title"]) ?>
 				</a></td>
 				<td><?= htmlspecialchars($livro["author"]) ?></td>
-				<td><?= htmlspecialchars($livro["status"]) ?></td>
+				<td class="status <?= strtolower($livro["status"]) ?>">
+					<?= htmlspecialchars($livro["status"]) ?>
+				</td>
 			</tr>
 		<?php endforeach; ?>
 	</tbody>

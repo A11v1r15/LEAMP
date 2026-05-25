@@ -166,11 +166,11 @@ if (!is_array($loans)) {
 					<?php if (
 						$loan["is_active"]
 					): ?>
-						<span class="loan-active
+						<span class="status active
 						">Ativo
 						</span>
 					<?php else: ?>
-						<span class="loan-finished
+						<span class="status finished
 						">Finalizado
 						</span>
 					<?php endif; ?>
@@ -182,7 +182,7 @@ if (!is_array($loans)) {
 					): ?>
 						<a
 							href="/devolucao?id=<?= $loan["id"] ?>"
-							class="loan-button"
+							class="button blue"
 						>Gerenciar
 						</a>
 					<?php else: ?>

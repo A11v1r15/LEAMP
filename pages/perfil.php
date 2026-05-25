@@ -76,10 +76,10 @@
 						Até <?= date("d/m/Y", strtotime($loan["deadline"])) ?>
 					</span>
 					<?php if ($loan["is_active"]): ?>
-						<span class="status-active
+						<span class="status active
 						">Em andamento</span>
 					<?php else: ?>
-						<span class="status-finished
+						<span class="status finished
 						">Finalizado</span>
 					<?php endif; ?>
 				</div>
@@ -88,7 +88,7 @@
 			<div class="profile-loan-actions">
 				<a
 					href="<?= $review_url ?>"
-					class="review-button"
+					class="button blue"
 				>✍️
 					<?= $loan["is_active"]
 						? "Escrever resenha"

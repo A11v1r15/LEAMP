@@ -21,23 +21,6 @@
 	font-size: 1rem;
 }
 
-.loan-form button {
-	padding: 14px;
-	border: none;
-	border-radius: 14px;
-	background: #198754;
-	color: white;
-	font-size: 1rem;
-	font-weight: bold;
-	cursor: pointer;
-	transition: transform 0.2s, filter 0.2s;
-}
-
-.loan-form button:hover {
-	transform: translateY(-2px);
-	filter: brightness(1.05);
-}
-
 .loan-card {
 	display: flex;
 	align-items: center;

@@ -105,35 +105,3 @@
 	font-size: 0.95rem;
 	color: #555;
 }
-
-.status-active {
-	padding: 4px 10px;
-	border-radius: 10px;
-	background: #d1e7dd;
-	color: #0f5132;
-	font-weight: bold;
-}
-
-.status-finished {
-	padding: 4px 10px;
-	border-radius: 10px;
-	background: #e2e3e5;
-	color: #41464b;
-	font-weight: bold;
-}
-
-.review-button {
-	display: inline-block;
-	padding: 10px 16px;
-	border-radius: 12px;
-	background: #0d6efd;
-	color: white !important;
-	text-decoration: none;
-	font-weight: bold;
-	transition: transform 0.2s, filter 0.2s;
-}
-
-.review-button:hover {
-	transform: translateY(-2px);
-	filter: brightness(1.05);
-}

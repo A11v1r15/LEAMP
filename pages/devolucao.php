@@ -153,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			type="submit"
 			name="action"
 			value="renew"
-			class="renew-button"
+			class="button blue"
 		>↺ Renovar +10 dias
 		</button>
 
@@ -161,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			type="submit"
 			name="action"
 			value="return"
-			class="return-button"
+			class="button red"
 		>↩ Confirmar devolução
 		</button>
 	</form>

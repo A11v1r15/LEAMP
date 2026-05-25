@@ -68,7 +68,7 @@ if ($loan) {
 			<?= htmlspecialchars($livro["author"]) ?>
 		</div>
 
-		<div class="book-status <?= strtolower($livro["status"]) ?>">
+		<div class="status <?= strtolower($livro["status"]) ?>">
 			<?= htmlspecialchars($livro["status"]) ?>
 		</div>
 	</div>
@@ -80,7 +80,7 @@ if ($loan) {
 
 <a
 	href="/emprestimo?id=<?= $livro["id"] ?>"
-	class="action-button">Emprestar livro
+	class="button blue">Emprestar livro
 </a>
 
 <?php endif; ?>
@@ -109,7 +109,7 @@ if ($loan) {
 		<?php if (isAdmin()): ?>
 			<a
 				href="/devolucao?id=<?= $loan["id"] ?>"
-				class="return-button">↩ Devolver
+				class="button red">↩ Devolver
 			</a>
 		<?php endif; ?>
 	</div>

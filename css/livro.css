@@ -18,27 +18,3 @@
 	color: #666;
 	font-size: 1.1rem;
 }
-
-.book-status {
-	display: inline-block;
-	margin-top: 12px;
-	padding: 6px 14px;
-	border-radius: 999px;
-	font-weight: bold;
-	font-size: 0.9rem;
-}
-
-.book-status.disponível {
-	background: #d1e7dd;
-	color: #0f5132;
-}
-
-.book-status.emprestado {
-	background: #fff3cd;
-	color: #664d03;
-}
-
-.book-status.pendente {
-	background: #fff3cd;
-	color: #660303;
-}

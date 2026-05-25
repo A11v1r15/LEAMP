@@ -250,36 +250,67 @@ h2.error {
 
 /* FORMULÁRIOS */
 
-.action-button {
+.button {
 	display: inline-block;
-	margin-bottom: 24px;
+	margin-bottom: 10px;
 	padding: 12px 18px;
+	border: none;
 	border-radius: 14px;
-	background: #198754;
-	color: white !important;
+	background: #000000;
+	color: #FFFFFF !important;
 	text-decoration: none;
 	font-weight: bold;
 	transition: transform 0.2s, filter 0.2s;
 }
 
-.action-button:hover {
+.button:hover {
 	transform: translateY(-2px);
 	filter: brightness(1.05);
 }
 
-.return-button {
-	padding: 10px 16px;
-	border-radius: 12px;
+.button.red {
 	background: #c90c0f;
-	color: white !important;
-	text-decoration: none;
-	font-weight: bold;
-	transition: transform 0.2s, filter 0.2s;
 }
 
-.return-button:hover {
-	transform: translateY(-2px);
-	filter: brightness(1.05);
+.button.green {
+	background: #198754;
+}
+
+.button.blue {
+	background: #0d6efd;
+}
+
+.status {
+	display: inline-block;
+	padding: 4px 10px;
+	border-radius: 10px;
+	font-weight: bold;
+	font-size: 0.9rem;
+}
+
+.status.disponível {
+	background: #d1e7dd;
+	color: #0f5132;
+}
+
+.status.emprestado {
+	background: #fff3cd;
+	color: #664d03;
+}
+
+.status.pendente {
+	background: #ffcdcd;
+	color: #c90c0f;
+}
+
+.status.active {
+	background: #d1e7dd;
+	color: #0f5132;
+}
+
+.status.finished {
+	background: #e2e3e5;
+	color: #41464b;
 }
 
 /* FOOTER */
