@@ -49,17 +49,40 @@
 	display: inline-block;
 	padding: 8px 14px;
 	border-radius: 999px;
+	color: white;
+	font-weight: bold;
+	font-size: 0.95rem;
+	letter-spacing: 0.3px;
+}
+
+.profile-role-badge.blue {
 	background:
 		linear-gradient(
 			135deg,
 			#0d6efd,
 			#4f8cff
 		);
-	color: white;
-	font-weight: bold;
-	font-size: 0.95rem;
-	letter-spacing: 0.3px;
 	box-shadow: 0 3px 10px rgba(13,110,253,0.25);
+}
+
+.profile-role-badge.green {
+	background:
+		linear-gradient(
+			135deg,
+			#198754,
+			#4edb8c
+		);
+	box-shadow: 0 3px 10px rgba(25,135,84,0.25);
+}
+
+.profile-role-badge.yellow {
+	background:
+		linear-gradient(
+			135deg,
+			#ffc107,
+			#ffdb4d
+		);
+	box-shadow: 0 3px 10px rgba(255,193,7,0.25);
 }
 
 .profile-loans {

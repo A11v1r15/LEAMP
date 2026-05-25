@@ -1,46 +1,46 @@
 <?php
 
-require_once "includes/supabase.php";
-require_once "includes/auth.php";
+	require_once "includes/supabase.php";
+	require_once "includes/auth.php";
+	include_once "includes/ui.php";
 
-requireAdmin();
+	requireAdmin();
 
-$titulo = "Empréstimos - LÉAMP";
+	$titulo = "Empréstimos - LÉAMP";
 
-/* empréstimos */
+	/* empréstimos */
 
-$loans = supabaseGet(
-	"loans?".
-	"select=".
-		"id,".
-		"start_date,".
-		"deadline,".
-		"end_date,".
-		"is_active,".
-		"book:book_id(".
+	$loans = supabaseGet(
+		"loans?".
+		"select=".
 			"id,".
-			"title".
-		"),".
-		"reader:reader(".
-			"name,".
-			"avatar".
-		"),".
-		"grantor:grantor(".
-			"name,".
-			"avatar".
-		"),".
-		"receiver:receiver(".
-			"name,".
-			"avatar".
-		")",
+			"start_date,".
+			"deadline,".
+			"end_date,".
+			"is_active,".
+			"book:book_id(".
+				"id,".
+				"title".
+			"),".
+			"reader:reader(".
+				"name,".
+				"avatar".
+			"),".
+			"grantor:grantor(".
+				"name,".
+				"avatar".
+			"),".
+			"receiver:receiver(".
+				"name,".
+				"avatar".
+			")",
 
-	$_SESSION["user"]["token"]
-);
+		$_SESSION["user"]["token"]
+	);
 
-if (!is_array($loans)) {
-	$loans = [];
-}
-
+	if (!is_array($loans)) {
+		$loans = [];
+	}
 ?>
 <link rel="stylesheet" href="/css/emprestimos.css">
 
@@ -166,11 +166,11 @@ if (!is_array($loans)) {
 					<?php if (
 						$loan["is_active"]
 					): ?>
-						<span class="status active
+						<span class="status green
 						">Ativo
 						</span>
 					<?php else: ?>
-						<span class="status finished
+						<span class="status gray
 						">Finalizado
 						</span>
 					<?php endif; ?>

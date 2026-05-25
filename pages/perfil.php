@@ -1,6 +1,7 @@
 
 <?php 
 	include_once "includes/auth.php";
+	include_once "includes/ui.php";
 	requireLogged();
 
 	$titulo = "Perfil - LÉAMP";
@@ -46,7 +47,7 @@
 		</div>
 
 		<div class="profile-role">
-			<span class="profile-role-badge">
+			<span class="profile-role-badge <?= colorClass($_SESSION["user"]["role"]) ?>">
 				<?= htmlspecialchars(
 					$_SESSION["user"]["role"]
 				) ?>
@@ -76,10 +77,10 @@
 						Até <?= date("d/m/Y", strtotime($loan["deadline"])) ?>
 					</span>
 					<?php if ($loan["is_active"]): ?>
-						<span class="status active
+						<span class="status green
 						">Em andamento</span>
 					<?php else: ?>
-						<span class="status finished
+						<span class="status gray
 						">Finalizado</span>
 					<?php endif; ?>
 				</div>

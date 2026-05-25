@@ -288,27 +288,22 @@ h2.error {
 	font-size: 0.9rem;
 }
 
-.status.disponível {
+.status.green {
 	background: #d1e7dd;
 	color: #0f5132;
 }
 
-.status.emprestado {
+.status.yellow {
 	background: #fff3cd;
 	color: #664d03;
 }
 
-.status.pendente {
+.status.red {
 	background: #ffcdcd;
 	color: #c90c0f;
 }
 
-.status.active {
-	background: #d1e7dd;
-	color: #0f5132;
-}
-
-.status.finished {
+.status.gray {
 	background: #e2e3e5;
 	color: #41464b;
 }

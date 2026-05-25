@@ -16,6 +16,7 @@
 	$titulo = "Ler é a Minha Praia";
 	include_once "includes/auth.php";
 	include_once "includes/supabase.php";
+	include_once "includes/ui.php";
 	try {
 		ob_start();
 		require $arquivo;

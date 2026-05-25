@@ -1,61 +1,62 @@
 <?php
 
-require_once "includes/supabase.php";
-require_once "includes/auth.php";
+	require_once "includes/supabase.php";
+	require_once "includes/auth.php";
+	include_once "includes/ui.php";
 
-$id = $_GET["id"] ?? null;
+	$id = $_GET["id"] ?? null;
 
-if (!$id) {
-	echo "<h2 class='error'>Livro não encontrado</h2>";
-	return;
-}
+	if (!$id) {
+		echo "<h2 class='error'>Livro não encontrado</h2>";
+		return;
+	}
 
-$livro = supabaseGet(
-	"books?".
-	"id=eq.$id".
-	"&select=*",
-	
-	$_SESSION["user"]["token"]
-);
+	$livro = supabaseGet(
+		"books?".
+		"id=eq.$id".
+		"&select=*",
+		
+		$_SESSION["user"]["token"]
+	);
 
-if (!$livro) {
-	echo "<h2 class='error'>Livro não encontrado</h2>";
-	return;
-}
+	if (!$livro) {
+		echo "<h2 class='error'>Livro não encontrado</h2>";
+		return;
+	}
 
-$livro = $livro[0];
+	$livro = $livro[0];
 
-$titulo = $livro["title"]." - LÉAMP";
+	$titulo = $livro["title"]." - LÉAMP";
 
-$loan = supabaseGet(
-	"loans?" .
-	"book_id=eq.$id" .
-	"&is_active=eq.true" .
-	"&select=*",
-
-	$_SESSION["user"]["token"]
-);
-
-$loan = $loan[0] ?? null;
-
-/* leitor */
-
-$user = null;
-
-if ($loan) {
-
-	$reader_id = $loan["reader"];
-
-	$user = supabaseGet(
-		"users?" .
-		"uuid=eq.$reader_id" .
-		"&select=name,avatar",
+	$loan = supabaseGet(
+		"loans?" .
+		"book_id=eq.$id" .
+		"&is_active=eq.true" .
+		"&select=*",
 
 		$_SESSION["user"]["token"]
 	);
 
-	$user = $user[0] ?? null;
-}
+	$loan = $loan[0] ?? null;
+
+	/* leitor */
+
+	$user = null;
+
+	if ($loan) {
+
+		$reader_id = $loan["reader"];
+
+		$user = supabaseGet(
+			"users?" .
+			"uuid=eq.$reader_id" .
+			"&select=name,avatar",
+
+			$_SESSION["user"]["token"]
+		);
+
+		$user = $user[0] ?? null;
+	}
 
 ?>
 <link rel="stylesheet" href="/css/livro.css">
@@ -68,7 +69,7 @@ if ($loan) {
 			<?= htmlspecialchars($livro["author"]) ?>
 		</div>
 
-		<div class="status <?= strtolower($livro["status"]) ?>">
+		<div class="status <?= colorClass($livro["status"]) ?>">
 			<?= htmlspecialchars($livro["status"]) ?>
 		</div>
 	</div>
