@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				>
 				</div>
 				<div class="loan-deadline">
-					Até<?= date("d/m/Y", strtotime("+10 days"))?>
+					Até <?= date("d/m/Y", strtotime("+10 days"))?>
 				</div>
 			</div>
 		</div>

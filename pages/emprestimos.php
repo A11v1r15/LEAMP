@@ -10,29 +10,29 @@ $titulo = "Empréstimos - LÉAMP";
 /* empréstimos */
 
 $loans = supabaseGet(
-	"loans?" .
-	"select=" .
-	"id," .
-	"start_date," .
-	"deadline," .
-	"end_date," .
-	"is_active," .
-	"book:book_id(" .
-		"id," .
-		"title" .
-	")," .
-	"reader:reader(" .
-		"name," .
-		"avatar" .
-	")," .
-	"grantor:grantor(" .
-		"name," .
-		"avatar" .
-	")," .
-	"receiver:receiver(" .
-		"name," .
-		"avatar" .
-	")",
+	"loans?".
+	"select=".
+		"id,".
+		"start_date,".
+		"deadline,".
+		"end_date,".
+		"is_active,".
+		"book:book_id(".
+			"id,".
+			"title".
+		"),".
+		"reader:reader(".
+			"name,".
+			"avatar".
+		"),".
+		"grantor:grantor(".
+			"name,".
+			"avatar".
+		"),".
+		"receiver:receiver(".
+			"name,".
+			"avatar".
+		")",
 
 	$_SESSION["user"]["token"]
 );

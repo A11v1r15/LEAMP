@@ -139,8 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			</div>
 
 			<div class="loan-deadline">
-				Até
-				<?= date("d/m/Y", strtotime($loan["deadline"])) ?>
+				Até <?= date("d/m/Y", strtotime($loan["deadline"])) ?>
 			</div>
 		</div>
 	</div>

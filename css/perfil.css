@@ -1,0 +1,139 @@
+.profile-header {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+	padding: 28px;
+	margin-bottom: 28px;
+	border-radius: 28px;
+	background:
+		linear-gradient(
+			135deg,
+			#ffffff,
+			#f6f8ff
+		);
+	box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+}
+
+.profile-avatar {
+	width: 110px;
+	height: 110px;
+	border-radius: 999px;
+	object-fit: cover;
+	border: 5px solid white;
+	box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+}
+
+.profile-info {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.profile-name {
+	margin: 0;
+	font-size: 2rem;
+	line-height: 1.1;
+	color: #222;
+}
+
+.profile-email {
+	font-size: 1rem;
+	color: #555;
+}
+
+.profile-role {
+	margin-top: 6px;
+}
+
+.profile-role-badge {
+	display: inline-block;
+	padding: 8px 14px;
+	border-radius: 999px;
+	background:
+		linear-gradient(
+			135deg,
+			#0d6efd,
+			#4f8cff
+		);
+	color: white;
+	font-weight: bold;
+	font-size: 0.95rem;
+	letter-spacing: 0.3px;
+	box-shadow: 0 3px 10px rgba(13,110,253,0.25);
+}
+
+.profile-loans {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin-top: 20px;
+}
+
+.profile-loan-card {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+	padding: 18px 22px;
+	border-radius: 20px;
+	background: white;
+	box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+.profile-loan-main {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.profile-loan-title {
+	font-size: 1.1rem;
+	font-weight: bold;
+	color: #222;
+	text-decoration: none;
+}
+
+.profile-loan-title:hover {
+	text-decoration: underline;
+}
+
+.profile-loan-meta {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex-wrap: wrap;
+	font-size: 0.95rem;
+	color: #555;
+}
+
+.status-active {
+	padding: 4px 10px;
+	border-radius: 10px;
+	background: #d1e7dd;
+	color: #0f5132;
+	font-weight: bold;
+}
+
+.status-finished {
+	padding: 4px 10px;
+	border-radius: 10px;
+	background: #e2e3e5;
+	color: #41464b;
+	font-weight: bold;
+}
+
+.review-button {
+	display: inline-block;
+	padding: 10px 16px;
+	border-radius: 12px;
+	background: #0d6efd;
+	color: white !important;
+	text-decoration: none;
+	font-weight: bold;
+	transition: transform 0.2s, filter 0.2s;
+}
+
+.review-button:hover {
+	transform: translateY(-2px);
+	filter: brightness(1.05);
+}
