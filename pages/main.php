@@ -96,7 +96,7 @@
 			<li><a href="/livros">Livros</a></li>
 			<li><a href="/ranking">Ranking</a></li>
 			<li><a href="/eventos">Eventos</a></li>
-			<li><a href="/contatos">Contato</a></li>
+			<li><a href="/contatos">Contatos</a></li>
 		</ul>
 	</nav>
 

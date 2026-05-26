@@ -12,6 +12,12 @@ $livros = getCacheOrFetch(
 	"select=*"
 );
 
+$authors = array_unique(
+	array_column($livros, "author")
+);
+
+sort($authors);
+
 /* envia formulário */
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -40,16 +46,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <div class="form-page">
 	<form class="donation-form" method="POST">
+		<datalist id="authors">
+			<?php foreach ($authors as $author): ?>
+				<option
+					value="<?= htmlspecialchars($author) ?>"
+				>
+			<?php endforeach; ?>
+		</datalist>
 
-		<label>
+		<label for="title">
 			Título:
 		</label>
 		<input type="text" name="title" required>
 
-		<label>
+		<label for="author">
 			Autor:
 		</label>
-		<input type="text" name="author" required>
+		<input type="text" name="author" list="authors" required>
 
 		<button type="submit" class="button green">
 			← Registrar doação e sair
