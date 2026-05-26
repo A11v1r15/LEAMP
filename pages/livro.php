@@ -13,9 +13,7 @@
 	$livro = supabaseGet(
 		"books?".
 		"id=eq.$id".
-		"&select=*",
-		
-		$_SESSION["user"]["token"] ?? null
+		"&select=*"
 	);
 
 	if (!$livro) {
@@ -62,14 +60,14 @@
 
 <div class="book-header">
 	<div class="book-meta">
-		<h2><?= htmlspecialchars($livro["title"]) ?></h2>
+		<h2><?=htmlspecialchars($livro["title"])?></h2>
 
 		<div class="book-author">
-			<?= htmlspecialchars($livro["author"]) ?>
+			<?=htmlspecialchars($livro["author"])?>
 		</div>
 
-		<div class="status <?= colorClass($livro["status"]) ?>">
-			<?= htmlspecialchars($livro["status"]) ?>
+		<div class="status <?=colorClass($livro["status"])?>">
+			<?=htmlspecialchars($livro["status"])?>
 		</div>
 	</div>
 </div>
@@ -79,38 +77,38 @@
 ?>
 
 <a
-	href="/emprestimo?id=<?= $livro["id"] ?>"
-	class="button blue">Emprestar livro
+	href="/emprestimo?id=<?=$livro["id"]?>"
+	class="button blue">→ Emprestar livro
 </a>
 
-<?php endif; ?>
+<?php endif;?>
 
-<?php if ($loan && $user): ?>
+<?php if ($loan && $user):?>
 	<div class="loan-card">
 		<img
-			src="<?= htmlspecialchars(
+			src="<?=htmlspecialchars(
 				$user["avatar"]
-			) ?>"
+			)?>"
 			class="loan-avatar"
 			alt="Avatar"
 		>
 		<div class="loan-info">
 			<div class="loan-title">
 				Emprestado para
-				<?= htmlspecialchars(
+				<?=htmlspecialchars(
 					$user["name"]
-				) ?>
+				)?>
 			</div>
 
 			<div class="loan-deadline">
-				Até <?= date("d/m/Y", strtotime($loan["deadline"])) ?>
+				Até <?=date("d/m/Y", strtotime($loan["deadline"]))?>
 			</div>
 		</div>
-		<?php if (isAdmin()): ?>
+		<?php if (isAdmin()):?>
 			<a
-				href="/devolucao?id=<?= $loan["id"] ?>"
-				class="button red">↩ Devolver
+				href="/devolucao?id=<?=$loan["id"]?>"
+				class="button blue">↩ Devolver
 			</a>
-		<?php endif; ?>
+		<?php endif;?>
 	</div>
-<?php endif; ?>
+<?php endif;?>

@@ -5,20 +5,14 @@
 
 	$titulo = "Livros - LÉAMP";
 
-	$livros = cacheGet("livros");
-	if ($livros === null) {
-		$livros = supabaseGet(
-			"books?".
-			"select=*"
-		);
-		cacheSet("livros", $livros);
-	}
-	if (!is_array($livros)) {
-		$livros = [];
-	}
-//	echo "<pre>";
-//	print_r($livros);
-//	echo "</pre>";
+	$livros = getCacheOrFetch(
+		"livros",
+		"books?".
+		"select=*"
+	);
+	//	echo "<pre>";
+	//	print_r($livros);
+	//	echo "</pre>";
 ?>
 
 <h2>Livros</h2>
@@ -34,17 +28,17 @@
 	</thead>
 
 	<tbody>
-		<?php foreach ($livros as $livro): ?>
+		<?php foreach ($livros as $livro):?>
 			<tr>
-				<td><a href="/livro?id=<?= $livro["id"] ?>">
-					<?= htmlspecialchars($livro["title"]) ?>
+				<td><a href="/livro?id=<?=$livro["id"]?>">
+					<?=htmlspecialchars($livro["title"])?>
 				</a></td>
-				<td><?= htmlspecialchars($livro["author"]) ?></td>
-				<td class="status <?= colorClass($livro["status"]) ?>">
-					<?= htmlspecialchars($livro["status"]) ?>
+				<td><?=htmlspecialchars($livro["author"])?></td>
+				<td class="status <?=colorClass($livro["status"])?>">
+					<?=htmlspecialchars($livro["status"])?>
 				</td>
 			</tr>
-		<?php endforeach; ?>
+		<?php endforeach;?>
 	</tbody>
 </table>
 

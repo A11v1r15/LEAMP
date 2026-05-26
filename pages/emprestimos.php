@@ -61,135 +61,114 @@
 	</thead>
 
 	<tbody>
-		<?php foreach ($loans as $loan): ?>
+		<?php foreach ($loans as $loan):?>
 			<tr>
 				<td>
 					<a
-						href="/livro?id=<?= $loan["book"]["id"] ?>"
+						href="/livro?id=<?=$loan["book"]["id"]?>"
 					>
-						<?= htmlspecialchars(
+						<?=htmlspecialchars(
 							$loan["book"]["title"]
-						) ?>
+						)?>
 					</a>
 				</td>
 
-				<td data-order="<?= htmlspecialchars(
+				<td data-order="<?=htmlspecialchars(
 					$loan["reader"]["name"]
 					?? "Desconhecido"
-				) ?>">
+				)?>">
 					<div class="user-inline">
 						<img
-							src="<?= htmlspecialchars($loan["reader"]["avatar"]) ?>"
+							src="<?=htmlspecialchars($loan["reader"]["avatar"])?>"
 							class="mini-avatar"
 							alt=""
 						>
 						<span>
-							<?= htmlspecialchars($loan["reader"]["name"]) ?>
+							<?=htmlspecialchars($loan["reader"]["name"])?>
 						</span>
 					</div>
 				</td>
 
 				<td>
-					<?= date(
-						"d/m/Y H:i",
-						strtotime(
-							$loan["start_date"]
-						)
-					) ?>
+					<?=date("d/m/Y H:i",strtotime($loan["start_date"]))?>
 				</td>
 
-				<td data-order="<?= htmlspecialchars(
+				<td data-order="<?=htmlspecialchars(
 					$loan["grantor"]["name"]
 					?? "Desconhecido"
-				) ?>">
+				)?>">
 					<div class="user-inline">
 						<img
-							src="<?= htmlspecialchars($loan["grantor"]["avatar"]) ?>"
+							src="<?=htmlspecialchars($loan["grantor"]["avatar"])?>"
 							class="mini-avatar"
 							alt=""
 						>
 						<span>
-							<?= htmlspecialchars($loan["grantor"]["name"]) ?>
+							<?=htmlspecialchars($loan["grantor"]["name"])?>
 						</span>
 					</div>
 				</td>
 
 				<td>
-					<?= date(
-						"d/m/Y",
-						strtotime(
-							$loan["deadline"]
-						)
-					) ?>
+					<?=date("d/m/Y",strtotime($loan["deadline"]))?>
 				</td>
 				
 
-				<td data-order="<?= htmlspecialchars(
+				<td data-order="<?=htmlspecialchars(
 					$loan["receiver"]["name"]
 					?? "Desconhecido"
-				) ?>">
-					<?php if (
-						$loan["is_active"]
-					): ?>
+				)?>">
+					<?php if ($loan["is_active"]):?>
 						—
-					<?php else: ?>
+					<?php else:?>
 						<div class="user-inline">
 							<img
-								src="<?= htmlspecialchars($loan["receiver"]["avatar"]) ?>"
+								src="<?=htmlspecialchars($loan["receiver"]["avatar"])?>"
 								class="mini-avatar"
 								alt=""
 							>
 							<span>
-								<?= htmlspecialchars($loan["receiver"]["name"]) ?>
+								<?=htmlspecialchars($loan["receiver"]["name"])?>
 							</span>
 						</div>
-					<?php endif; ?>
+					<?php endif;?>
 				</td>
 
 				<td>
 					<?php if (
 						$loan["is_active"]
-					): ?>
+					):?>
 						—
-					<?php else: ?>
-						<?= date(
-							"d/m/Y H:i",
-							strtotime(
-								$loan["end_date"]
-							)
-						) ?>
-					<?php endif; ?>
+					<?php else:?>
+						<?=date("d/m/Y H:i",strtotime($loan["end_date"]))?>
+					<?php endif;?>
 				</td>
 
 				<td>
-					<?php if (
-						$loan["is_active"]
-					): ?>
+					<?php if ($loan["is_active"]):?>
 						<span class="status green
 						">Ativo
 						</span>
-					<?php else: ?>
+					<?php else:?>
 						<span class="status gray
 						">Finalizado
 						</span>
-					<?php endif; ?>
+					<?php endif;?>
 				</td>
 
 				<td>
-					<?php if (
-						$loan["is_active"]
-					): ?>
+					<?php if ($loan["is_active"]):?>
 						<a
-							href="/devolucao?id=<?= $loan["id"] ?>"
+							href="/devolucao?id=<?=$loan["id"]?>"
 							class="button blue"
-						>Gerenciar
+						>↩ Devolver
 						</a>
-					<?php else: ?>
+					<?php else:?>
 						—
-					<?php endif; ?>
+					<?php endif;?>
 				</td>
 			</tr>
-		<?php endforeach; ?>
+		<?php endforeach;?>
 	</tbody>
 </table>
 

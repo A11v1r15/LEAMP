@@ -33,8 +33,11 @@ if (!$loan) {
 
 $book = supabaseGet(
 	"books?".
-	"id=eq.".$loan["book_id"] .
-	"&select=title,author",
+	"id=eq.".$loan["book_id"].
+	"&select=".
+		"id,".
+		"title,".
+		"author",
 
 	$_SESSION["user"]["token"]
 );
@@ -74,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			$_SESSION["user"]["token"]
 		);
 
-		header("Location: /livro?id=" .$loan["book_id"]);
+		header("Location: /livro?id=".$loan["book_id"]);
 
 		exit;
 	}
@@ -102,6 +105,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			$_SESSION["user"]["token"]
 		);
 
+		cacheDelete("livros");
+
 		header("Location: /livro?id=" .$loan["book_id"]);
 
 		exit;
@@ -109,44 +114,40 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 ?>
-<link rel="stylesheet" href="/css/devolucao.css">
 
-<div class="return-page">
+<h2>Devolução de livro</h2>
 
-	<h2>Devolução de livro</h2>
+<div class="form-page">
 
-	<div class="loan-card">
-		<img
-			src="<?= htmlspecialchars(
-				$user["avatar"]
-			) ?>"
-			class="loan-avatar"
-			alt="Avatar"
-		>
-		<div class="loan-info">
-			<div class="loan-book">
-				<?= htmlspecialchars(
-					$book["title"]
-				) ?>
-			</div>
+	<form method="POST">
 
-			<div class="loan-user">
-				Com
-				<?= htmlspecialchars(
-					$user["name"]
-				) ?>
-			</div>
+		<div class="loan-card">
+			<img
+				src="<?=htmlspecialchars(
+					$user["avatar"]
+				)?>"
+				class="loan-avatar"
+				alt="Avatar"
+			>
+			<div class="loan-info">
+				<div class="loan-book">
+					<?=htmlspecialchars(
+						$book["title"]
+					)?>
+				</div>
 
-			<div class="loan-deadline">
-				Até <?= date("d/m/Y", strtotime($loan["deadline"])) ?>
+				<div class="loan-user">
+					Com
+					<?=htmlspecialchars(
+						$user["name"]
+					)?>
+				</div>
+
+				<div class="loan-deadline">
+					Até <?=date("d/m/Y", strtotime($loan["deadline"]))?>
+				</div>
 			</div>
 		</div>
-	</div>
-
-	<form
-		method="POST"
-		class="return-actions"
-	>
 
 		<button
 			type="submit"
@@ -160,8 +161,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			type="submit"
 			name="action"
 			value="return"
-			class="button red"
+			class="button green"
 		>↩ Confirmar devolução
 		</button>
+
+		<a href="/livro?id=<?=$book["id"]?>" class="button red">
+			⨯ Cancelar
+		</a>
 	</form>
 </div>

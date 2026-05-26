@@ -16,9 +16,7 @@ $book_id = $_GET["id"] ?? null;
 $book = supabaseGet(
 	"books?".
 	"id=eq.$book_id".
-	"&select=*",
-	
-	$_SESSION["user"]["token"]
+	"&select=*"
 );
 if ($book[0]["title"]) {
 	$titulo = "Empréstimo: ".$book[0]["title"]." - LÉAMP";
@@ -50,6 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$_SESSION["user"]["token"]
 	);
 
+	cacheDelete("livros");
+
 	echo "<p>Empréstimo registrado!</p>";
 //	file_put_contents("php://stderr", print_r($result, true));
 }
@@ -61,27 +61,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	Empréstimo de <?=$book[0]["title"]?>
 </h2>
 
-<div class="loan-page">
-	<form class="loan-form" method="POST">
+<div class="form-page">
+	<form method="POST">
 
-		<label>
-			Leitor:
-		</label>
+		<label>Leitor:</label>
 
 		<select name="reader" id="reader-select" required>
-			<option value="">
-				Selecione o leitor
-			</option>
+			<option value="">Selecione o leitor</option>
 
-			<?php foreach ($users as $u): ?>
+			<?php foreach ($users as $u):?>
 				<option
-					value="<?= $u["uuid"] ?>"
-					data-name="<?= htmlspecialchars($u["name"]) ?>"
-					data-avatar="<?= htmlspecialchars($u["avatar"]) ?>"
+					value="<?=$u["uuid"]?>"
+					data-name="<?=htmlspecialchars($u["name"])?>"
+					data-avatar="<?=htmlspecialchars($u["avatar"])?>"
 				>
-					<?= $u["name"] ?>
+					<?=$u["name"]?>
 				</option>
-			<?php endforeach; ?>
+			<?php endforeach;?>
 		</select>
 
 		<div id="reader-preview" class="loan-card hidden">
@@ -98,16 +94,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				>
 				</div>
 				<div class="loan-deadline">
-					Até <?= date("d/m/Y", strtotime("+10 days"))?>
+					Até <?=date("d/m/Y", strtotime("+10 days"))?>
 				</div>
 			</div>
 		</div>
 
-		<input type="hidden" name="book_id" value="<?= $book_id ?>">
+		<input type="hidden" name="book_id" value="<?=$book_id?>">
 
 		<button type="submit" class="button green">
-			Registrar empréstimo
+			→ Registrar empréstimo
 		</button>
+
+		<a href="/livro?id=<?=$book_id?>" class="button red">
+			⨯ Cancelar
+		</a>
 
 	</form>
 </div>

@@ -34,7 +34,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?= $titulo ?></title>
+	<title><?=$titulo?></title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
@@ -110,22 +110,22 @@
 				<h2>Menu</h2>
 
 				<ul>
-					<?php if (isLogged()): ?>
-						<li><a href="/perfil"><?= $_SESSION["user"]["name"] ?></a></li>
+					<?php if (isLogged()):?>
+						<li><a href="/perfil"><?=$_SESSION["user"]["name"]?></a></li>
 						<li><a href="/logout">Sair</a></li>
-					<?php else: ?>
+					<?php else:?>
 						<li><a onclick="loginGoogle()">Login</a></li>
-					<?php endif; ?>
-					<?php if (isAdmin()): ?>
+					<?php endif;?>
+					<?php if (isAdmin()):?>
 						<li><a href="/emprestimos">Lista de empréstimos</a></li>
 						<li><a href="/doar">Adicionar livros</a></li>
-					<?php endif; ?>
+					<?php endif;?>
 				</ul>
 			</div>
 		</aside>
 
 		<main>
-			<?= $conteudo ?>
+			<?=$conteudo?>
 		</main>
 
 	</div>
@@ -148,7 +148,7 @@
 				</p>
 
 				<p>
-					Projeto Ler é a Minha Praia © <?= date("Y") ?>
+					Projeto Ler é a Minha Praia © <?=date("Y")?>
 				</p>
 			</div>
 

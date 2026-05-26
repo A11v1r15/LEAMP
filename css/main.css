@@ -224,6 +224,7 @@ h2.error {
 	border-left: 6px solid #ffc107;
 	box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 	width: fit-content;
+	animation: fadeIn 0.2s ease;
 }
 
 .loan-avatar {
@@ -248,10 +249,51 @@ h2.error {
 	font-size: 0.9rem;
 }
 
+.loan-book {
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+
+.loan-user {
+	margin-top: 6px;
+	color: #444;
+}
+
 /* FORMULÁRIOS */
+
+.form-page {
+	max-width: 600px;
+	margin: auto;
+	padding: 24px;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 24px;
+	border-radius: 24px;
+	background: white;
+	box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+form input {
+	padding: 12px;
+	border-radius: 12px;
+	border: 1px solid #ccc;
+	font-size: 1rem;
+}
+
+form select {
+	padding: 12px;
+	border-radius: 12px;
+	border: 1px solid #ccc;
+	font-size: 1rem;
+}
 
 .button {
 	display: inline-block;
+	width: 100%;
 	margin-bottom: 10px;
 	padding: 12px 18px;
 	border: none;
@@ -260,7 +302,17 @@ h2.error {
 	color: #FFFFFF !important;
 	text-decoration: none;
 	font-weight: bold;
+	font-size: 1rem;
+	text-align: center;
+	cursor: pointer;
+	box-sizing: border-box;
+	appearance: none;
+	-webkit-appearance: none;
 	transition: transform 0.2s, filter 0.2s;
+}
+
+button.button {
+	font-family: inherit;
 }
 
 .button:hover {
@@ -306,6 +358,24 @@ h2.error {
 .status.gray {
 	background: #e2e3e5;
 	color: #41464b;
+}
+
+/* ANIMAÇÕES */
+
+.hidden {
+	display: none;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 /* FOOTER */
