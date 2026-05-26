@@ -1,6 +1,7 @@
 <?php
 
 require_once "includes/supabase.php";
+require_once "includes/cache.php";
 
 requireAdmin();
 

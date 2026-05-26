@@ -234,6 +234,21 @@ h2.error {
 	object-fit: cover;
 }
 
+.avatar-wrapper {
+	position: relative;
+	width: 64px;
+	height: 64px;
+	flex-shrink: 0;
+}
+
+.crown {
+	position: absolute;
+	top: -4px;
+	right: 4px;
+	width: 64px;
+	pointer-events: none;
+}
+
 .loan-info {
 	display: flex;
 	flex-direction: column;

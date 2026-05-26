@@ -94,7 +94,9 @@
 			<li><a href="/">Início</a></li>
 			<li><a href="/instrucoes">Instruções</a></li>
 			<li><a href="/livros">Livros</a></li>
-			<li><a href="/ranking">Ranking</a></li>
+			<?php if (isLogged()):?>
+				<li><a href="/ranking">Ranking</a></li>
+			<?php endif;?>
 			<li><a href="/eventos">Eventos</a></li>
 			<li><a href="/contatos">Contatos</a></li>
 		</ul>

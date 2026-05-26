@@ -40,6 +40,16 @@
 
 	$user = null;
 
+	$ranking = supabaseGet(
+		"ranking?".
+		"select=".
+			"uuid".
+		"&order=total.desc".
+		"&limit=1",
+
+		$_SESSION["user"]["token"]
+	);
+
 	if ($loan) {
 
 		$reader_id = $loan["reader"];
@@ -47,7 +57,7 @@
 		$user = supabaseGet(
 			"users?" .
 			"uuid=eq.$reader_id" .
-			"&select=name,avatar",
+			"&select=uuid,name,avatar",
 
 			$_SESSION["user"]["token"] ?? null
 		);
@@ -85,13 +95,21 @@
 
 <?php if ($loan && $user):?>
 	<div class="loan-card">
-		<img
-			src="<?=htmlspecialchars(
-				$user["avatar"]
-			)?>"
-			class="loan-avatar"
-			alt="Avatar"
-		>
+		<div class="avatar-wrapper">
+			<img
+				src="<?= htmlspecialchars(
+					$user["avatar"]
+				) ?>"
+				class="loan-avatar"
+			>
+				<?php if ($user["uuid"] === $ranking[0]["uuid"]):?>
+				<img
+					class="crown"
+					src="/img/Crown.png"
+					alt="Crown"
+				>
+			<?php endif; ?>
+		</div>
 		<div class="loan-info">
 			<div class="loan-title">
 				Emprestado para

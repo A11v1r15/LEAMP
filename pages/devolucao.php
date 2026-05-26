@@ -49,7 +49,17 @@ $book = $book[0] ?? null;
 $user = supabaseGet(
 	"users?".
 	"uuid=eq.".$loan["reader"].
-	"&select=name,avatar",
+	"&select=uuid,name,avatar",
+
+	$_SESSION["user"]["token"]
+);
+
+$ranking = supabaseGet(
+	"ranking?".
+	"select=".
+		"uuid".
+	"&order=total.desc".
+	"&limit=1",
 
 	$_SESSION["user"]["token"]
 );
@@ -122,13 +132,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	<form method="POST">
 
 		<div class="loan-card">
-			<img
-				src="<?=htmlspecialchars(
-					$user["avatar"]
-				)?>"
-				class="loan-avatar"
-				alt="Avatar"
-			>
+			<div class="avatar-wrapper">
+				<img
+					src="<?= htmlspecialchars(
+						$user["avatar"]
+					) ?>"
+					class="loan-avatar"
+				>
+				<?php if ($user["uuid"] === $ranking[0]["uuid"]):?>
+					<img
+						class="crown"
+						src="/img/Crown.png"
+						alt="Crown"
+					>
+				<?php endif;?>
+			</div>
 			<div class="loan-info">
 				<div class="loan-book">
 					<?=htmlspecialchars(
