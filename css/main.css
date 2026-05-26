@@ -306,6 +306,13 @@ form select {
 	font-size: 1rem;
 }
 
+form textarea {
+	padding: 12px;
+	border-radius: 12px;
+	border: 1px solid #ccc;
+	font-size: 1rem;
+}
+
 .button {
 	display: inline-block;
 	width: 100%;

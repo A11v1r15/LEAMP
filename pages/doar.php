@@ -37,7 +37,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	cacheDelete("livros");
 
 	echo "<p>Doação registrada!</p>";
+
+	if ($action === "finish") {
+		header("Location: /livros");
+	} else if ($action === "continue") {
+		header("Location: /doar");
+	}
 //	file_put_contents("php://stderr", print_r($result, true));
+	exit;
 }
 
 ?>
@@ -64,11 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		</label>
 		<input type="text" name="author" list="authors" required>
 
-		<button type="submit" class="button green">
+		<button type="submit" class="button green" action="finish">
 			← Registrar doação e sair
 		</button>
 
-		<button type="submit" class="button blue">
+		<button type="submit" class="button blue" action="continue">
 			↞ Registrar doação e doar outro livro
 		</button>
 
