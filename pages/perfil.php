@@ -61,7 +61,7 @@
 	<?php foreach ($loans as $loan):?>
 		<?php
 			$book = $loan["book"];
-			$review_url = "/resenha?"."loan=".$loan["id"];
+			$review_url = "/resenha?"."id=".$loan["id"];
 		?>
 
 		<div class="profile-loan-card">

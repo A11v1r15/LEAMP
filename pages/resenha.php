@@ -8,14 +8,17 @@ $loan_id = $_GET["id"] ?? null;
 
 if (!$loan_id) {
 	echo "<h2 class='error'>Empréstimo não encontrado</h2>";
-	//return;
+	return;
 }
 
 /* empréstimo */
 
+$uuid = $_SESSION["user"]["uuid"];
+
 $loan = supabaseGet(
 	"loans?".
 	"id=eq.$loan_id".
+	"&reader=eq.$uuid".
 	"&select=".
 		"book:book_id(".
 			"id,".
@@ -82,6 +85,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			autocapitalize="sentences"
 			autocomplete="on"
 			autocorrect="on"
+			rows="7"
+			placeholder="O que você achou do livro?"
 		></textarea>
 
 		<label for="review">
@@ -94,6 +99,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			autocapitalize="sentences"
 			autocomplete="on"
 			autocorrect="on"
+			rows="13"
+			placeholder="Resenha extendida sobre o livro, usada para avaliação detalhada. Escreva sobre o enredo, personagens, temas, estilo de escrita e sua opinião geral."
 			required
 		></textarea>
 

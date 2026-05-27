@@ -311,6 +311,7 @@ form textarea {
 	border-radius: 12px;
 	border: 1px solid #ccc;
 	font-size: 1rem;
+	resize: none;
 }
 
 .button {
