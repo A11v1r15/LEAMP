@@ -41,9 +41,24 @@ if (!is_array($loan)) {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+	$result = supabasePost(
+		"reviews", [
+			"loan_id" => $loan_id,
+			"comment" => $_POST["comment"],
+			"favorite_excerpt" => $_POST["favorite_excerpt"],
+			"review" => $_POST["review"],
+			"rating" => $_POST["rating"],
+			"typing_time" => $_POST["typing_time"],
+			"used_paste" => $_POST["used_paste"],
+			"status" => "Pendente"
+		],
+		$_SESSION["user"]["token"]
+	);
 
 	echo "<p>Resenha registrada!</p>";
-//	file_put_contents("php://stderr", print_r($result, true));
+
+	header("Location: /livro?id=".$loan["book"]["id"]);
+	file_put_contents("php://stderr", print_r($result, true));
 }
 
 ?>
@@ -53,10 +68,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <div class="form-page">
 	<form class="review-form" method="POST">
-		<label for="rating">
-			Classificação:
+		<label>
+			<h3>Classificação:</h3>
 		</label>
-		<input type="number" name="rating" min="0" max="5" required>
+		<div class="stars">
+			<input type="radio" name="rating" value="0" id="star0" checked>
+			<label for="star0">Não classificar ∣ </label>
+			<label for="star1">☆</label>
+			<input type="radio" name="rating" value="1" id="star1" hidden>
+			<label for="star2">☆</label>
+			<input type="radio" name="rating" value="2" id="star2" hidden>
+			<label for="star3">☆</label>
+			<input type="radio" name="rating" value="3" id="star3" hidden>
+			<label for="star4">☆</label>
+			<input type="radio" name="rating" value="4" id="star4" hidden>
+			<label for="star5">☆</label>
+			<input type="radio" name="rating" value="5" id="star5" hidden>
+		</div>
 
 		<div class="review-help">
 			<strong>
@@ -76,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		</div>
 
 		<label for="comment">
-			Comentário:
+			<h3>Comentário:</h3>
 		</label>
 		<textarea
 			name="comment"
@@ -87,10 +115,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			autocorrect="on"
 			rows="7"
 			placeholder="O que você achou do livro?"
+			class="protegido"
+		></textarea>
+
+		<label for="favorite_excerpt">
+			<h3>Trecho favorito:</h3>
+		</label>
+		<textarea
+			name="favorite_excerpt"
+			spellcheck="true"
+			lang="pt-BR"
+			autocapitalize="sentences"
+			autocomplete="on"
+			autocorrect="on"
+			rows="3"
+			placeholder="Transcreva a sua parte favorita do livro '<?=$loan["book"]["title"]?>': Pode ser uma frase, um parágrafo ou uma cena inteira."
 		></textarea>
 
 		<label for="review">
-			Resenha:
+			<h3>Resenha:</h3>
 		</label>
 		<textarea
 			name="review"
@@ -101,6 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			autocorrect="on"
 			rows="13"
 			placeholder="Resenha extendida sobre o livro, usada para avaliação detalhada. Escreva sobre o enredo, personagens, temas, estilo de escrita e sua opinião geral."
+			class="protegido"
 			required
 		></textarea>
 
