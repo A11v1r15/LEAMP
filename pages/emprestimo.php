@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <div class="form-page">
 	<form method="POST">
 
-		<label for="reader">Leitor:</label>
+		<label for="reader"><h3>Leitor:</h3></label>
 
 		<select name="reader" id="reader-select" required>
 			<option value="">Selecione o leitor</option>

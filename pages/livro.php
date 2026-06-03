@@ -25,45 +25,63 @@
 
 	$titulo = $livro["title"]." - LÉAMP";
 
-	$loan = supabaseGet(
-		"loans?" .
-		"book_id=eq.$id" .
-		"&is_active=eq.true" .
-		"&select=*",
+	if (isLogged()) {
 
-		$_SESSION["user"]["token"] ?? null
-	);
-
-	$loan = $loan[0] ?? null;
-
-	/* leitor */
-
-	$user = null;
-
-	$ranking = supabaseGet(
-		"ranking?".
-		"select=".
-			"uuid".
-		"&order=total.desc".
-		"&limit=1",
-
-		$_SESSION["user"]["token"]
-	);
-
-	if ($loan) {
-
-		$reader_id = $loan["reader"];
-
-		$user = supabaseGet(
-			"users?" .
-			"uuid=eq.$reader_id" .
-			"&select=uuid,name,avatar",
+		$loan = supabaseGet(
+			"loans?" .
+			"book_id=eq.$id" .
+			"&is_active=eq.true" .
+			"&select=*",
 
 			$_SESSION["user"]["token"] ?? null
 		);
 
-		$user = $user[0] ?? null;
+		$loan = $loan[0] ?? null;
+
+		/* leitor */
+
+		$user = null;
+
+		$ranking = supabaseGet(
+			"ranking?".
+			"select=".
+				"uuid".
+			"&order=total.desc".
+			"&limit=1",
+
+			$_SESSION["user"]["token"]
+		);
+
+		if ($loan) {
+
+			$reader_id = $loan["reader"];
+
+			$user = supabaseGet(
+				"users?" .
+				"uuid=eq.$reader_id" .
+				"&select=uuid,name,avatar",
+
+				$_SESSION["user"]["token"] ?? null
+			);
+
+			$user = $user[0] ?? null;
+		}
+
+		if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? "") === "approve") {
+			supabasePatch(
+				"books?".
+				"id=eq.$id",
+				[
+					"status" => "Disponível"
+				],
+				$_SESSION["user"]["token"]
+			);
+	
+			header("Location: /livro?id=$id");
+			exit;
+		}
 	}
+
 
 ?>
 <link rel="stylesheet" href="/css/livro.css">
@@ -82,8 +100,22 @@
 	</div>
 </div>
 
+<?php 
+	if (isAdmin() && $livro["status"] === "Pendente"):
+?>
+
+<form method="POST" class="inline-form">
+	<button
+		type="submit"
+		name="action"
+		value="approve"
+		class="button green"
+	>✓ Disponibilizar
+	</button>
+</form>
+
 <?php
-	if (isAdmin() && $livro["status"] == "Disponível"):
+	elseif (isAdmin() && $livro["status"] === "Disponível"):
 ?>
 
 <a
@@ -93,7 +125,7 @@
 
 <?php endif;?>
 
-<?php if ($loan && $user):?>
+<?php if (isLogged() && $loan && $user):?>
 	<div class="loan-card">
 		<div class="avatar-wrapper">
 			<img

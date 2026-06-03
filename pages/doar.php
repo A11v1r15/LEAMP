@@ -23,12 +23,13 @@ sort($authors);
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	$title = $_POST["title"];
 	$author = $_POST["author"];
+	$status = isset($_POST["pending"])? "Pendente" 	: "Disponível";
 
 	$result = supabasePost(
 		"books", [
 			"title" => $title,
 			"author" => $author,
-			"status" => "Disponível"
+			"status" => $status
 		],
 
 		$_SESSION["user"]["token"]
@@ -37,6 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	cacheDelete("livros");
 
 	echo "<p>Doação registrada!</p>";
+
+	$action = $_POST["action"] ?? "finish";
 
 	if ($action === "finish") {
 		header("Location: /livros");
@@ -62,21 +65,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		</datalist>
 
 		<label for="title">
-			Título:
+			<h3>Título:</h3>
 		</label>
 		<input type="text" name="title" required>
 
 		<label for="author">
-			Autor:
+			<h3>Autor:</h3>
 		</label>
 		<input type="text" name="author" list="authors" required>
 
-		<button type="submit" class="button green" action="finish">
-			← Registrar doação e sair
+		<label>
+			<input
+				type="checkbox"
+				name="pending"
+				value="1"
+				checked
+			>
+			Livro à receber
+		</label>
+
+		<button
+			type="submit"
+			name="action"
+			value="finish"
+			class="button blue"
+			>← Registrar doação e sair
 		</button>
 
-		<button type="submit" class="button blue" action="continue">
-			↞ Registrar doação e doar outro livro
+		<button
+			type="submit"
+			name="action"
+			value="continue"
+			class="button green"
+			>↞ Registrar doação e doar outro livro
 		</button>
 
 		<a href="/" class="button red">
