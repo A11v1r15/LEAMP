@@ -76,7 +76,9 @@
 				],
 				$_SESSION["user"]["token"]
 			);
-	
+
+	  cacheDelete("livros");
+
 			header("Location: /livro?id=$id");
 			exit;
 		}
