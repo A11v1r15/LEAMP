@@ -64,7 +64,7 @@
 			$review_url = "/resenha?"."id=".$loan["id"];
 		?>
 
-		<div class="profile-loan-card">
+		<div class="profile-loan-card <?=isOverdue($loan["deadline"])?"overdue":""?>">
 			<div class="profile-loan-main">
 				<a
 					href="/livro?id=<?=$book["id"]?>"

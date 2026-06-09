@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 	<form method="POST">
 
-		<div class="loan-card">
+		<div class="loan-card <?=isOverdue($loan["deadline"])?"overdue":""?>">
 			<div class="avatar-wrapper">
 				<img
 					src="<?= htmlspecialchars(

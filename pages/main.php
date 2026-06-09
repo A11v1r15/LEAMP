@@ -28,6 +28,10 @@
 		require $e->page;
 		$conteudo = ob_get_clean();
 	}
+
+	function isOverdue($deadline) {
+		return strtotime($deadline) < time();
+	}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
