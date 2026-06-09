@@ -47,19 +47,25 @@ document.addEventListener(
 		});
 
 		document.querySelectorAll(".stars input").forEach(function (input) {
-			input.addEventListener("change", function () {
-				const rating = this.value;
-				document.querySelectorAll(".stars label").forEach(function (label) {
-					if (label.htmlFor.startsWith("star") &&
-							label.htmlFor !== "star0" &&
-							!isNaN(label.htmlFor.slice(4)) &&
-							Number(label.htmlFor.slice(4)) <= rating) {
-						label.textContent = "★";
-					} else if (label.htmlFor.startsWith("star") && label.htmlFor !== "star0") {
-						label.textContent = "☆";
-					}
-				});
-			});
+			input.addEventListener("change",updateStars);
 		});
+
+		updateStars();
 	}
 );
+
+function updateStars() {
+	const checked = document.querySelector('.stars input[name="rating"]:checked');
+	const rating = Number(checked?.value ?? 0);
+
+	document.querySelectorAll(
+		'.stars label'
+	).forEach(function (label) {
+		const star = Number(label.htmlFor.replace("star",""));
+		if (star > 0 && star <= rating) {
+			label.textContent = "★";
+		} else if (star > 0) {
+			label.textContent = "☆";
+		}
+	});
+}

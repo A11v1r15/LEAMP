@@ -15,7 +15,8 @@
 	line-height: 1.5;
 }
 
-.stars {
+.stars label {
 	color: #198754;
 	font-size: 1.2rem;
+	cursor: pointer;
 }
