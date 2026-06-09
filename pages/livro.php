@@ -67,6 +67,29 @@
 			$user = $user[0] ?? null;
 		}
 
+		/* comentarios */
+
+		$reviews = supabaseGet(
+		"reviews?".
+			"loan_id=not.is.null".
+			"&select=".
+				"rating,".
+				"comment,".
+				"favorite_excerpt,".
+				"loan:loan_id(".
+					"reader:reader(".
+						"uuid,".
+						"name,".
+						"avatar".
+					")".
+				")".
+			"&loan.book_id=eq.$id",
+
+			$_SESSION["user"]["token"]
+		);
+		file_put_contents("php://stderr", print_r($reviews, true));
+
+
 		if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? "") === "approve") {
 			$result = supabasePatch(
 				"books?".
@@ -168,3 +191,87 @@
 		<?php endif;?>
 	</div>
 <?php endif;?>
+
+
+<?php if (!empty($reviews)): ?>
+	<h3>Resenhas dos leitores</h3>
+	<?php foreach ($reviews as $review): 
+		if ($review["loan"]): ?>
+		<div class="review-card">
+			<div class="review-header">
+				<div class="avatar-wrapper">
+					<img
+						src="<?= htmlspecialchars(
+							$review["loan"]["reader"]["avatar"]
+						) ?>"
+						class="loan-avatar"
+					>
+					<?php if (
+						$review["loan"]["reader"]["avatar"] ===
+						$ranking[0]["avatar"]
+					): ?>
+						<img
+							class="crown"
+							src="/img/Crown.png"
+							alt="Crown"
+						>
+					<?php endif; ?>
+				</div>
+				<div>
+					<div class="review-reader">
+						<?= htmlspecialchars(
+							$review["loan"]["reader"]["name"]
+						) ?>
+					</div>
+					<?php if (!empty($review["rating"]) && $review["rating"] !== 0): ?>
+						<div class="review-rating">
+							<?php
+							echo str_repeat(
+								"★",
+								(int)$review["rating"]
+							);
+							echo str_repeat(
+								"☆",
+								5 - (int)$review["rating"]
+							);
+							?>
+						</div>
+					<?php endif; ?>
+				</div>
+			</div>
+
+			<?php if (
+				!empty(
+					$review["comment"]
+				) && $review["comment"] !== ""
+			): ?>
+				<p class="review-comment">
+					<?= nl2br(
+						htmlspecialchars(
+							$review["comment"]
+						)
+					) ?>
+				</p>
+
+			<?php endif; ?>
+			<?php if (
+				!empty(
+					$review["favorite_excerpt"]
+				) && $review["favorite_excerpt"] !== ""
+			): ?>
+				<blockquote
+					class="favorite-excerpt"
+				>
+					<?= nl2br(
+						htmlspecialchars(
+							$review[
+								"favorite_excerpt"
+							]
+						)
+					) ?>
+				</blockquote>
+			<?php endif; ?>
+		</div>
+	<?php endif; 
+		endforeach; ?>
+<?php endif; ?>

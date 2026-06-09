@@ -22,3 +22,39 @@
 form.inline-form {
 	display: contents;
 }
+
+.review-card {
+	background: #d1e7dd;
+	border-radius: 16px;
+	padding: 16px;
+	margin-bottom: 16px;
+	box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.review-header {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	margin-bottom: 12px;
+}
+
+.review-reader {
+	font-weight: bold;
+}
+
+.review-rating {
+	font-size: 1.2rem;
+	color: #f0b400;
+}
+
+.review-comment {
+	margin: 12px 0;
+}
+
+.favorite-excerpt {
+	margin: 12px 0 0;
+	padding-left: 12px;
+	border-left: 4px solid #ccc;
+	font-style: italic;
+	color: #555;
+}
