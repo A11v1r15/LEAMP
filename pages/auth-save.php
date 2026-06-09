@@ -20,8 +20,10 @@ $user = supabaseGet(
 	$token
 );
 
+$result = null;
+
 if (empty($user)) {
-	supabasePost(
+	$result = supabasePost(
 		"users", [
 			"uuid" => $uuid,
 			"role" => "Leitor",
@@ -45,4 +47,10 @@ $_SESSION["user"] = [
 	"role" => $role
 ];
 
-echo "ok";
+if (is_array($result)
+	&& !isset($result["code"])) {
+	$_SESSION["flash"] = [
+		"type" => "success",
+		"message" => "Novo usuário registrado!"
+	];
+}

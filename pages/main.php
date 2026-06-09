@@ -29,6 +29,18 @@
 		$conteudo = ob_get_clean();
 	}
 
+	function flash($type, $message) {
+		$_SESSION["flash"] = [
+			"type" => $type,
+			"message" => $message
+		];
+	}
+
+	function hasErrorCode($result) {
+		return (is_array($result) &&
+			isset($result["code"]));
+	}
+
 	function isOverdue($deadline) {
 		return strtotime($deadline) < time();
 	}
@@ -80,6 +92,16 @@
 
 </script>
 <body>
+
+	<?php
+	if (!empty($_SESSION["flash"])):
+		$flash = $_SESSION["flash"];
+		unset($_SESSION["flash"]);
+	?>
+		<div class="flash <?= htmlspecialchars($flash["type"]) ?>">
+			<?= htmlspecialchars($flash["message"]) ?>
+		</div>
+	<?php endif; ?>
 
 	<header>
 		<img src="/img/Logo Ler é a minha praia.png" alt="Logo Ler é a minha praia">

@@ -55,10 +55,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$_SESSION["user"]["token"]
 	);
 
-	echo "<p>Resenha registrada!</p>";
+	if (hasErrorCode($result)) {
+		flash("error", "Erro ao registrar resenha: ".$result["message"]);
+	} else {
+		flash("success", "Resenha registrada com sucesso!");
+		header("Location: /livro?id=".$loan["book"]["id"]);
+	}
 
-	header("Location: /livro?id=".$loan["book"]["id"]);
-	file_put_contents("php://stderr", print_r($result, true));
+//	file_put_contents("php://stderr", print_r($result, true));
 }
 
 ?>

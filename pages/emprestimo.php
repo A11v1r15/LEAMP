@@ -49,9 +49,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$_SESSION["user"]["token"]
 	);
 
-	cacheDelete("livros");
+	if (hasErrorCode($result)) {
+		flash("error", "Erro ao registrar empréstimo: " . $result["message"]);
+	} else {
+		flash("success", "Empréstimo de ".$book[0]["title"]." registrado com sucesso!");
+		cacheDelete("livros");
+		header("Location: /livro?id=".$book[0]["id"]);
+	}
 
-	echo "<p>Empréstimo registrado!</p>";
 //	file_put_contents("php://stderr", print_r($result, true));
 }
 

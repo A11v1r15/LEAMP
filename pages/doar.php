@@ -35,9 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$_SESSION["user"]["token"]
 	);
 
-	cacheDelete("livros");
-
-	echo "<p>Doação registrada!</p>";
+	if (hasErrorCode($result)) {
+		flash("error", "Erro ao registrar doação: " . $result["message"]);
+	} else {
+		flash("success", "Doação de ".$title." registrada com sucesso!");
+		cacheDelete("livros");
+	}
 
 	$action = $_POST["action"] ?? "finish";
 

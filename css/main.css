@@ -395,6 +395,36 @@ button.button {
 	color: #41464b;
 }
 
+/* FLASH MESSAGES */
+
+.flash {
+	padding: 12px 16px;
+	margin-bottom: 20px;
+	border-radius: 0px 0px 12px 12px;
+	font-weight: bold;
+	position: fixed;
+	align-self: end;
+
+	animation:
+		flash-slide-in 0.3s ease,
+		flash-fade-out 0.5s ease 4.5s forwards;
+}
+
+.flash.success {
+	background: #d1e7dd;
+	color: #0f5132;
+}
+
+.flash.error {
+	background: #ffcdcd;
+	color: #c90c0f;
+}
+
+.flash.warning {
+	background: #fff3cd;
+	color: #664d03;
+}
+
 /* ANIMAÇÕES */
 
 .hidden {
@@ -410,6 +440,26 @@ button.button {
 	to {
 		opacity: 1;
 		transform: translateY(0);
+	}
+}
+
+@keyframes flash-slide-in {
+	from {
+		transform: translateY(-10px);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes flash-fade-out {
+	to {
+		opacity: 0;
+		transform: translateY(-10px);
+		pointer-events: none;
 	}
 }
 

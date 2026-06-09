@@ -1,6 +1,7 @@
 <?php
 
 require_once "includes/supabase.php";
+require_once "includes/cache.php";
 
 requireAdmin();
 
@@ -72,13 +73,14 @@ $title = "Devolução: ".(($book["title"] ?? "Livro"))." - LÉAMP";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	$action = $_POST["action"];
+	$result = null;
 
 	/* renovar */
 
 	if ($action === "renew") {
 		$new_deadline = date("c", strtotime("+10 days"));
 
-		supabasePatch(
+		$result = supabasePatch(
 			"loans?".
 			"id=eq.$loan_id",
 			[
@@ -86,6 +88,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			],
 			$_SESSION["user"]["token"]
 		);
+
+		if (hasErrorCode($result)) {
+			flash("error", "Erro ao renovar empréstimo: " . $result["message"]);
+		} else {
+			flash("success", "Empréstimo de ".$book["title"]." renovado com sucesso para ".date("d/m/Y", strtotime($new_deadline))."!");
+		}
 
 		header("Location: /livro?id=".$loan["book_id"]);
 
@@ -95,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	/* devolver */
 
 	if ($action === "return") {
-		supabasePatch(
+		$result = supabasePatch(
 			"loans?".
 			"id=eq.$loan_id",
 			[
@@ -106,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			$_SESSION["user"]["token"]
 		);
 
-		supabasePatch(
+		$result = supabasePatch(
 			"books?".
 			"id=eq.".$loan["book_id"],
 			[
@@ -115,9 +123,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			$_SESSION["user"]["token"]
 		);
 
-		cacheDelete("livros");
-
-		header("Location: /livro?id=" .$loan["book_id"]);
+		if (hasErrorCode($result)) {
+			flash("error", "Erro ao registrar devolução: " . $result["message"]);
+		} else {
+			flash("success", "Devolução de ".$book["title"]." registrada com sucesso!");
+			cacheDelete("livros");
+			header("Location: /livro?id=" .$loan["book_id"]);
+		}
 
 		exit;
 	}

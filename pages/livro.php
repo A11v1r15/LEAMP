@@ -68,7 +68,7 @@
 		}
 
 		if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? "") === "approve") {
-			supabasePatch(
+			$result = supabasePatch(
 				"books?".
 				"id=eq.$id",
 				[
@@ -77,7 +77,12 @@
 				$_SESSION["user"]["token"]
 			);
 
-	  cacheDelete("livros");
+			if (hasErrorCode($result)) {
+				flash("error", "Erro ao disponibilizar livro: " . $result["message"]);
+			} else {
+				flash("success", $book[0]["title"]." disponibilizado com sucesso!");
+				cacheDelete("livros");
+			}
 
 			header("Location: /livro?id=$id");
 			exit;
