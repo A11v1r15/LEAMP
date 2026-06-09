@@ -41,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		flash("success", "Doação de ".$title." registrada com sucesso!");
 		cacheDelete("livros");
 	}
+	session_write_close();
 
 	$action = $_POST["action"] ?? "finish";
 

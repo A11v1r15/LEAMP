@@ -93,9 +93,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			flash("error", "Erro ao renovar empréstimo: " . $result["message"]);
 		} else {
 			flash("success", "Empréstimo de ".$book["title"]." renovado com sucesso para ".date("d/m/Y", strtotime($new_deadline))."!");
+			session_write_close();
+			header("Location: /livro?id=".$loan["book_id"]);
 		}
 
-		header("Location: /livro?id=".$loan["book_id"]);
 
 		exit;
 	}
@@ -128,6 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		} else {
 			flash("success", "Devolução de ".$book["title"]." registrada com sucesso!");
 			cacheDelete("livros");
+			session_write_close();
 			header("Location: /livro?id=" .$loan["book_id"]);
 		}
 

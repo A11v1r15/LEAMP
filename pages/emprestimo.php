@@ -54,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	} else {
 		flash("success", "Empréstimo de ".$book[0]["title"]." registrado com sucesso!");
 		cacheDelete("livros");
+		session_write_close();
 		header("Location: /livro?id=".$book[0]["id"]);
 	}
 

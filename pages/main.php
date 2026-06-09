@@ -17,17 +17,6 @@
 	include_once "includes/auth.php";
 	include_once "includes/supabase.php";
 	include_once "includes/ui.php";
-	try {
-		ob_start();
-		require $arquivo;
-		$conteudo = ob_get_clean();
-	} catch (HttpError $e) {
-		$status = $e->status;
-		ob_clean();
-		ob_start();
-		require $e->page;
-		$conteudo = ob_get_clean();
-	}
 
 	function flash($type, $message) {
 		$_SESSION["flash"] = [
@@ -43,6 +32,18 @@
 
 	function isOverdue($deadline) {
 		return strtotime($deadline) < time();
+	}
+	
+	try {
+		ob_start();
+		require $arquivo;
+		$conteudo = ob_get_clean();
+	} catch (HttpError $e) {
+		$status = $e->status;
+		ob_clean();
+		ob_start();
+		require $e->page;
+		$conteudo = ob_get_clean();
 	}
 ?>
 <!DOCTYPE html>

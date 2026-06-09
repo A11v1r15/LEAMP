@@ -83,8 +83,7 @@
 				flash("success", $book[0]["title"]." disponibilizado com sucesso!");
 				cacheDelete("livros");
 			}
-
-			header("Location: /livro?id=$id");
+			session_write_close();
 			exit;
 		}
 	}
