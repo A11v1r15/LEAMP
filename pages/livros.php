@@ -3,16 +3,13 @@
 	require_once "includes/cache.php";
 	include_once "includes/ui.php";
 
-	$titulo = "Livros - LÉAMP";
+	$title = "Livros - LÉAMP";
 
-	$livros = getCacheOrFetch(
+	$books = getCacheOrFetch(
 		"livros",
 		"books?".
 		"select=*"
 	);
-	//	echo "<pre>";
-	//	print_r($livros);
-	//	echo "</pre>";
 ?>
 
 <h2>Livros</h2>
@@ -28,14 +25,14 @@
 	</thead>
 
 	<tbody>
-		<?php foreach ($livros as $livro):?>
+		<?php foreach ($books as $book):?>
 			<tr>
-				<td><a href="/livro?id=<?=$livro["id"]?>">
-					<?=htmlspecialchars($livro["title"])?>
+				<td><a href="/livro?id=<?=$book["id"]?>">
+					<?=htmlspecialchars($book["title"])?>
 				</a></td>
-				<td><?=htmlspecialchars($livro["author"])?></td>
-				<td class="status <?=colorClass($livro["status"])?>">
-					<?=htmlspecialchars($livro["status"])?>
+				<td><?=htmlspecialchars($book["author"])?></td>
+				<td class="status <?=colorClass($book["status"])?>">
+					<?=htmlspecialchars($book["status"])?>
 				</td>
 			</tr>
 		<?php endforeach;?>

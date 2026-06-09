@@ -4,7 +4,7 @@
 
 	requireLogged();
 
-	$titulo = "Ranking - LÉAMP";
+	$title = "Ranking - LÉAMP";
 
 	$ranking = supabaseGet(
 		"ranking?".

@@ -10,20 +10,20 @@
 		return;
 	}
 
-	$livro = supabaseGet(
+	$book = supabaseGet(
 		"books?".
 		"id=eq.$id".
 		"&select=*"
 	);
 
-	if (!$livro) {
+	if (!$book) {
 		echo "<h2 class='error'>Livro não encontrado</h2>";
 		return;
 	}
 
-	$livro = $livro[0];
+	$book = $book[0];
 
-	$titulo = $livro["title"]." - LÉAMP";
+	$title = $book["title"]." - LÉAMP";
 
 	if (isLogged()) {
 
@@ -90,20 +90,20 @@
 
 <div class="book-header">
 	<div class="book-meta">
-		<h2><?=htmlspecialchars($livro["title"])?></h2>
+		<h2><?=htmlspecialchars($book["title"])?></h2>
 
 		<div class="book-author">
-			<?=htmlspecialchars($livro["author"])?>
+			<?=htmlspecialchars($book["author"])?>
 		</div>
 
-		<div class="status <?=colorClass($livro["status"])?>">
-			<?=htmlspecialchars($livro["status"])?>
+		<div class="status <?=colorClass($book["status"])?>">
+			<?=htmlspecialchars($book["status"])?>
 		</div>
 	</div>
 </div>
 
 <?php 
-	if (isAdmin() && $livro["status"] === "Pendente"):
+	if (isAdmin() && $book["status"] === "Pendente"):
 ?>
 
 <form method="POST" class="inline-form">
@@ -117,11 +117,11 @@
 </form>
 
 <?php
-	elseif (isAdmin() && $livro["status"] === "Disponível"):
+	elseif (isAdmin() && $book["status"] === "Disponível"):
 ?>
 
 <a
-	href="/emprestimo?id=<?=$livro["id"]?>"
+	href="/emprestimo?id=<?=$book["id"]?>"
 	class="button blue">→ Emprestar livro
 </a>
 

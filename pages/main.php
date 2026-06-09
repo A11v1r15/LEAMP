@@ -13,7 +13,7 @@
 		$status = 404;
 		$arquivo = "pages/404.php";
 	}
-	$titulo = "Ler é a Minha Praia";
+	$title = "Ler é a Minha Praia";
 	include_once "includes/auth.php";
 	include_once "includes/supabase.php";
 	include_once "includes/ui.php";
@@ -34,7 +34,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?=$titulo?></title>
+	<title><?=$title?></title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">

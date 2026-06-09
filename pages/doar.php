@@ -4,16 +4,16 @@ require_once "includes/cache.php";
 
 requireAdmin();
 
-$titulo = "Doação - LÉAMP";
+$title = "Doação - LÉAMP";
 
-$livros = getCacheOrFetch(
+$books = getCacheOrFetch(
 	"livros",
 	"books?".
 	"select=*"
 );
 
 $authors = array_unique(
-	array_column($livros, "author")
+	array_column($books, "author")
 );
 
 sort($authors);

@@ -28,13 +28,13 @@ $loan = supabaseGet(
 	$_SESSION["user"]["token"]
 );
 
-$titulo = "Resenha - LÉAMP";
+$title = "Resenha - LÉAMP";
 
 if (!is_array($loan)) {
 	$loan = null;
 } else {
 	$loan = $loan[0];
-	$titulo = "Resenha: ".$loan["book"]["title"]." - LÉAMP";
+	$title = "Resenha: ".$loan["book"]["title"]." - LÉAMP";
 }
 
 /* envia formulário */
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 <link rel="stylesheet" href="/css/resenha.css">
 
-<h2>Resenha de: <?php echo $loan["book"]["title"];?></h2>
+<h2>Resenha de: <?=$loan["book"]["title"]?></h2>
 
 <div class="form-page">
 	<form class="review-form" method="POST">
