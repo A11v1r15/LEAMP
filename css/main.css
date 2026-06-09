@@ -410,6 +410,11 @@ button.button {
 		flash-fade-out 0.5s ease 4.5s forwards;
 }
 
+.flash.hide {
+	opacity: 0;
+	transform: translateY(-10px);
+}
+
 .flash.success {
 	background: #d1e7dd;
 	color: #0f5132;

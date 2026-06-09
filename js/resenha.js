@@ -32,7 +32,7 @@ document.addEventListener(
 			textarea.addEventListener("paste",
 				function () {
 					pasted = true;
-					alert("Tente escrever com suas próprias palavras");
+					showFlash("Tente escrever com suas próprias palavras");
 				}
 			);
 

@@ -18,11 +18,14 @@ $uuid = $_SESSION["user"]["uuid"];
 $loan = supabaseGet(
 	"loans?".
 	"id=eq.$loan_id".
-	"&reader=eq.$uuid".
 	"&select=".
 		"book:book_id(".
 			"id,".
 			"title".
+		"),".
+		"reader:reader(".
+			"uuid,".
+			"name".
 		")",
 
 	$_SESSION["user"]["token"]
@@ -48,50 +51,95 @@ if ($loan === null) {
 	$title = "Resenha: ".$loan["book"]["title"]." - LÉAMP";
 }
 
+function isNotTheReader() {
+	global $loan;
+	return $loan["reader"]["uuid"] !== $_SESSION["user"]["uuid"];
+}
+
+if (isNotTheReader() && !isAdmin()) {
+	throw new HttpError(
+		403, "pages/403.php"
+	);
+}
+
 /* envia formulário */
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+	$action = $_POST["action"];
 
-	$data = [
-		"comment" => $_POST["comment"],
-		"favorite_excerpt" => $_POST["favorite_excerpt"],
-		"review" => $_POST["review"],
-		"rating" => $_POST["rating"],
-		"typing_time" => $_POST["typing_time"],
-		"used_paste" => $_POST["used_paste"],
-	];
+	if ($action === "accept" && isAdmin()) {
+		if (!$review) {
+			flash("error", "Resenha não encontrada para este empréstimo.");
+			session_write_close();
+			header("Location: /livro?id=".$loan["book"]["id"]);
+			exit;
+		}
 
-	$result = [
-		"code" => 0,
-		"message" => "unknown error",
-	];
-
-	// se já existe resenha, atualiza. senão, cria nova
-	if ($review) {
-		$data["updated_at"] = date("c");
 		$result = supabasePatch(
-			"reviews?loan_id=eq.".$review["loan_id"],
-			$data,
+			"reviews?".
+			"loan_id=eq.".$review["loan_id"],
+			[
+				"status" => "Aprovado",
+			],
 			$_SESSION["user"]["token"]
 		);
-	} else {
-		$data["loan_id"] = $loan_id;
-		$data["used_paste"] = $review["used_paste"]==="1" ? "1" : $_POST["used_paste"];
-		$result = supabasePost(
-			"reviews",
-			$data,
-			$_SESSION["user"]["token"]
-		);
-	}
 
-//	file_put_contents("php://stderr", print_r($result, true));
+		if (hasErrorCode($result)) {
+			flash("error", "Erro ao aceitar resenha: ".$result["message"]);
+		} else {
+			flash("success", "Resenha aceita com sucesso!");
+			session_write_close();
+			header("Location: /livro?id=".$loan["book"]["id"]);
+		}
+		exit;
 
-	if (hasErrorCode($result)) {
-		flash("error", "Erro ao ".($review?"atualizar":"registrar")." resenha: ".$result["message"]);
-	} else {
-		flash("success", "Resenha ".($review?"atualizada":"registrada")." com sucesso!");
-		session_write_close();
-		header("Location: /livro?id=".$loan["book"]["id"]);
+	} else if ($action === "submit") {
+		$data = [
+			"comment" => $_POST["comment"],
+			"favorite_excerpt" => $_POST["favorite_excerpt"],
+			"review" => $_POST["review"],
+			"rating" => $_POST["rating"],
+			"typing_time" => $_POST["typing_time"],
+			"used_paste" => $_POST["used_paste"],
+			"status" => "Pendente",
+		];
+
+		$result = [
+			"code" => 0,
+			"message" => "unknown error",
+		];
+
+		// se já existe resenha, atualiza. senão, cria nova
+		if ($review) {
+			$data["updated_at"] = date("c");
+			if (isNotTheReader()) {
+				$data["status"] = $review["status"];
+			}
+			$result = supabasePatch(
+				"reviews?loan_id=eq.".$review["loan_id"],
+				$data,
+				$_SESSION["user"]["token"]
+			);
+		} else {
+			$data["loan_id"] = $loan_id;
+			$data["used_paste"] = $review["used_paste"]==="1" ? "1" : $_POST["used_paste"];
+			$result = supabasePost(
+				"reviews",
+				$data,
+				$_SESSION["user"]["token"]
+			);
+		}
+
+	//	file_put_contents("php://stderr", print_r($result, true));
+
+		if (hasErrorCode($result)) {
+			flash("error", "Erro ao ".($review?"atualizar":"registrar")." resenha: ".$result["message"]);
+		} else {
+			flash("success", "Resenha ".($review?"atualizada":"registrada")." com sucesso!");
+			session_write_close();
+			header("Location: /livro?id=".$loan["book"]["id"]);
+		}
+			exit;
 	}
 }
 
@@ -99,6 +147,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <link rel="stylesheet" href="/css/resenha.css">
 
 <h2>Resenha de: <?=$loan["book"]["title"]?></h2>
+<?php if (isNotTheReader() && $review === null): ?>
+	<h3><?=$loan["reader"]["name"]?> ainda não escreveu uma resenha para este livro.</h3>
+<?php return;
+	endif; ?>
 
 <div class="form-page">
 	<form class="review-form" method="POST">
@@ -183,9 +235,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			required
 		><?= $review["review"] ?? "" ?></textarea>
 
-		<button type="submit" class="button green">
-			↑ <?=$review ? "Atualizar" : "Enviar"?> resenha
+		<button
+			type="submit"
+			class="button <?=isNotTheReader() ? "blue" : "green"?>"
+			name="action"
+			value="submit">
+			↑ <?=$review ? (isNotTheReader() ? "Modificar" : "Atualizar") : "Enviar"?> resenha
 		</button>
+
+		<?php if (isNotTheReader()): ?>
+			<button
+				type="submit"
+				class="button green"
+				name="action"
+				value="accept">
+				✓ Aceitar resenha
+			</button>
+		<?php endif; ?>
 
 		<a href="/" class="button red">
 			⨯ Cancelar

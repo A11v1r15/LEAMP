@@ -91,6 +91,25 @@
 		});
 	}
 
+	function showFlash(message, type = "warning") {
+		let flash = document.querySelector(".flash.js-flash");
+		if (!flash) {
+			flash = document.createElement("div");
+			flash.className = `flash js-flash ${type}`;
+			document.body.appendChild(flash);
+		}
+		flash.className = `flash js-flash ${type}`;
+		flash.textContent = message;
+		flash.classList.remove("hide");
+		clearTimeout(flash.hideTimer);
+		clearTimeout(flash.removeTimer);
+		flash.hideTimer =
+			setTimeout(
+				() => flash.classList.add("hide"),
+				4500
+			);
+	}
+
 </script>
 <body>
 
