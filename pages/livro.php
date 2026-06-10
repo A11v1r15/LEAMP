@@ -76,6 +76,7 @@
 			"&select=".
 				"rating,".
 				"comment,".
+				"status,".
 				"favorite_excerpt,".
 				"loan:loan_id(".
 					"reader:reader(".
@@ -88,7 +89,15 @@
 
 			$_SESSION["user"]["token"]
 		);
-		file_put_contents("php://stderr", print_r($reviews, true));
+//		file_put_contents("php://stderr", print_r($reviews, true));
+		$reviews = array_values(
+			array_filter(
+				$reviews,
+				fn($review) =>
+					!empty($review["loan"]) &&
+					!empty($review["loan"]["reader"])
+			)
+		);
 
 
 		if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? "") === "approve") {
@@ -195,9 +204,9 @@
 
 
 <?php if (!empty($reviews)): ?>
-	<h3>Resenhas dos leitores</h3>
-	<?php foreach ($reviews as $review): 
-		if ($review["loan"]): ?>
+	<h3>Resenhas dos leitores:</h3>
+	<?php foreach ($reviews as $review):
+		if ($review["status"] === "Aprovado"): ?>
 		<div class="review-card">
 			<div class="review-header">
 				<div class="avatar-wrapper">
@@ -246,28 +255,19 @@
 			): ?>
 				<p class="review-comment">
 					<?= nl2br(
-						htmlspecialchars(
-							$review["comment"]
-						)
-					) ?>
+						htmlspecialchars($review["comment"])) 
+					?>
 				</p>
 
 			<?php endif; ?>
 			<?php if (
-				!empty(
-					$review["favorite_excerpt"]
-				) && $review["favorite_excerpt"] !== ""
+				!empty($review["favorite_excerpt"]) &&
+				$review["favorite_excerpt"] !== ""
 			): ?>
-				<blockquote
-					class="favorite-excerpt"
-				>
+				<blockquote>
 					<?= nl2br(
-						htmlspecialchars(
-							$review[
-								"favorite_excerpt"
-							]
-						)
-					) ?>
+						htmlspecialchars($review["favorite_excerpt"]))
+					?>
 				</blockquote>
 			<?php endif; ?>
 		</div>

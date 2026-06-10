@@ -50,11 +50,3 @@ form.inline-form {
 .review-comment {
 	margin: 12px 0;
 }
-
-.favorite-excerpt {
-	margin: 12px 0 0;
-	padding-left: 12px;
-	border-left: 4px solid #ccc;
-	font-style: italic;
-	color: #555;
-}
