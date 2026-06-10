@@ -1,6 +1,7 @@
 <?php
 
 	require_once "includes/supabase.php";
+ require_once "includes/cache.php";
 	include_once "includes/ui.php";
 
 	$id = $_GET["id"] ?? null;
