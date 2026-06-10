@@ -1,7 +1,7 @@
 <?php
 
 	require_once "includes/supabase.php";
- require_once "includes/cache.php";
+	require_once "includes/cache.php";
 	include_once "includes/ui.php";
 
 	$id = $_GET["id"] ?? null;
@@ -208,9 +208,7 @@
 						class="loan-avatar"
 					>
 					<?php if (
-						$review["loan"]["reader"]["avatar"] ===
-						$ranking[0]["avatar"]
-					): ?>
+						$review["loan"]["reader"]["uuid"] === $ranking[0]["uuid"]): ?>
 						<img
 							class="crown"
 							src="/img/Crown.png"
