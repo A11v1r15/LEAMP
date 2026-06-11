@@ -224,8 +224,8 @@ h2.error {
 	padding: 12px 16px;
 	margin-top: 16px;
 	border-radius: 16px;
-	background: #fff3cd;
-	border-left: 6px solid #ffc107;
+	background: #d1e7dd;
+	border-left: 6px solid #198754;
 	box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 	width: fit-content;
 	animation: fadeIn 0.2s ease;
@@ -268,6 +268,7 @@ h2.error {
 	font-size: 1rem;
 	text-decoration: none;
 	font-family: "Roboto Slab", serif;
+	color: #000 !important;
 }
 
 .loan-title:hover {
@@ -403,6 +404,40 @@ button.button {
 .status.gray {
 	background: #e2e3e5;
 	color: #41464b;
+}
+
+/* AJUDA */
+
+.help {
+	margin-bottom: 16px;
+	padding: 14px 16px;
+	border-radius: 14px;
+	font-size: 0.95rem;
+	line-height: 1.5;
+}
+
+.help.blue {
+	background: #eef6ff;
+	color: #0d3b66;
+	border-left: 6px solid #0d6efd;
+}
+
+.help.red {
+	background: #ffeef0;
+	color: #86181d;
+	border-left: 6px solid #dc3545;
+}
+
+.help.yellow {
+	background: #fff3cd;
+	color: #856404;
+	border-left: 6px solid #ffc107;
+}
+
+.help.green {
+	background: #d1e7dd;
+	color: #0f5132;
+	border-left: 6px solid #198754;
 }
 
 /* FLASH MESSAGES */

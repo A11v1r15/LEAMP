@@ -173,23 +173,50 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			<input type="radio" name="rating" value="5" id="star5" hidden <?= $rating == 5 ? "checked" : "" ?>>
 		</div>
 
-		<div class="review-help">
-			<strong>
-				Sobre a resenha:
-			</strong>
-			<p>
-				Escreva com suas próprias
-				palavras.
+		<?php if (isNotTheReader()): ?>
+			<div class="help blue">
+				<strong>
+					Sobre aceitar a resenha:
+				</strong>
+				<p>
+					Aceitar a resenha significa
+					que o comentário dela passará a ser exibida
+					na página do livro, contribuindo
+					para a avaliação geral da obra.
+					
+					Você pode aceitar resenhas que
+					estejam bem escritas, sejam
+					construtivas e reflitam uma
+					opinião honesta sobre o livro.
+					
+					Resenhas ofensivas, irrelevantes
+					ou que não agreguem valor à comunidade
+					podem ser rejeitadas.
+				</p>
+			</div>
+			<?php else: ?>
+			<div class="help blue">
+				<strong>
+					Sobre o comentário:
+				</strong>
+				<p>
+					Escreva com suas próprias
+					palavras.
 
-				Vale comentar:
-				personagens,
-				partes favoritas,
-				o que sentiu lendo
-				ou se recomendaria
-				o livro.
-			</p>
-		</div>
+					Seja cordial e respeitoso,
+					mesmo que tenha opiniões negativas
+					sobre a obra. Lembre-se de que
+					o comentário é para ajudar outros
+					leitores e não para atacar o autor
+					ou a obra.
 
+					Apenas o comentário será exibido
+					na página do livro, então evite
+					spoilers ou detalhes que possam
+					estragar a experiência de outros leitores.
+				</p>
+			</div>
+		<?php endif; ?>
 		<label for="comment">
 			<h3>Comentário:</h3>
 		</label>
@@ -219,6 +246,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			placeholder="Transcreva a sua parte favorita do livro '<?=$loan["book"]["title"]?>': Pode ser uma frase, um parágrafo ou uma cena inteira."
 		><?= $review["favorite_excerpt"] ?? "" ?></textarea>
 
+		<?php if (!isNotTheReader()): ?>
+			<div class="help blue">
+				<strong>
+					Sobre a resenha:
+				</strong>
+				<p>
+					Escreva com suas próprias
+					palavras.
+
+					Vale comentar:
+					personagens,
+					partes favoritas,
+					o que sentiu lendo
+					ou se recomendaria
+					o livro.
+
+					A resenha serve para você
+					ser avaliado quanto ao seu 
+					entendimento sobre a obra.
+				</p>
+			</div>
+		<?php endif; ?>
 		<label for="review">
 			<h3>Resenha:</h3>
 		</label>
@@ -235,6 +284,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			required
 		><?= $review["review"] ?? "" ?></textarea>
 
+		<?php if (!isNotTheReader() && $review["status"] === "Aprovado"): ?>
+			<div class="help yellow">
+				<strong>
+					Atenção!
+				</strong>
+				<p>
+					Atualizar a resenha de um livro que já foi aprovada
+					fará com que ela volte para o status "Pendente",
+					ou seja, precisará ser aprovada novamente por <?=isAdmin() ? "outro" : "um"?>
+					administrador para voltar a ser exibida na página do livro.
+				</p>
+			</div>
+		<?php endif; ?>
 		<button
 			type="submit"
 			class="button <?=isNotTheReader() ? "blue" : "green"?>"
@@ -253,7 +315,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			</button>
 		<?php endif; ?>
 
-		<a href="/" class="button red">
+		<a href="/perfil" class="button red">
 			⨯ Cancelar
 		</a>
 

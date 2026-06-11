@@ -12,6 +12,7 @@
 	"&select=".
 		"id,".
 		"deadline,".
+		"end_date,".
 		"is_active,".
 		"book:book_id(".
 			"id," .
@@ -28,17 +29,35 @@
 
 	$_SESSION["user"]["token"]
 	);
+
+	$ranking = supabaseGet(
+		"ranking?".
+		"select=".
+			"uuid".
+		"&order=total.desc".
+		"&limit=1",
+
+		$_SESSION["user"]["token"]
+	);
 ?>
 <link rel="stylesheet" href="/css/perfil.css">
 
 <div class="profile-header">
-	<img
-		src="<?=htmlspecialchars(
-			$_SESSION["user"]["avatar"]
-		)?>"
-		class="profile-avatar"
-		alt="Foto de perfil"
-	>
+	<div class="avatar-wrapper">
+		<img
+			src="<?= htmlspecialchars(
+				$_SESSION["user"]["avatar"]
+			) ?>"
+			class="loan-avatar"
+		>
+			<?php if ($_SESSION["user"]["uuid"] === $ranking[0]["uuid"]):?>
+			<img
+				class="crown"
+				src="/img/Crown.png"
+				alt="Crown"
+			>
+		<?php endif; ?>
+	</div>
 
 	<div class="profile-info">
 		<h2 class="profile-name">
@@ -81,10 +100,19 @@
 				</a>
 
 				<div>
-					<span class="loan-deadline">
-						Até <?=date("d/m/Y", strtotime($loan["deadline"]))?>
-					</span>
 					<?php if ($loan["is_active"]):?>
+						<span class="loan-deadline">
+							Até <?=date("d/m/Y", strtotime($loan["deadline"]))?>
+						</span>
+					<?php else:?>
+						<span class="loan-deadline">
+							Entregue <?=date("d/m/Y", strtotime($loan["end_date"]))?>
+						</span>
+					<?php endif;?>
+					<?php if (isOverdue($loan["deadline"], $loan["is_active"])):?>
+						<span class="status red
+						">Atrasado</span>
+					<?php elsif ($loan["is_active"])?>
 						<span class="status green
 						">Em andamento</span>
 					<?php else:?>
