@@ -50,7 +50,10 @@ $book = $book[0] ?? null;
 $user = supabaseGet(
 	"users?".
 	"uuid=eq.".$loan["reader"].
-	"&select=uuid,name,avatar",
+	"&select=".
+		"uuid,".
+		"name,".
+		"avatar",
 
 	$_SESSION["user"]["token"]
 );
@@ -145,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 	<form method="POST">
 
-		<div class="loan-card <?=isOverdue($loan["deadline"])?"overdue":""?>">
+		<div class="loan-card <?=isOverdue($loan["deadline"], $loan["is_active"])?"overdue":""?>">
 			<div class="avatar-wrapper">
 				<img
 					src="<?= htmlspecialchars(

@@ -165,7 +165,7 @@
 <?php endif;?>
 
 <?php if (isLogged() && $loan && $user):?>
-	<div class="loan-card <?=isOverdue($loan["deadline"])?"overdue":""?>">
+	<div class="loan-card <?=isOverdue($loan["deadline"], $loan["is_active"])?"overdue":""?>">
 		<div class="avatar-wrapper">
 			<img
 				src="<?= htmlspecialchars(

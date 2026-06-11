@@ -30,8 +30,8 @@
 			isset($result["code"]));
 	}
 
-	function isOverdue($deadline) {
-		return strtotime($deadline) < time();
+	function isOverdue($deadline, $isActive) {
+		return $isActive && strtotime($deadline) < time();
 	}
 	
 	try {

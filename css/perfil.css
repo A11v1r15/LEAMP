@@ -92,39 +92,9 @@
 	margin-top: 20px;
 }
 
-.profile-loan-card {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 20px;
-	padding: 18px 22px;
-	border-radius: 20px;
-	background: white;
-	box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-}
 
 .profile-loan-main {
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
-}
-
-.profile-loan-title {
-	font-size: 1.1rem;
-	font-weight: bold;
-	color: #222;
-	text-decoration: none;
-}
-
-.profile-loan-title:hover {
-	text-decoration: underline;
-}
-
-.profile-loan-meta {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-	flex-wrap: wrap;
-	font-size: 0.95rem;
-	color: #555;
 }

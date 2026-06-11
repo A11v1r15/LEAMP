@@ -19,7 +19,15 @@
 		")",
 
 	$_SESSION["user"]["token"]
-);
+	);
+
+	$reviews = supabaseGet(
+	"reviews?".
+	"&select=".
+		"loan_id",
+
+	$_SESSION["user"]["token"]
+	);
 ?>
 <link rel="stylesheet" href="/css/perfil.css">
 
@@ -64,16 +72,16 @@
 			$review_url = "/resenha?"."id=".$loan["id"];
 		?>
 
-		<div class="profile-loan-card <?=isOverdue($loan["deadline"])?"overdue":""?>">
+		<div class="loan-card <?=isOverdue($loan["deadline"], $loan["is_active"])?"overdue":""?>">
 			<div class="profile-loan-main">
 				<a
 					href="/livro?id=<?=$book["id"]?>"
-					class="profile-loan-title"
+					class="loan-title"
 				><?=htmlspecialchars($book["title"])?>
 				</a>
 
-				<div class="profile-loan-meta">
-					<span>
+				<div>
+					<span class="loan-deadline">
 						Até <?=date("d/m/Y", strtotime($loan["deadline"]))?>
 					</span>
 					<?php if ($loan["is_active"]):?>
@@ -90,9 +98,9 @@
 				<a
 					href="<?=$review_url?>"
 					class="button blue"
-				>🖉<?=$loan["is_active"]
-						? "Escrever resenha"
-						: "Editar resenha"
+				>🖉 <?=in_array($loan["id"], array_column($reviews, "loan_id"))
+						? "Editar resenha"
+						: "Escrever resenha"
 					?>
 				</a>
 			</div>

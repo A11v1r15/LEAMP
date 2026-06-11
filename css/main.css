@@ -266,6 +266,12 @@ h2.error {
 .loan-title {
 	font-weight: bold;
 	font-size: 1rem;
+	text-decoration: none;
+	font-family: "Roboto Slab", serif;
+}
+
+.loan-title:hover {
+	text-decoration: underline;
 }
 
 .loan-deadline {
