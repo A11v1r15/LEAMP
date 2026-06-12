@@ -1,6 +1,6 @@
 :root {
 	--light-green:  #d1e7dd;
-	--main-green:   #198754;
+	--main-green:   #399936; /* logo ifce */
 	--dark-green:   #0f5132;
 	--light-red:    #ffcdcd;
 	--main-red:     #ca1517; /* logo ifce */
@@ -16,9 +16,8 @@
 	--dark-gray:    #41464b;
 
 	--header-green: #2D6C40;
-	--link-green:   #399936; /* logo ifce */
-	--link-blue:    #393699;
 	--main-black:   #281e17; /* logo ifce */
+	--main-white:   #f4f4f4;
 
 	--fancy-orange:  linear-gradient(#f0cc74, #f0865f); /* logo léamp */
 	--fancy-teal:    linear-gradient(#acdccc, #5d9b98); /* logo léamp */
@@ -33,8 +32,8 @@
 
 body {
 	font-family: Arial, sans-serif;
-	background-color: #f4f4f4;
-	color: var(--main-black);
+	background-color: light-dark(var(--main-white), var(--main-black));
+	color:            light-dark(var(--main-black), var(--main-white));
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
@@ -91,7 +90,7 @@ nav a {
 }
 
 nav a:hover {
-	background: var(--link-green);
+	background: var(--main-green);
 }
 
 /* botão hambúrguer */
@@ -154,7 +153,7 @@ aside a {
 }
 
 aside a:hover {
-	color: var(--link-green);
+	color: var(--main-green);
 }
 
 /* MAIN */
@@ -182,11 +181,11 @@ main h3 {
 }
 
 main a:link {
-	color: var(--link-green);
+	color: var(--main-green);
 }
 
 main a:visited {
-	color: var(--link-blue);
+	color: var(--main-blue);
 }
 
 blockquote {
