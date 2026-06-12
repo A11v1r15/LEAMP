@@ -33,10 +33,39 @@ if (empty($user)) {
 		$token
 	);
 	$role = "Leitor";
+
+	if (is_array($result)
+		&& !isset($result["code"])) {
+		$_SESSION["flash"] = [
+			"type" => "success",
+			"message" => "Novo usuário registrado!"
+		];
+	}
 } else {
-//	file_put_contents('php://stderr', print_r($user, TRUE));
+	if (
+		$user[0]["name"] !== $name ||
+		$user[0]["avatar"] !== $avatar
+		) {
+			$result = supabasePatch(
+				"users?uuid=eq.$uuid",
+				[
+					"name" => $name,
+					"avatar" => $avatar
+				],
+				$token
+			);
+
+			if (is_array($result)
+				&& !isset($result["code"])) {
+				$_SESSION["flash"] = [
+					"type" => "success",
+					"message" => "Usuário atualizado!"
+				];
+			}
+	}
 	$role = $user[0]["role"];
 }
+//	file_put_contents('php://stderr', print_r($user, TRUE));
 
 $_SESSION["user"] = [
 	"uuid" => $uuid,
@@ -46,11 +75,3 @@ $_SESSION["user"] = [
 	"token" => $token,
 	"role" => $role
 ];
-
-if (is_array($result)
-	&& !isset($result["code"])) {
-	$_SESSION["flash"] = [
-		"type" => "success",
-		"message" => "Novo usuário registrado!"
-	];
-}
