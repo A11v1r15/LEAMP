@@ -1,17 +1,17 @@
 <?php
 
-	$title = "Contatos - LÉAMP";
+	$title = "Equipe - LÉAMP";
 
 ?>
 
-<h2>Contatos</h2>
+<h2>Equipe</h2>
 
 <p>
 	<h3>Webmaster:</h3>
 	Álvaro Carvalho - <a href="mailto:alvaro.carvalho@ifce.edu.br?subject=Ler é a minha praia">alvaro.carvalho@ifce.edu.br</a><br>
 	<h3>Coordenação:</h3>
 	Marcos Fábio - <a href="mailto:marcos.lopes@ifce.edu.br?subject=Ler é a minha praia">marcos.lopes@ifce.edu.br</a><br>
-	<h3>Equipe:</h3>
+	<h3>Colabordores:</h3>
 	Alba Valéria - <a href="mailto:alba.oliveira@ifce.edu.br?subject=Ler é a minha praia">alba.oliveira@ifce.edu.br</a><br>
 	Aline Siebra - <a href="mailto:aline.fonteles@ifce.edu.br?subject=Ler é a minha praia">aline.fonteles@ifce.edu.br</a><br>
 	Danillo Figuereido - <a href="mailto:danillo.figuereido@ifce.edu.br?subject=Ler é a minha praia">danillo.figuereido@ifce.edu.br</a><br>

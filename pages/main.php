@@ -144,7 +144,7 @@
 				<li><a href="/ranking">Ranking</a></li>
 			<?php endif;?>
 			<li><a href="/eventos">Eventos</a></li>
-			<li><a href="/contatos">Contatos</a></li>
+			<li><a href="/equipe">Equipe</a></li>
 		</ul>
 	</nav>
 
