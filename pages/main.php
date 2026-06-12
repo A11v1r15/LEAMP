@@ -159,7 +159,7 @@
 
 				<ul>
 					<?php if (isLogged()):?>
-						<li><a href="/perfil"><?=$_SESSION["user"]["name"]?></a></li>
+						<li><a href="/perfil">Perfil</a></li>
 						<li><a href="/logout">Sair</a></li>
 					<?php else:?>
 						<li><a onclick="loginGoogle()">Login</a></li>
@@ -167,6 +167,7 @@
 					<?php if (isAdmin()):?>
 						<li><a href="/emprestimos">Lista de empréstimos</a></li>
 						<li><a href="/doar">Adicionar livros</a></li>
+						<li><a href="/criar_evento">Criar evento</a></li>
 					<?php endif;?>
 				</ul>
 			</div>
