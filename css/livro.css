@@ -15,7 +15,7 @@
 
 .book-author {
 	margin-top: 8px;
-	color: #666;
+	color: var(--main-gray);
 	font-size: 1.1rem;
 }
 
@@ -24,7 +24,7 @@ form.inline-form {
 }
 
 .review-card {
-	background: #e4ebf4;
+	background: var(--light-gray);
 	border-radius: 16px;
 	padding: 16px;
 	margin-bottom: 16px;
@@ -43,8 +43,10 @@ form.inline-form {
 }
 
 .review-rating {
-	font-size: 1.2rem;
-	color: #f0b400;
+	font-size: 1.3rem;
+	background-image: var(--fancy-orange);
+    color: transparent;
+    background-clip: text;
 }
 
 .review-comment {

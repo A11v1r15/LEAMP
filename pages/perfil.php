@@ -74,7 +74,7 @@
 		</div>
 
 		<div class="profile-role">
-			<span class="profile-role-badge <?=colorClass($_SESSION["user"]["role"])?>">
+			<span class="profile-role-badge <?=$_SESSION["user"]["role"]?>">
 				<?=htmlspecialchars(
 					$_SESSION["user"]["role"]
 				)?>
