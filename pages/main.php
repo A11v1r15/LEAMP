@@ -126,31 +126,30 @@
 
 	<header>
 		<img src="/img/Logo Ler é a minha praia.png" alt="Logo Ler é a minha praia">
-
 		<div>
-			<h1>LER É A MINHA PRAIA</h1>
-			<p>Projeto de incentivo à leitura</p>
+			<div>
+				<h1>LER É A MINHA PRAIA</h1>
+				<p>Projeto de incentivo à leitura</p>
+			</div>
+			<nav>
+				<button class="menu-toggle" onclick="toggleMenu('nav-menu')">
+					☰
+				</button>
+				<ul id="nav-menu">
+					<li><a href="/">Início</a></li>
+					<li><a href="/instrucoes">Instruções</a></li>
+					<li><a href="/livros">Livros</a></li>
+					<?php if (isLogged()):?>
+						<li><a href="/ranking">Ranking</a></li>
+					<?php endif;?>
+					<li><a href="/eventos">Eventos</a></li>
+					<li><a href="/equipe">Equipe</a></li>
+				</ul>
+			</nav>
 		</div>
 	</header>
 
-	<nav>
-		<button class="menu-toggle" onclick="toggleMenu('nav-menu')">
-			☰
-		</button>
-		<ul id="nav-menu">
-			<li><a href="/">Início</a></li>
-			<li><a href="/instrucoes">Instruções</a></li>
-			<li><a href="/livros">Livros</a></li>
-			<?php if (isLogged()):?>
-				<li><a href="/ranking">Ranking</a></li>
-			<?php endif;?>
-			<li><a href="/eventos">Eventos</a></li>
-			<li><a href="/equipe">Equipe</a></li>
-		</ul>
-	</nav>
-
 	<div class="container">
-
 		<aside>
 			<button class="side-toggle" onclick="toggleMenu('side-menu')">
 				⋮

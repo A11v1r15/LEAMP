@@ -65,6 +65,17 @@ header img {
 	object-fit: contain;
 }
 
+header > div {
+	display: flex;
+	flex-direction: column;
+	align-self: stretch;
+	margin-bottom: -16px;
+}
+
+header nav {
+	margin-top: auto;
+}
+
 header h1 {
 	font-size: 2rem;
 }
