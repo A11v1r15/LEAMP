@@ -10,7 +10,7 @@
 	height: 180px;
 	object-fit: cover;
 	border-radius: 12px;
-	box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+	box-shadow: var(--box-shadow);
 }
 
 .book-author {
@@ -28,7 +28,7 @@ form.inline-form {
 	border-radius: 16px;
 	padding: 16px;
 	margin-bottom: 16px;
-	box-shadow: 0 2px 8px rgba(0,0,0,.08);
+	box-shadow: var(--box-shadow);
 }
 
 .review-header {
@@ -45,10 +45,16 @@ form.inline-form {
 .review-rating {
 	font-size: 1.3rem;
 	background-image: var(--fancy-orange);
-    color: transparent;
-    background-clip: text;
+	color: transparent;
+	background-clip: text;
 }
 
 .review-comment {
 	margin: 12px 0;
+}
+
+@media (prefers-color-scheme: dark) {
+	.review-card {
+		background: var(--dark-gray);
+	}
 }

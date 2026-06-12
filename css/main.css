@@ -16,12 +16,16 @@
 	--dark-gray:    #41464b;
 
 	--header-green: #2D6C40;
-	--main-black:   #281e17; /* logo ifce */
+	--text-black:   #281e17; /* logo ifce */
+	--text-white:   #ffffff;
+	--main-black:   #0b0b0b;
 	--main-white:   #f4f4f4;
 
 	--fancy-orange:  linear-gradient(#f0cc74, #f0865f); /* logo léamp */
-	--fancy-teal:    linear-gradient(#acdccc, #5d9b98); /* logo léamp */
+	--fancy-teal:	 linear-gradient(#acdccc, #5d9b98); /* logo léamp */
 	--fancy-magenta: linear-gradient(#f0a6c1, #e04e9c);
+
+	--box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
 
 * {
@@ -32,8 +36,8 @@
 
 body {
 	font-family: Arial, sans-serif;
-	background-color: light-dark(var(--main-white), var(--main-black));
-	color:            light-dark(var(--main-black), var(--main-white));
+	background-color: var(--main-white);
+	color:            var(--text-black);
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
@@ -43,12 +47,12 @@ body {
 
 header {
 	background-color: var(--header-green);
-	color: white;
+	color: var(--text-white);
 	padding: 16px 24px;
 	display: flex;
 	align-items: center;
 	gap: 16px;
-	box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+	box-shadow: var(--box-shadow);
 	font-family: "Roboto Slab", serif;
 	font-optical-sizing: auto;
 	font-weight: 700;
@@ -85,7 +89,7 @@ nav li {
 nav a {
 	display: block;
 	padding: 14px 20px;
-	color: white;
+	color: var(--text-white);
 	text-decoration: none;
 }
 
@@ -99,7 +103,7 @@ nav a:hover {
 	display: none;
 	background: none;
 	border: none;
-	color: white;
+	color: var(--text-white);
 	font-size: 2rem;
 	padding: 10px 20px;
 	cursor: pointer;
@@ -128,7 +132,7 @@ nav a:hover {
 
 aside {
 	width: 240px;
-	background-color: white;
+	background: white;
 	padding: 20px;
 	border-right: 1px solid var(--main-gray);
 }
@@ -214,11 +218,11 @@ blockquote:after {
 
 table thead {
 	background-color: var(--header-green);
-	color: #FFFFFF;
+	color: var(--text-white);
 }
 
 tbody tr:nth-child(even) {
-	background-color: #FFFFFF !important;
+	background-color: white !important;
 }
 
 table tbody tr:hover {
@@ -245,9 +249,9 @@ h2.error {
 	padding: 12px 16px;
 	margin-top: 16px;
 	border-radius: 16px;
-	background: var(--light-green);
+	background:            var(--light-green);
 	border-left: 6px solid var(--main-green);
-	box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+	box-shadow: var(--box-shadow);
 	width: fit-content;
 	animation: fadeIn 0.2s ease;
 }
@@ -289,7 +293,7 @@ h2.error {
 	font-size: 1rem;
 	text-decoration: none;
 	font-family: "Roboto Slab", serif;
-	color: var(--main-black) !important;
+	color: var(--text-black) !important;
 }
 
 .loan-title:hover {
@@ -315,7 +319,7 @@ h2.error {
 
 .loan-user {
 	margin-top: 6px;
-	color: var(--main-black);
+	color: var(--text-black);
 }
 
 /* FORMULÁRIOS */
@@ -333,7 +337,7 @@ form {
 	padding: 24px;
 	border-radius: 24px;
 	background: white;
-	box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+	box-shadow: var(--box-shadow);
 }
 
 form input {

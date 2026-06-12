@@ -8,10 +8,10 @@
 	background:
 		linear-gradient(
 			135deg,
-			#ffffff,
-			#f6f8ff
+			white,
+			var(--main-white)
 		);
-	box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+	box-shadow: var(--box-shadow);
 }
 
 .profile-info {
@@ -24,7 +24,7 @@
 	margin: 0;
 	font-size: 2rem;
 	line-height: 1.1;
-	color: var(--main-black);
+	color: var(--text-black);
 }
 
 .profile-email {
@@ -40,7 +40,7 @@
 	display: inline-block;
 	padding: 8px 14px;
 	border-radius: 999px;
-	color: white;
+	color: var(--text-white);
 	font-weight: bold;
 	font-size: 0.95rem;
 	letter-spacing: 0.3px;
@@ -48,17 +48,17 @@
 
 .profile-role-badge.Concedente {
 	background: var(--fancy-magenta);
-	box-shadow: 0 3px 10px rgba(#e04e9c,0.25);
+	box-shadow: 0 4px 16px rgba(#e04e9c,0.25);
 }
 
 .profile-role-badge.Revisor {
 	background: var(--fancy-orange);
-	box-shadow: 0 3px 10px rgba(#f0865f,0.25);
+	box-shadow: 0 4px 16px rgba(#f0865f,0.25);
 }
 
 .profile-role-badge.Leitor {
 	background: var(--fancy-teal);
-	box-shadow: 0 3px 10px rgba(#5d9b98,0.25);
+	box-shadow: 0 4px 16px rgba(#5d9b98,0.25);
 }
 
 .profile-loans {
@@ -68,9 +68,23 @@
 	margin-top: 20px;
 }
 
-
 .profile-loan-main {
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+	.profile-header {
+		background:
+			linear-gradient(
+				135deg,
+				black,
+				var(--main-black)
+			);
+	}
+
+	.profile-name {
+		color: var(--text-white);
+	}
 }

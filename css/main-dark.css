@@ -1,0 +1,154 @@
+@media (prefers-color-scheme: dark) {
+	 body {
+		  background-color: var(--main-black);
+		  color:            var(--main-white);
+	 }
+
+	 nav a {
+		  color: var(--text-white);
+	 }
+
+	 /* SIDEBAR */
+
+	 aside {
+		  background-color: black;
+		  border-right: 1px solid var(--dark-gray);
+	 }
+
+	 aside a {
+		  color: var(--light-gray);
+	 }
+
+	 /* MAIN */
+
+	 blockquote {
+		  border-left: 4px solid var(--main-gray);
+		  color: var(--light-gray);
+	 }
+
+	 /* TABELAS */
+
+	 tbody tr:nth-child(even) {
+		  background-color: black !important;
+	 }
+
+	 table tbody tr:hover {
+		  background-color: var(--dark-gray) !important;
+	 }
+
+	 /* LOAN CARDS */
+
+	 .loan-card {
+		  background:            var(--dark-green);
+		  border-left: 6px solid var(--main-green);
+	 }
+
+	 .loan-card.overdue {
+		  background:        var(--dark-red);
+		  border-left-color: var(--main-red);
+	 }
+
+	 .loan-title {
+		  color: var(--text-white) !important;
+	 }
+
+	 .loan-user {
+		  margin-top: 6px;
+		  color: var(--text-white);
+	 }
+
+	 /* FORMULÁRIOS */
+
+	 form {
+		  background: black;
+	 }
+
+	 form input {
+		  border: 1px solid #444;
+	 }
+
+	 form select {
+		  border: 1px solid #444;
+	 }
+
+	 form textarea {
+		  border: 1px solid #444;
+	 }
+
+
+	 .status.green {
+		  background: var(--dark-green);
+		  color:      var(--light-green);
+	 }
+
+	 .status.yellow {
+		  background: var(--dark-yellow);
+		  color:      var(--light-yellow);
+	 }
+
+	 .status.red {
+		  background: var(--dark-red);
+		  color:      var(--light-red);
+	 }
+
+	 .status.gray {
+		  background: var(--dark-gray);
+		  color:      var(--light-gray);
+	 }
+
+	 /* AJUDA */
+
+	 .help.blue {
+		  background:            var(--dark-blue);
+		  border-left: 6px solid var(--main-blue);
+		  color:                 var(--light-blue);
+	 }
+
+	 .help.red {
+		  background:            var(--dark-red);
+		  border-left: 6px solid var(--main-red);
+		  color:                 var(--light-red);
+	 }
+
+	 .help.yellow {
+		  background:            var(--dark-yellow);
+		  border-left: 6px solid var(--main-yellow);
+		  color:                 var(--light-yellow);
+	 }
+
+	 .help.green {
+		  background:            var(--dark-green);
+		  border-left: 6px solid var(--main-green);
+		  color:                 var(--light-green);
+	 }
+
+	 /* FLASH MESSAGES */
+
+	 .flash.success {
+		  background: var(--dark-green);
+		  color:      var(--light-green);
+	 }
+
+	 .flash.error {
+		  background: var(--dark-red);
+		  color:      var(--light-red);
+	 }
+
+	 .flash.warning {
+		  background: var(--dark-yellow);
+		  color:      var(--light-yellow);
+	 }
+
+	 /* RESPONSIVO */
+
+	 @media (max-width: 768px) {
+
+		  aside {
+				border-bottom: 1px solid #444;
+		  }
+
+		  nav li {
+				border-top: 1px solid rgba(var(--main-black),0.2);
+		  }
+	 }
+}
