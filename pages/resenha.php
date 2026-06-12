@@ -56,7 +56,7 @@ function isNotTheReader() {
 	return $loan["reader"]["uuid"] !== $_SESSION["user"]["uuid"];
 }
 
-if (isNotTheReader() && !isAdmin()) {
+if (isNotTheReader() && !isReviewer()) {
 	throw new HttpError(
 		403, "pages/403.php"
 	);
@@ -67,7 +67,7 @@ if (isNotTheReader() && !isAdmin()) {
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	$action = $_POST["action"];
 
-	if ($action === "accept" && isAdmin()) {
+	if ($action === "accept" && isReviewer()) {
 		if (!$review) {
 			flash("error", "Resenha não encontrada para este empréstimo.");
 			session_write_close();
@@ -151,6 +151,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	<h3><?=$loan["reader"]["name"]?> ainda não escreveu uma resenha para este livro.</h3>
 <?php return;
 	endif; ?>
+<?= ($review === null)?
+	"<span class='status gray'>Nova</span>"
+	:(($review["status"] === "Aprovado")?
+	"<span class='status green'>Aprovado</span>"
+	:"<span class='status yellow'>Pendente</span>")
+?>
 
 <div class="form-page">
 	<form class="review-form" method="POST">
@@ -292,8 +298,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				<p>
 					Atualizar a resenha de um livro que já foi aprovada
 					fará com que ela volte para o status "Pendente",
-					ou seja, precisará ser aprovada novamente por <?=isAdmin() ? "outro" : "um"?>
-					administrador para voltar a ser exibida na página do livro.
+					ou seja, precisará ser aprovada novamente por <?=isReviewer() ? "outro" : "um"?>
+					revisor para voltar a ser exibida na página do livro.
 				</p>
 			</div>
 		<?php endif; ?>
