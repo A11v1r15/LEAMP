@@ -32,10 +32,7 @@
 				</a></td>
 				<td><?=htmlspecialchars($book["author"])?></td>
 				<td>
-					<span class="status <?=
-						colorClass($book["status"])?>">
-						<?=htmlspecialchars($book["status"])?>
-					</span>
+					<?=buildStatus($book["status"])?>
 				</td>
 			</tr>
 		<?php endforeach;?>

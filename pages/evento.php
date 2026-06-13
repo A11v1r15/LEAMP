@@ -23,7 +23,7 @@
 
 	$event = $event[0];
 
-	$page_title = $event["title"].(!empty($event["edition"])?" - ".toRoman((int)$event["edition"]):"")." - LÉAMP";
+	$page_title = buidEventTitle($event)." - LÉAMP";
 
 	if ($_SERVER["REQUEST_METHOD"] === "POST" && isAdmin()) {
 		$result = supabasePatch(
@@ -38,7 +38,7 @@
 		if (hasErrorCode($result)) {
 			flash("error", "Erro ao ".$_POST["action"]." evento: " . $result["message"]);
 		} else {
-			flash("success", $event["title"].(!empty($event["edition"])?" - ".toRoman((int)$event["edition"]):"")." ".substr($_POST["action"], 0, -1)."do com sucesso!");
+			flash("success", buidEventTitle($event)." ".substr($_POST["action"], 0, -1)."do com sucesso!");
 			cacheDelete("eventos");
 			session_write_close();
 			header("Location: /eventos");
@@ -48,22 +48,14 @@
 
 ?>
 
-<h2><?=htmlspecialchars($event["title"].(!empty($event["edition"])?" - ".toRoman((int)$event["edition"]):""))?></h2>
+<h2><?=buidEventTitle($event)?></h2>
 
 <div class="event-card">
 	<div class="event-header">
 		<h3>
-			<?=htmlspecialchars(
-				$event["title"]
-			)?>
-			<?php if (!empty($event["edition"])
-			): ?> - <?= toRoman((int)$event["edition"])?>
-			<?php endif; ?>
+			<?=buidEventTitle($event)?>
 		</h3>
-		<span class="status <?=
-			colorClass($event["status"])?>">
-			<?=htmlspecialchars($event["status"])?>
-		</span>
+		<?=buildStatus($event["status"])?>
 	</div>
 
 	<p class="event-time">

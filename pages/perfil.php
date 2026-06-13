@@ -112,14 +112,11 @@
 			</div>
 			<div class="extra">
 				<?php if (isOverdue($loan["deadline"], $loan["is_active"])):?>
-					<span class="status red">
-					Atrasado</span>
+					<?=buildStatus("Atrasado")?>
 				<?php elseif ($loan["is_active"]):?>
-					<span class="status green">
-					Em andamento</span>
+					<?=buildStatus("Em andamento")?>
 				<?php else:?>
-					<span class="status gray">
-					Finalizado</span>
+					<?=buildStatus("Finalizado")?>
 				<?php endif;?>
 				<a
 					href="<?=$review_url?>"

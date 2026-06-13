@@ -17,6 +17,7 @@
 	include_once "includes/auth.php";
 	include_once "includes/supabase.php";
 	include_once "includes/util.php";
+	include_once "includes/elementBuilder.php";
 	
 	try {
 		ob_start();
@@ -48,7 +49,6 @@
 	<link rel="icon" type="image/png" href="/img/Logo Ler é a minha praia.png">
 </head>
 <script>
-
 	function toggleMenu(menuId) {
 
 		document
@@ -94,7 +94,6 @@
 				4500
 			);
 	}
-
 </script>
 <body>
 

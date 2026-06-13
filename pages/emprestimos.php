@@ -146,11 +146,9 @@
 
 				<td>
 					<?php if ($loan["is_active"]):?>
-						<span class="status green">
-						Ativo</span>
+						<?=buildStatus("Ativo")?>
 					<?php else:?>
-						<span class="status gray">
-						Finalizado</span>
+						<?=buildStatus("Finalizado")?>
 					<?php endif;?>
 				</td>
 

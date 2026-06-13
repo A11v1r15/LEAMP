@@ -23,7 +23,7 @@ $event = supabaseGet(
 $event = $event[0] ?? null;
 
 if ($event !== null) {
-	$page_title = "Editar: ".$event["title"].(!empty($event["edition"])?" - ".toRoman((int)$event["edition"]):"")." - LÉAMP";
+	$page_title = "Editar: ".buidEventTitle($event)." - LÉAMP";
 }
 
 $event_titles = array_unique(

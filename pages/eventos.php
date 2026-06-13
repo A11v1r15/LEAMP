@@ -38,17 +38,9 @@
 		<div class="event-card">
 			<div class="event-header">
 				<h3>
-					<?=htmlspecialchars(
-						$event["title"]
-					)?>
-					<?php if (!empty($event["edition"])
-					): ?> - <?= toRoman((int)$event["edition"])?>
-					<?php endif; ?>
+					<?=buidEventTitle($event)?>
 				</h3>
-				<span class="status <?=
-					colorClass($event["status"])?>">
-					<?=htmlspecialchars($event["status"])?>
-				</span>
+				<?=buildStatus($event["status"])?>
 			</div>
 
 			<p class="event-time">
@@ -110,18 +102,12 @@
 				<tr>
 					<td>
 						<a href="/evento?id=<?=$event["id"]?>"
-						><?= htmlspecialchars($event["title"]) ?>
-						<?php if (!empty($event["edition"])
-						):?> - <?= toRoman((int)$event["edition"]) ?>
-						<?php endif;?>
+						><?=buidEventTitle($event)?>
 						</a>
 					</td>
 
 					<td>
-						<span class="status <?=
-							colorClass($event["status"])?>">
-							<?=htmlspecialchars($event["status"])?>
-						</span>
+						<?=buildStatus($event["status"])?>
 					</td>
 				</tr>
 			<?php endforeach; ?>

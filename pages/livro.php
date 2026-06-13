@@ -130,10 +130,7 @@
 		<div class="book-author">
 			<?=htmlspecialchars($book["author"])?>
 		</div>
-		<span class="status <?=
-			colorClass($book["status"])?>">
-			<?=htmlspecialchars($book["status"])?>
-		</span>
+		<?=buildStatus($book["status"])?>
 	</div>
 </div>
 
