@@ -2,6 +2,6 @@
 
 session_destroy();
 
-header("Location: <?=htmlspecialchars(previousPage())?>");
+header("Location: ".previousPage());
 
 exit;
