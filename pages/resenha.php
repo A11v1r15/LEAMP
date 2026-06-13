@@ -180,12 +180,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		</div>
 
 		<?php if (isNotTheReader()): ?>
-			<div class="small-card blue"><div class="info">
-				<strong>
-					Sobre aceitar a resenha:
-				</strong>
-				<p>
-					Aceitar a resenha significa
+			<?=buildSmallCard($card=[
+				"color" => "blue",
+				"strong" => "Sobre aceitar a resenha:",
+				"text" => 
+					"Aceitar a resenha significa
 					que o comentário dela passará a ser exibida
 					na página do livro, contribuindo
 					para a avaliação geral da obra.
@@ -197,16 +196,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 					
 					Resenhas ofensivas, irrelevantes
 					ou que não agreguem valor à comunidade
-					podem ser rejeitadas.
-				</p>
-			</div></div>
-			<?php else: ?>
-			<div class="small-card blue"><div class="info">
-				<strong>
-					Sobre o comentário:
-				</strong>
-				<p>
-					Escreva com suas próprias
+					podem ser rejeitadas."
+			])?>
+		<?php else: ?>
+			<?=buildSmallCard($card=[
+				"color" => "blue",
+				"strong" => "Sobre o comentário:",
+				"text" => 
+					"Escreva com suas próprias
 					palavras.
 
 					Seja cordial e respeitoso,
@@ -219,9 +216,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 					Apenas o comentário será exibido
 					na página do livro, então evite
 					spoilers ou detalhes que possam
-					estragar a experiência de outros leitores.
-				</p>
-			</div></div>
+					estragar a experiência de outros leitores."
+			])?>
 		<?php endif; ?>
 		<label for="comment">
 			<h3>Comentário:</h3>
@@ -253,12 +249,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		><?= $review["favorite_excerpt"] ?? "" ?></textarea>
 
 		<?php if (!isNotTheReader()): ?>
-			<div class="small-card blue"><div class="info">
-				<strong>
-					Sobre a resenha:
-				</strong>
-				<p>
-					Escreva com suas próprias
+			<?=buildSmallCard($card=[
+				"color" => "blue",
+				"strong" => "Sobre a resenha:",
+				"text" => 
+					"Escreva com suas próprias
 					palavras.
 
 					Vale comentar:
@@ -270,9 +265,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 					A resenha serve para você
 					ser avaliado quanto ao seu 
-					entendimento sobre a obra.
-				</p>
-			</div></div>
+					entendimento sobre a obra."
+			])?>
 		<?php endif; ?>
 		<label for="review">
 			<h3>Resenha:</h3>
@@ -291,17 +285,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		><?= $review["review"] ?? "" ?></textarea>
 
 		<?php if (!isNotTheReader() && $review["status"] === "Aprovado"): ?>
-			<div class="small-card yellow"><div class="info">
-				<strong>
-					Atenção!
-				</strong>
-				<p>
-					Atualizar a resenha de um livro que já foi aprovada
-					fará com que ela volte para o status "Pendente",
-					ou seja, precisará ser aprovada novamente por <?=isReviewer() ? "outro" : "um"?>
-					revisor para voltar a ser exibida na página do livro.
-				</p>
-			</div></div>
+			<?=buildSmallCard($card=[
+				"color" => "yellow",
+				"strong" => "Atenção!",
+				"text" => 
+					"Atualizar a resenha de um livro que já foi aprovada
+					fará com que ela volte para o status \"Pendente\",
+					ou seja, precisará ser aprovada novamente por ".(isReviewer() ? "outro" : "um")."
+					revisor para voltar a ser exibida na página do livro."
+			])?>
 		<?php endif; ?>
 		<button
 			type="submit"

@@ -90,43 +90,28 @@
 			$book = $loan["book"];
 			$review_url = "/resenha?"."id=".$loan["id"];
 		?>
-
-		<div class="small-card <?=isOverdue($loan["deadline"], $loan["is_active"])?"red":"green"?>">
-			<div class="info">
-				<a
-					href="/livro?id=<?=$book["id"]?>"
-					class="title"
-				><?=htmlspecialchars($book["title"])?>
-				</a>
-				<div>
-					<?php if ($loan["is_active"]):?>
-						<span class="deadline">
-							Até <?=date("d/m/Y", strtotime($loan["deadline"]))?>
-						</span>
-					<?php else:?>
-						<span class="deadline">
-							Entregue <?=date("d/m/Y", strtotime($loan["end_date"]))?>
-						</span>
-					<?php endif;?>
-				</div>
-			</div>
-			<div class="extra">
-				<?php if (isOverdue($loan["deadline"], $loan["is_active"])):?>
-					<?=buildStatus("Atrasado")?>
-				<?php elseif ($loan["is_active"]):?>
-					<?=buildStatus("Em andamento")?>
-				<?php else:?>
-					<?=buildStatus("Finalizado")?>
-				<?php endif;?>
-				<a
-					href="<?=$review_url?>"
-					class="button blue"
-				>🖉 <?=in_array($loan["id"], array_column($reviews, "loan_id"))
-						? "Editar resenha"
-						: "Escrever resenha"
-					?>
-				</a>
-			</div>
-		</div>
+		<?php
+		$extra =
+			(isOverdue($loan["deadline"], $loan["is_active"])?
+				buildStatus("Atrasado"):
+				($loan["is_active"]?
+					buildStatus("Em andamento"):
+					buildStatus("Finalizado"))).
+			"\n <a ".
+					"href='".$review_url."'".
+					"class='button blue'".
+					">🖉 ".(in_array($loan["id"], array_column($reviews, "loan_id"))?
+							"Editar resenha" : "Escrever resenha").
+				"</a>";
+		?>
+		<?=buildSmallCard([
+			"color" => isOverdue($loan["deadline"], $loan["is_active"])?"red":"green",
+			"title" => $book["title"],
+			"title_url" => "/livro?id=".$book["id"],
+			"deadline" => ($loan["is_active"])?
+				"Até ".date("d/m/Y", strtotime($loan["deadline"])):
+				"Entregue ".date("d/m/Y", strtotime($loan["end_date"])),
+			"extra" => $extra
+		])?>
 	<?php endforeach;?>
 </div>

@@ -160,41 +160,21 @@
 <?php endif;?>
 
 <?php if (isLogged() && $loan && $user):?>
-	<div class="small-card <?=isOverdue($loan["deadline"], $loan["is_active"])?"red":"green"?>">
-		<div class="avatar-wrapper">
-			<img
-				src="<?= htmlspecialchars(
-					$user["avatar"]
-				) ?>"
-				class="avatar"
-			>
-				<?php if ($user["uuid"] === $ranking[0]["uuid"]):?>
-				<img
-					class="crown"
-					src="/img/Crown.png"
-					alt="Crown"
-				>
-			<?php endif; ?>
-		</div>
-		<div class="info">
-			<div class="title">
-				Emprestado para
-				<?=htmlspecialchars(
-					$user["name"]
-				)?>
-			</div>
-
-			<div class="deadline">
-				Até <?=date("d/m/Y", strtotime($loan["deadline"]))?>
-			</div>
-		</div>
-		<?php if (isAdmin()):?>
-			<a
-				href="/devolucao?id=<?=$loan["id"]?>"
-				class="button blue">↩ Devolver
-			</a>
-		<?php endif;?>
-	</div>
+	<?php if (isAdmin()) {
+		$extra =
+			"<a ".
+				"href='/devolucao?id=".$loan['id']."'".
+				"class='button blue'>↩ Devolver".
+			"</a>";
+	}?>
+	<?=buildSmallCard([
+		"color" => isOverdue($loan["deadline"], $loan["is_active"])?"red":"green",
+		"user" => $user,
+		"ranking"=> $ranking,
+		"title" => "Emprestado para ".$user["name"],
+		"deadline" => "Até ".date("d/m/Y", strtotime($loan["deadline"])),
+		"extra" => $extra??""
+	])?>
 <?php endif;?>
 
 

@@ -20,52 +20,14 @@
 <h2>Ranking de leitores</h2>
 
 <div class="ranking-list">
-
-<?php foreach ($ranking as $i => $user): ?>
-
-	<div class="small-card green">
-
-		<div class="ranking-position">
-			#<?= $i + 1 ?>
-		</div>
-
-		<div class="avatar-wrapper">
-			<img
-				src="<?= htmlspecialchars(
-					$user["avatar"]
-				) ?>"
-				class="avatar"
-			>
-			<?php if ($i === 0): ?>
-				<img
-					class="crown"
-					src="/img/Crown.png"
-					alt="Crown"
-				>
-			<?php endif; ?>
-		</div>
-
-		<div class="info">
-
-			<div class="title">
-
-				<?= htmlspecialchars(
-					$user["name"]
-				) ?>
-
-			</div>
-
-			<div class="deadline">
-
-				<?= $user["total"] ?>
-				empréstimos
-
-			</div>
-
-		</div>
-
-	</div>
-
-<?php endforeach; ?>
-
+	<?php foreach ($ranking as $i => $user): ?>
+		<?=buildSmallCard([
+			"color" => "yellow",
+			"ranking-position" => $i+1,
+			"user" => $user,
+			"ranking" => $ranking,
+			"title" => $user["name"],
+			"deadline" => $user["total"]." empréstimos"
+		])?>
+	<?php endforeach; ?>
 </div>

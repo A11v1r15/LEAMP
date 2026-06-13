@@ -146,41 +146,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <div class="form-page">
 	<form method="POST">
-		<div class="small-card <?=isOverdue($loan["deadline"], $loan["is_active"])?"red":"green"?>">
-			<div class="avatar-wrapper">
-				<img
-					src="<?= htmlspecialchars(
-						$user["avatar"]
-					) ?>"
-					class="avatar"
-				>
-				<?php if ($user["uuid"] === $ranking[0]["uuid"]):?>
-					<img
-						class="crown"
-						src="/img/Crown.png"
-						alt="Crown"
-					>
-				<?php endif;?>
-			</div>
-			<div class="info">
-				<div class="title">
-					<?=htmlspecialchars(
-						$book["title"]
-					)?>
-				</div>
-
-				<div class="subtitle">
-					Com
-					<?=htmlspecialchars(
-						$user["name"]
-					)?>
-				</div>
-
-				<div class="deadline">
-					Até <?=date("d/m/Y", strtotime($loan["deadline"]))?>
-				</div>
-			</div>
-		</div>
+		<?=buildSmallCard([
+			"color" => isOverdue($loan["deadline"], $loan["is_active"])?"red":"green",
+			"user" => $user,
+			"ranking"=> $ranking,
+			"title" => $book["title"],
+			"subtitle" => "Com ".$user["name"],
+			"deadline" => "Até ".date("d/m/Y", strtotime($loan["deadline"]))
+		])?>
 
 		<button
 			type="submit"

@@ -70,11 +70,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <div class="form-page">
 	<form method="POST">
 
-		<label for="reader"><h3>Leitor:</h3></label>
+		<label for="reader">
+			<h3>Leitor:</h3>
+		</label>
 
 		<select name="reader" id="reader-select" required>
 			<option value="">Selecione o leitor</option>
-
 			<?php foreach ($users as $u):?>
 				<option
 					value="<?=$u["uuid"]?>"
@@ -85,25 +86,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				</option>
 			<?php endforeach;?>
 		</select>
-
-		<div id="reader-preview" class="small-card yellow hidden">
-			<img
-				id="preview-avatar"
-				class="avatar"
-				src=""
-				alt="Avatar"
-			>
-			<div class="info">
-				<div
-					id="preview-name"
-					class="title"
-				>
-				</div>
-				<div class="deadline">
-					Até <?=date("d/m/Y", strtotime("+10 days"))?>
-				</div>
-			</div>
-		</div>
+		<?=buildSmallCard([
+			"id" => "reader-preview",
+			"color" => "yellow",
+			"dynamic" => true,
+			"deadline" => "Até ".date("d/m/Y", strtotime("+10 days"))
+		])?>
 
 		<input type="hidden" name="book_id" value="<?=$book_id?>">
 
