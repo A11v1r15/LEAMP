@@ -139,41 +139,30 @@
 ?>
 
 <form method="POST" class="inline-form">
-	<button
-		type="submit"
-		name="action"
-		value="approve"
-		class="button green"
-	>✓ Disponibilizar
-	</button>
+	<?=buildFormButton("green",
+		"approve", "✓ Disponibilizar")?>
 </form>
 
 <?php
 	elseif (isAdmin() && $book["status"] === "Disponível"):
 ?>
 
-<a
-	href="/emprestimo?id=<?=$book["id"]?>"
-	class="button blue">→ Emprestar livro
-</a>
+<?=buildAButton("blue",
+	"/emprestimo?id=".$book["id"], "→ Emprestar livro")?>
 
 <?php endif;?>
 
 <?php if (isLogged() && $loan && $user):?>
-	<?php if (isAdmin()) {
-		$extra =
-			"<a ".
-				"href='/devolucao?id=".$loan['id']."'".
-				"class='button blue'>↩ Devolver".
-			"</a>";
-	}?>
 	<?=buildSmallCard([
 		"color" => isOverdue($loan["deadline"], $loan["is_active"])?"red":"green",
 		"user" => $user,
 		"ranking"=> $ranking,
 		"title" => "Emprestado para ".$user["name"],
 		"deadline" => "Até ".date("d/m/Y", strtotime($loan["deadline"])),
-		"extra" => $extra??""
+		"extra" => isAdmin()?
+					buildAButton("blue",
+						"/devolucao?id=".$loan["id"], "↩ Devolver")
+					:null
 	])?>
 <?php endif;?>
 

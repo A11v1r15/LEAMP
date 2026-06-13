@@ -295,28 +295,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 					revisor para voltar a ser exibida na página do livro."
 			])?>
 		<?php endif; ?>
-		<button
-			type="submit"
-			class="button <?=isNotTheReader() ? "blue" : "green"?>"
-			name="action"
-			value="submit">
-			↑ <?=$review ? (isNotTheReader() ? "Modificar" : "Atualizar") : "Enviar"?> resenha
-		</button>
-
+		<?=buildFormButton(isNotTheReader()?"blue":"green",
+			"submit", "↑ ".($review?
+				(isNotTheReader()?
+					"Modificar":"Atualizar")
+				:"Enviar").
+				" resenha")?>
 		<?php if (isNotTheReader()): ?>
-			<button
-				type="submit"
-				class="button green"
-				name="action"
-				value="accept">
-				✓ Aceitar resenha
-			</button>
+			<?=buildFormButton("green",
+				"accept", "✓ Aceitar resenha")?>
 		<?php endif; ?>
 
-		<a href="<?=htmlspecialchars(previousPage())?>" class="button red">
-			⨯ Cancelar
-		</a>
-
+		<?=buildAButton("red",
+			previousPage(), "⨯ Cancelar")?>
 	</form>
 </div>
 

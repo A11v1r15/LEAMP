@@ -95,14 +95,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 		<input type="hidden" name="book_id" value="<?=$book_id?>">
 
-		<button type="submit" class="button green">
-			→ Registrar empréstimo
-		</button>
-
-		<a href="<?=htmlspecialchars(previousPage())?>" class="button red">
-			⨯ Cancelar
-		</a>
-
+		<?=buildFormButton("green",
+			"", "→ Registrar empréstimo")?>
+		<?=buildAButton("red",
+			previousPage(), "⨯ Cancelar")?>
 	</form>
 </div>
 

@@ -88,26 +88,13 @@
 		</p>
 	<?php endif; ?>
 	<?php if (isAdmin()):?>
-		<a
-			href="/criar_evento?id=<?=$event["id"]?>"
-			class="button blue"
-		>→ Editar evento ou lançar nova edição
-		</a>
+		<?=buildAButton("blue",
+			"/criar_evento?id=".$event["id"], "→ Editar evento ou lançar nova edição")?>
 		<form method="POST" class="inline-form">
-			<button
-				type="submit"
-				name="action"
-				value="finalizar"
-				class="button green"
-			>✓ Finalizar evento
-			</button>
-			<button
-				type="submit"
-				name="action"
-				value="cancelar"
-				class="button red"
-			>⨯ Cancelar evento
-			</button>
+			<?=buildFormButton("green",
+				"finalizar", "✓ Finalizar evento")?>
+			<?=buildFormButton("red",
+				"cancelar", "⨯ Cancelar evento")?>
 		</form>
 	<?php endif;?>
 </div>

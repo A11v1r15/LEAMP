@@ -154,25 +154,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			"subtitle" => "Com ".$user["name"],
 			"deadline" => "Até ".date("d/m/Y", strtotime($loan["deadline"]))
 		])?>
-
-		<button
-			type="submit"
-			name="action"
-			value="renew"
-			class="button blue"
-		>↺ Renovar +10 dias
-		</button>
-
-		<button
-			type="submit"
-			name="action"
-			value="return"
-			class="button green"
-		>↩ Confirmar devolução
-		</button>
-
-		<a href="<?=htmlspecialchars(previousPage())?>" class="button red">
-			⨯ Cancelar
-		</a>
+		<?=buildFormButton("blue",
+			"renew", "↺ Renovar +10 dias")?>
+		<?=buildFormButton("green",
+			"return", "↩ Confirmar devolução")?>
+		<?=buildAButton("red",
+			previousPage(), "⨯ Cancelar")?>
 	</form>
 </div>

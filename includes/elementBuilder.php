@@ -18,6 +18,25 @@ function buidEventTitle($event) {
 		" - ".toRoman((int)$event["edition"]):"");
 }
 
+function buildAButton($color, $href, $label) {
+	return
+		"<a class='button ".$color.
+			"' href='".htmlspecialchars($href)."'>".
+				htmlspecialchars($label).
+		"</a>";
+}
+
+function buildFormButton($color, $action, $label) {
+	return
+		"<button".
+			" class='button ".$color."'".
+			" type='submit'".
+			" name='action'".
+			" value='".$action."'>".
+			htmlspecialchars($label).
+		"</button>";
+}
+
 function buildSmallCard($card) {
 	ob_start();
 	?>

@@ -73,12 +73,8 @@
 				</p>
 			<?php endif; ?>
 
-			<a
-				href="/evento?id=<?=$event["id"]?>"
-				class="button blue"
-			>→ Visualizar evento
-			</a>
-
+			<?=buildAButton("blue",
+				"/evento?id=".$event["id"], "→ Visualizar evento")?>
 		</div>
 	<?php endforeach; ?>
 <?php else:?>

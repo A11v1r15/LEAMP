@@ -154,11 +154,8 @@
 
 				<td>
 					<?php if ($loan["is_active"]):?>
-						<a
-							href="/devolucao?id=<?=$loan["id"]?>"
-							class="button blue"
-						>↩ Devolver
-						</a>
+						<?=buildAButton("blue",
+							"/devolucao?id=".$loan["id"], "↩ Devolver")?>
 					<?php else:?>
 						—
 					<?php endif;?>

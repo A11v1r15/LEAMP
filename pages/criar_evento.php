@@ -192,32 +192,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		</label>
 
 		<?php if($event !== null):?>
-			<button
-				type="submit"
-				name="action"
-				value="edit"
-				class="button blue"
-				>← Editar evento
-			</button>
-			<button
-				type="submit"
-				name="action"
-				value="publish"
-				class="button green"
-				>← Registrar nova edição
-			</button>
+			<?=buildFormButton("blue",
+				"edit", "↑ Editar evento")?>
+			<?=buildFormButton("green",
+				"publish", "← Registrar nova edição")?>
 		<?php else: ?>
-			<button
-				type="submit"
-				name="action"
-				value="publish"
-				class="button green"
-				>← Registrar evento
-			</button>
+			<?=buildFormButton("green",
+				"publish", "← Registrar evento")?>
 		<?php endif; ?>
 
-		<a href="<?=htmlspecialchars(previousPage())?>" class="button red">
-			⨯ Cancelar
+		<?=buildAButton("red",
+			previousPage(), "⨯ Cancelar")?>
 		</a>
 	</form>
 </div>

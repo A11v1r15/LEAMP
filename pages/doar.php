@@ -88,26 +88,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			Livro à receber
 		</label>
 
-		<button
-			type="submit"
-			name="action"
-			value="finish"
-			class="button blue"
-			>← Registrar doação e sair
-		</button>
-
-		<button
-			type="submit"
-			name="action"
-			value="continue"
-			class="button green"
-			>↞ Registrar doação e doar outro livro
-		</button>
-
-		<a href="<?=htmlspecialchars(previousPage())?>" class="button red">
-			⨯ Cancelar
-		</a>
-
+		<?=buildFormButton("blue",
+			"finish", "← Registrar doação e sair")?>
+		<?=buildFormButton("green",
+			"continue", "↞ Registrar doação e doar outro livro")?>
+		<?=buildAButton("red",
+			previousPage(), "⨯ Cancelar")?>
 	</form>
 </div>
 

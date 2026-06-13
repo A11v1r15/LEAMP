@@ -30,6 +30,11 @@
 	$_SESSION["user"]["token"]
 	);
 
+	$reviewedLoans = array_column(
+		$reviews,
+		"loan_id"
+	);
+
 	$ranking = supabaseGet(
 		"ranking?".
 		"select=".
@@ -91,18 +96,16 @@
 			$review_url = "/resenha?"."id=".$loan["id"];
 		?>
 		<?php
-		$extra =
-			(isOverdue($loan["deadline"], $loan["is_active"])?
-				buildStatus("Atrasado"):
-				($loan["is_active"]?
-					buildStatus("Em andamento"):
-					buildStatus("Finalizado"))).
-			"\n <a ".
-					"href='".$review_url."'".
-					"class='button blue'".
-					">🖉 ".(in_array($loan["id"], array_column($reviews, "loan_id"))?
-							"Editar resenha" : "Escrever resenha").
-				"</a>";
+			$extra =
+				(isOverdue($loan["deadline"], $loan["is_active"])?
+					buildStatus("Atrasado"):
+					($loan["is_active"]?
+						buildStatus("Em andamento"):
+						buildStatus("Finalizado"))).
+				"\n".
+				buildAButton("blue",
+					$review_url, "🖉 ".(in_array($loan["id"], $reviewedLoans)?
+							"Editar resenha" : "Escrever resenha"));
 		?>
 		<?=buildSmallCard([
 			"color" => isOverdue($loan["deadline"], $loan["is_active"])?"red":"green",
