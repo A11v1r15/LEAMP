@@ -1,7 +1,7 @@
 
 <?php 
 	include_once "includes/auth.php";
-	include_once "includes/ui.php";
+	include_once "includes/util.php";
 	requireLogged();
 
 	$title = "Perfil - LÉAMP";
@@ -112,7 +112,7 @@
 					<?php if (isOverdue($loan["deadline"], $loan["is_active"])):?>
 						<span class="status red
 						">Atrasado</span>
-					<?php elsif ($loan["is_active"])?>
+					<?php elseif ($loan["is_active"]):?>
 						<span class="status green
 						">Em andamento</span>
 					<?php else:?>

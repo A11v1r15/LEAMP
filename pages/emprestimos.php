@@ -1,7 +1,7 @@
 <?php
 
 	require_once "includes/supabase.php";
-	include_once "includes/ui.php";
+	include_once "includes/util.php";
 
 	requireAdmin();
 

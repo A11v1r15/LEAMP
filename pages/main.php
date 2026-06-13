@@ -16,23 +16,7 @@
 	$title = "Ler é a Minha Praia";
 	include_once "includes/auth.php";
 	include_once "includes/supabase.php";
-	include_once "includes/ui.php";
-
-	function flash($type, $message) {
-		$_SESSION["flash"] = [
-			"type" => $type,
-			"message" => $message
-		];
-	}
-
-	function hasErrorCode($result) {
-		return (is_array($result) &&
-			isset($result["code"]));
-	}
-
-	function isOverdue($deadline, $isActive) {
-		return $isActive && strtotime($deadline) < time();
-	}
+	include_once "includes/util.php";
 	
 	try {
 		ob_start();

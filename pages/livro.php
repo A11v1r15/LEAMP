@@ -1,8 +1,8 @@
 <?php
-
+	date_default_timezone_set("America/Fortaleza");
 	require_once "includes/supabase.php";
 	require_once "includes/cache.php";
-	include_once "includes/ui.php";
+	include_once "includes/util.php";
 
 	$id = $_GET["id"] ?? null;
 
@@ -132,10 +132,10 @@
 		<div class="book-author">
 			<?=htmlspecialchars($book["author"])?>
 		</div>
-
-		<div class="status <?=colorClass($book["status"])?>">
+		<span class="status <?=
+			colorClass($book["status"])?>">
 			<?=htmlspecialchars($book["status"])?>
-		</div>
+		</span>
 	</div>
 </div>
 

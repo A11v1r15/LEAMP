@@ -1,7 +1,7 @@
 <?php
 	require_once "includes/supabase.php";
 	require_once "includes/cache.php";
-	include_once "includes/ui.php";
+	include_once "includes/util.php";
 
 	$title = "Livros - LÉAMP";
 
@@ -31,8 +31,11 @@
 					<?=htmlspecialchars($book["title"])?>
 				</a></td>
 				<td><?=htmlspecialchars($book["author"])?></td>
-				<td class="status <?=colorClass($book["status"])?>">
-					<?=htmlspecialchars($book["status"])?>
+				<td>
+					<span class="status <?=
+						colorClass($book["status"])?>">
+						<?=htmlspecialchars($book["status"])?>
+					</span>
 				</td>
 			</tr>
 		<?php endforeach;?>

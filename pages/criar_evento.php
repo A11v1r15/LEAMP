@@ -28,11 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	$result = supabasePost(
 		"events", [
 			"title" => $_POST["title"],
+			"edition" => $_POST["edition"],
 			"location" => $_POST["location"],
 			"description" => $_POST["description"],
 			"start_time" => $_POST["start_time"],
 			"end_time" => $_POST["end_time"],
-			"status" => isset($_POST["draft"]) ? "Planejado" : "Rascunho"
+			"status" => isset($_POST["draft"]) ? "Rascunho" : "Publicado"
 		],
 
 		$_SESSION["user"]["token"]
