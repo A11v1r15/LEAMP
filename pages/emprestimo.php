@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		"loans", [
 			"reader" => $reader,
 			"grantor" => $grantor,
-			"deadline" => $deadline,
+			"deadline" => $deadline."-03:00",
 			"book_id" => $book_id
 		],
 		$_SESSION["user"]["token"]
@@ -42,8 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 	supabasePatch(
 		"books?".
-		"id=eq.$book_id",
-		[
+		"id=eq.$book_id", [
 			"status" => "Emprestado"
 		],
 		$_SESSION["user"]["token"]

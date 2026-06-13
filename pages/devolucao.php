@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			"loans?".
 			"id=eq.$loan_id",
 			[
-				"deadline" => $new_deadline
+				"deadline" => $new_deadline."-03:00"
 			],
 			$_SESSION["user"]["token"]
 		);
@@ -113,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			[
 				"is_active" => false,
 				"receiver" => $_SESSION["user"]["uuid"],
-				"end_date" => date("c")
+				"end_date" => date("c")."-03:00"
 			],
 			$_SESSION["user"]["token"]
 		);
@@ -145,9 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <h2>Devolução de livro</h2>
 
 <div class="form-page">
-
 	<form method="POST">
-
 		<div class="loan-card <?=isOverdue($loan["deadline"], $loan["is_active"])?"overdue":""?>">
 			<div class="avatar-wrapper">
 				<img

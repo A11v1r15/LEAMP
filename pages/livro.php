@@ -1,5 +1,4 @@
 <?php
-	date_default_timezone_set("America/Fortaleza");
 	require_once "includes/supabase.php";
 	require_once "includes/cache.php";
 	include_once "includes/util.php";
