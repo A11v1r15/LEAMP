@@ -4,6 +4,8 @@ require_once "includes/cache.php";
 
 requireAdmin();
 
+$id = $_GET["id"] ?? null;
+
 $page_title = "Criar evento - LÉAMP";
 
 $events = getCacheOrFetch(
@@ -12,9 +14,22 @@ $events = getCacheOrFetch(
 	"select=*"
 );
 
+$event = supabaseGet(
+	"events?".
+	"id=eq.$id".
+	"&select=*"
+);
+
+$event = $event[0] ?? null;
+
+if ($event !== null) {
+	$page_title = "Editar: ".$event["title"].(!empty($event["edition"])?" - ".toRoman((int)$event["edition"]):"")." - LÉAMP";
+}
+
 $event_titles = array_unique(
 	array_column($events, "title")
 );
+
 sort($event_titles);
 
 $event_locations = array_unique(
@@ -25,27 +40,50 @@ sort($event_locations);
 /* envia formulário */
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-	$result = supabasePost(
-		"events", [
-			"title" => $_POST["title"],
-			"edition" => $_POST["edition"],
-			"location" => $_POST["location"],
-			"description" => $_POST["description"],
-			"start_time" => $_POST["start_time"],
-			"end_time" => $_POST["end_time"],
-			"status" => isset($_POST["draft"]) ? "Rascunho" : "Publicado"
-		],
-
-		$_SESSION["user"]["token"]
-	);
-
-	if (hasErrorCode($result)) {
-		flash("error", "Erro ao registrar evento: " . $result["message"]);
+	file_put_contents("php://stderr", print_r($_POST, true));
+	if ($event !== null && $_POST["action"] === "edit") {
+		$result = supabasePatch(
+			"events?".
+			"id=eq.$id", [
+				"title" => $_POST["title"],
+				"edition" => $_POST["edition"],
+				"location" => $_POST["location"],
+				"description" => $_POST["description"],
+				"start_time" => $_POST["start_time"]."-03:00",
+				"end_time" => $_POST["end_time"]."-03:00",
+				"status" => isset($_POST["draft"]) ? "Rascunho" : "Publicado"
+			],
+			$_SESSION["user"]["token"]
+		);
+		if (hasErrorCode($result)) {
+			flash("error", "Erro ao editar evento: " . $result["message"]);
+		} else {
+			flash("success", "Evento editado com sucesso!");
+			cacheDelete("eventos");
+			session_write_close();
+			header("Location: /evento?id=".$id);
+		}
 	} else {
-		flash("success", "Evento criado com sucesso!");
-		cacheDelete("eventos");
-		session_write_close();
-		header("Location: /eventos");
+		$result = supabasePost(
+			"events", [
+				"title" => $_POST["title"],
+				"edition" => $_POST["edition"],
+				"location" => $_POST["location"],
+				"description" => $_POST["description"],
+				"start_time" => $_POST["start_time"]."-03:00",
+				"end_time" => $_POST["end_time"]."-03:00",
+				"status" => isset($_POST["draft"]) ? "Rascunho" : "Publicado"
+			],
+			$_SESSION["user"]["token"]
+		);
+		if (hasErrorCode($result)) {
+			flash("error", "Erro ao registrar evento: " . $result["message"]);
+		} else {
+			flash("success", "Evento criado com sucesso!");
+			cacheDelete("eventos");
+			session_write_close();
+			header("Location: /eventos");
+		}
 	}
 	
 //	file_put_contents("php://stderr", print_r($result, true));
@@ -76,12 +114,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		<label for="title">
 			<h3>Título:</h3>
 		</label>
-		<input type="text" name="title" required>
+		<input 
+			type="text"
+			name="title"
+			list="events"
+			value="<?=htmlspecialchars($event["title"]?? "")?>"
+			required>
 
 		<label for="edition">
 			<h3>Edição:</h3>
 		</label>
-		<input type="number" name="edition" min="1">
+		<input
+			type="number"
+			name="edition"
+			min="1"
+			value="<?=htmlspecialchars($event["edition"]?? "")?>">
 
 		<label for="description">
 			<h3>Descrição:</h3>
@@ -94,39 +141,80 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			autocomplete="on"
 			autocorrect="on"
 			rows="7"
-		></textarea>
+		><?=htmlspecialchars($event["description"]?? "")?></textarea>
 
 		<label for ="location">
 			<h3>Local:</h3>
 		</label>
-		<input type="text" name="location" list="locations" required>
+		<input 
+			type="text" 
+			name="location" 
+			list="locations" 
+			required
+			value="<?=htmlspecialchars($event["location"]?? "") ?>"
+		>
 
 		<label for="start_time">
 			<h3>Data de início:</h3>
 		</label>
-		<input type="datetime-local" name="start_time" required>
+		<input 
+			type="datetime-local" 
+			name="start_time"
+			value="<?=
+				!empty($event["start_time"])
+					? date("Y-m-d\TH:i",
+						strtotime($event["start_time"])
+					): ""?>"
+			required
+		>
 
 		<label for="end_time">
 			<h3>Data de término:</h3>
 		</label>
-		<input type="datetime-local" name="end_time">
+		<input 
+			type="datetime-local" 
+			name="end_time" 
+			value="<?=
+				!empty($event["end_time"])
+					? date("Y-m-d\TH:i",
+						strtotime($event["end_time"])
+					): ""?>"
+		>
 
 		<label for="draft">
 			<input
 				type="checkbox"
 				name="draft"
 				value="1"
+				<?=(isset($event["status"]) && $event["status"] === "Rascunho")? "checked" : ""?>
 			>
 			Marcar como rascunho
 		</label>
 
-		<button
-			type="submit"
-			name="action"
-			value="finish"
-			class="button green"
-			>← Registrar evento
-		</button>
+		<?php if($event !== null):?>
+			<button
+				type="submit"
+				name="action"
+				value="edit"
+				class="button blue"
+				>← Editar evento
+			</button>
+			<button
+				type="submit"
+				name="action"
+				value="publish"
+				class="button green"
+				>← Registrar nova edição
+			</button>
+		<?php else: ?>
+			<button
+				type="submit"
+				name="action"
+				value="publish"
+				class="button green"
+				>← Registrar evento
+			</button>
+		<?php endif; ?>
 
 		<a href="/" class="button red">
 			⨯ Cancelar
