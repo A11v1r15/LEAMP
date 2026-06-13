@@ -48,7 +48,7 @@
 			src="<?= htmlspecialchars(
 				$_SESSION["user"]["avatar"]
 			) ?>"
-			class="loan-avatar"
+			class="avatar"
 		>
 			<?php if ($_SESSION["user"]["uuid"] === $ranking[0]["uuid"]):?>
 			<img
@@ -91,38 +91,36 @@
 			$review_url = "/resenha?"."id=".$loan["id"];
 		?>
 
-		<div class="loan-card <?=isOverdue($loan["deadline"], $loan["is_active"])?"overdue":""?>">
-			<div class="profile-loan-main">
+		<div class="small-card <?=isOverdue($loan["deadline"], $loan["is_active"])?"red":"green"?>">
+			<div class="info">
 				<a
 					href="/livro?id=<?=$book["id"]?>"
-					class="loan-title"
+					class="title"
 				><?=htmlspecialchars($book["title"])?>
 				</a>
-
 				<div>
 					<?php if ($loan["is_active"]):?>
-						<span class="loan-deadline">
+						<span class="deadline">
 							Até <?=date("d/m/Y", strtotime($loan["deadline"]))?>
 						</span>
 					<?php else:?>
-						<span class="loan-deadline">
+						<span class="deadline">
 							Entregue <?=date("d/m/Y", strtotime($loan["end_date"]))?>
 						</span>
 					<?php endif;?>
-					<?php if (isOverdue($loan["deadline"], $loan["is_active"])):?>
-						<span class="status red
-						">Atrasado</span>
-					<?php elseif ($loan["is_active"]):?>
-						<span class="status green
-						">Em andamento</span>
-					<?php else:?>
-						<span class="status gray
-						">Finalizado</span>
-					<?php endif;?>
 				</div>
 			</div>
-
-			<div class="profile-loan-actions">
+			<div class="extra">
+				<?php if (isOverdue($loan["deadline"], $loan["is_active"])):?>
+					<span class="status red">
+					Atrasado</span>
+				<?php elseif ($loan["is_active"]):?>
+					<span class="status green">
+					Em andamento</span>
+				<?php else:?>
+					<span class="status gray">
+					Finalizado</span>
+				<?php endif;?>
 				<a
 					href="<?=$review_url?>"
 					class="button blue"

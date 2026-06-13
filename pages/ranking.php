@@ -23,7 +23,7 @@
 
 <?php foreach ($ranking as $i => $user): ?>
 
-	<div class="loan-card">
+	<div class="small-card green">
 
 		<div class="ranking-position">
 			#<?= $i + 1 ?>
@@ -34,7 +34,7 @@
 				src="<?= htmlspecialchars(
 					$user["avatar"]
 				) ?>"
-				class="loan-avatar"
+				class="avatar"
 			>
 			<?php if ($i === 0): ?>
 				<img
@@ -45,9 +45,9 @@
 			<?php endif; ?>
 		</div>
 
-		<div class="loan-info">
+		<div class="info">
 
-			<div class="loan-title">
+			<div class="title">
 
 				<?= htmlspecialchars(
 					$user["name"]
@@ -55,7 +55,7 @@
 
 			</div>
 
-			<div class="loan-deadline">
+			<div class="deadline">
 
 				<?= $user["total"] ?>
 				empréstimos

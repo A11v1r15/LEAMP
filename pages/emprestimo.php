@@ -86,20 +86,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			<?php endforeach;?>
 		</select>
 
-		<div id="reader-preview" class="loan-card hidden">
+		<div id="reader-preview" class="small-card yellow hidden">
 			<img
 				id="preview-avatar"
-				class="loan-avatar"
+				class="avatar"
 				src=""
 				alt="Avatar"
 			>
-			<div class="loan-info">
+			<div class="info">
 				<div
 					id="preview-name"
-					class="loan-title"
+					class="title"
 				>
 				</div>
-				<div class="loan-deadline">
+				<div class="deadline">
 					Até <?=date("d/m/Y", strtotime("+10 days"))?>
 				</div>
 			</div>

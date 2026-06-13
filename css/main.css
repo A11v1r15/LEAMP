@@ -241,6 +241,13 @@ table tbody tr:hover {
 	background-color: var(--light-gray) !important;
 }
 
+.mini-avatar {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
 /* ERROS */
 
 h2.error {
@@ -250,88 +257,6 @@ h2.error {
 	font-optical-sizing: auto;
 	font-weight: 500;
 	font-style: normal;
-}
-
-/* LOAN CARDS */
-
-.loan-card {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-	padding: 12px 16px;
-	margin-top: 16px;
-	border-radius: 16px;
-	background:            var(--light-green);
-	border-left: 6px solid var(--main-green);
-	box-shadow: var(--box-shadow);
-	width: fit-content;
-	animation: fadeIn 0.2s ease;
-}
-
-.loan-card.overdue {
-	background:        var(--light-red);
-	border-left-color: var(--main-red);
-}
-
-.loan-avatar {
-	width: 56px;
-	height: 56px;
-	border-radius: 50%;
-	object-fit: cover;
-}
-
-.avatar-wrapper {
-	position: relative;
-	width: 64px;
-	height: 64px;
-	flex-shrink: 0;
-}
-
-.crown {
-	position: absolute;
-	top: -4px;
-	right: 4px;
-	width: 64px;
-	pointer-events: none;
-}
-
-.loan-info {
-	display: flex;
-	flex-direction: column;
-}
-
-.loan-title {
-	font-weight: bold;
-	font-size: 1rem;
-	text-decoration: none;
-	font-family: "Roboto Slab", serif;
-	color: var(--text-black) !important;
-}
-
-.loan-title:hover {
-	text-decoration: underline;
-}
-
-.loan-deadline {
-	color: var(--main-gray);
-	font-size: 0.9rem;
-}
-
-.overdue .loan-deadline {
-	color: var(--main-red);
-	font-weight: bold;
-	animation: breathe 2s ease-in-out infinite;
-	transform-origin: left;
-}
-
-.loan-book {
-	font-size: 1.3rem;
-	font-weight: bold;
-}
-
-.loan-user {
-	margin-top: 6px;
-	color: var(--text-black);
 }
 
 /* FORMULÁRIOS */
@@ -425,6 +350,7 @@ button.button {
 	border-radius: 10px;
 	font-weight: bold;
 	font-size: 0.9rem;
+	width: fit-content;
 }
 
 .status.green {
@@ -447,38 +373,112 @@ button.button {
 	color:      var(--dark-gray);
 }
 
-/* AJUDA */
+/* SMALL CARD */
 
-.help {
-	margin-bottom: 16px;
+.small-card {
+	display: flex;
+	align-items: center;
 	padding: 14px 16px;
-	border-radius: 14px;
-	font-size: 0.95rem;
-	line-height: 1.5;
+	border-radius: 16px;
+	box-shadow: var(--box-shadow);
+	width: fit-content;
+	gap: 0px 16px;
+
+	border-left: 6px solid var(--main-gray);
+	background:            var(--light-gray);
+
+	animation: fadeIn 0.2s ease;
 }
 
-.help.blue {
-	background:            var(--light-blue);
-	border-left: 6px solid var(--main-blue);
-	color:                 var(--dark-blue);
+.small-card.green {
+	background:        var(--light-green);
+	border-left-color: var(--main-green);
+	color:             var(--dark-green);
 }
 
-.help.red {
-	background:            var(--light-red);
-	border-left: 6px solid var(--main-red);
-	color:                 var(--dark-red);
+.small-card.red {
+	background:        var(--light-red);
+	border-left-color: var(--main-red);
+	color:             var(--dark-red);
 }
 
-.help.yellow {
-	background:            var(--light-yellow);
-	border-left: 6px solid var(--main-yellow);
-	color:                 var(--dark-yellow);
+.small-card.blue {
+	background:        var(--light-blue);
+	border-left-color: var(--main-blue);
+	color:             var(--dark-blue);
 }
 
-.help.green {
-	background:            var(--light-green);
-	border-left: 6px solid var(--main-green);
-	color:                 var(--dark-green);
+.small-card.yellow {
+	background:        var(--light-yellow);
+	border-left-color: var(--main-yellow);
+	color:             var(--dark-yellow);
+}
+
+.avatar-wrapper {
+	position: relative;
+	width: 64px;
+	height: 64px;
+	flex-shrink: 0;
+}
+
+.avatar {
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.avatar + .crown {
+	display: block;
+}
+
+.crown {
+	position: absolute;
+	top: -4px;
+	right: 4px;
+	width: 64px;
+	pointer-events: none;
+}
+
+.small-card .info {
+	display: flex;
+	flex-direction: column;
+	gap: 8px 0px;
+}
+
+.small-card .extra {
+	display: flex;
+	flex-direction: column;
+	gap: 8px 0px;
+}
+
+.small-card .title {
+	font-weight: bold;
+	font-size: 1rem;
+	text-decoration: none;
+	font-family: "Roboto Slab", serif;
+	color: var(--text-black) !important;
+}
+
+.small-card .title:hover {
+	text-decoration: underline;
+}
+
+.small-card .subtitle {
+	margin-top: 6px;
+	color: var(--text-black);
+}
+
+.deadline {
+	color: var(--main-gray);
+	font-size: 0.9rem;
+}
+
+.red .deadline { /* Overdue */
+	color: var(--main-red);
+	font-weight: bold;
+	animation: breathe 2s ease-in-out infinite;
+	transform-origin: left;
 }
 
 /* FLASH MESSAGES */
@@ -514,6 +514,42 @@ button.button {
 .flash.warning {
 	background: var(--light-yellow);
 	color:      var(--dark-yellow);
+}
+
+/* FOOTER */
+
+footer {
+	background-color: var(--dark-gray);
+	color:            var(--light-gray);
+	padding: 24px;
+	margin-top: auto;
+}
+
+.footer-content {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+}
+
+.footer-logos {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.footer-logos img {
+	height: 100px;
+	object-fit: contain;
+	background: white;
+	padding: 4px;
+	border-radius: 6px;
+}
+
+.footer-text {
+	font-size: 0.9rem;
+	line-height: 1.5;
 }
 
 /* ANIMAÇÕES */
@@ -565,42 +601,6 @@ button.button {
 		transform: scale(1.08);
 		opacity: 1;
 	}
-}
-
-/* FOOTER */
-
-footer {
-	background-color: var(--dark-gray);
-	color:            var(--light-gray);
-	padding: 24px;
-	margin-top: auto;
-}
-
-.footer-content {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	gap: 20px;
-}
-
-.footer-logos {
-	display: flex;
-	align-items: center;
-	gap: 20px;
-}
-
-.footer-logos img {
-	height: 100px;
-	object-fit: contain;
-	background: white;
-	padding: 4px;
-	border-radius: 6px;
-}
-
-.footer-text {
-	font-size: 0.9rem;
-	line-height: 1.5;
 }
 
 /* RESPONSIVO */

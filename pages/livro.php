@@ -163,13 +163,13 @@
 <?php endif;?>
 
 <?php if (isLogged() && $loan && $user):?>
-	<div class="loan-card <?=isOverdue($loan["deadline"], $loan["is_active"])?"overdue":""?>">
+	<div class="small-card <?=isOverdue($loan["deadline"], $loan["is_active"])?"red":"green"?>">
 		<div class="avatar-wrapper">
 			<img
 				src="<?= htmlspecialchars(
 					$user["avatar"]
 				) ?>"
-				class="loan-avatar"
+				class="avatar"
 			>
 				<?php if ($user["uuid"] === $ranking[0]["uuid"]):?>
 				<img
@@ -179,15 +179,15 @@
 				>
 			<?php endif; ?>
 		</div>
-		<div class="loan-info">
-			<div class="loan-title">
+		<div class="info">
+			<div class="title">
 				Emprestado para
 				<?=htmlspecialchars(
 					$user["name"]
 				)?>
 			</div>
 
-			<div class="loan-deadline">
+			<div class="deadline">
 				Até <?=date("d/m/Y", strtotime($loan["deadline"]))?>
 			</div>
 		</div>
@@ -212,7 +212,7 @@
 						src="<?= htmlspecialchars(
 							$review["loan"]["reader"]["avatar"]
 						) ?>"
-						class="loan-avatar"
+						class="avatar"
 					>
 					<?php if (
 						$review["loan"]["reader"]["uuid"] === $ranking[0]["uuid"]): ?>

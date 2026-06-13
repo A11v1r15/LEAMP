@@ -68,12 +68,6 @@
 	margin-top: 20px;
 }
 
-.profile-loan-main {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-}
-
 @media (prefers-color-scheme: dark) {
 	.profile-header {
 		background:

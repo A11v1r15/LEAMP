@@ -146,13 +146,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <div class="form-page">
 	<form method="POST">
-		<div class="loan-card <?=isOverdue($loan["deadline"], $loan["is_active"])?"overdue":""?>">
+		<div class="small-card <?=isOverdue($loan["deadline"], $loan["is_active"])?"red":"green"?>">
 			<div class="avatar-wrapper">
 				<img
 					src="<?= htmlspecialchars(
 						$user["avatar"]
 					) ?>"
-					class="loan-avatar"
+					class="avatar"
 				>
 				<?php if ($user["uuid"] === $ranking[0]["uuid"]):?>
 					<img
@@ -162,21 +162,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 					>
 				<?php endif;?>
 			</div>
-			<div class="loan-info">
-				<div class="loan-book">
+			<div class="info">
+				<div class="title">
 					<?=htmlspecialchars(
 						$book["title"]
 					)?>
 				</div>
 
-				<div class="loan-user">
+				<div class="subtitle">
 					Com
 					<?=htmlspecialchars(
 						$user["name"]
 					)?>
 				</div>
 
-				<div class="loan-deadline">
+				<div class="deadline">
 					Até <?=date("d/m/Y", strtotime($loan["deadline"]))?>
 				</div>
 			</div>

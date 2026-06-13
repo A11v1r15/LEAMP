@@ -36,24 +36,42 @@
 		  background-color: var(--dark-gray) !important;
 	 }
 
-	 /* LOAN CARDS */
+	 /* SMALL CARD */
 
-	 .loan-card {
-		  background:            var(--dark-green);
-		  border-left: 6px solid var(--main-green);
+	 .small-card {
+		  background:            var(--dark-gray);
+		  border-left: 6px solid var(--main-gray);
 	 }
 
-	 .loan-card.overdue {
+	 .small-card.green {
+		  background:        var(--dark-green);
+		  border-left-color: var(--main-green);
+		  color:             var(--light-green);
+	 }
+
+	 .small-card.red {
 		  background:        var(--dark-red);
 		  border-left-color: var(--main-red);
+		  color:             var(--light-red);
 	 }
 
-	 .loan-title {
+	 .small-card.blue {
+		  background:        var(--dark-blue);
+		  border-left-color: var(--main-blue);
+		  color:             var(--light-blue);
+	 }
+
+	 .small-card.yellow {
+		  background:        var(--dark-yellow);
+		  border-left-color: var(--main-yellow);
+		  color:             var(--light-yellow);
+	 }
+
+	 .small-card .title {
 		  color: var(--text-white) !important;
 	 }
 
-	 .loan-user {
-		  margin-top: 6px;
+	 .small-card .subtitle {
 		  color: var(--text-white);
 	 }
 
@@ -94,32 +112,6 @@
 	 .status.gray {
 		  background: var(--dark-gray);
 		  color:      var(--light-gray);
-	 }
-
-	 /* AJUDA */
-
-	 .help.blue {
-		  background:            var(--dark-blue);
-		  border-left: 6px solid var(--main-blue);
-		  color:                 var(--light-blue);
-	 }
-
-	 .help.red {
-		  background:            var(--dark-red);
-		  border-left: 6px solid var(--main-red);
-		  color:                 var(--light-red);
-	 }
-
-	 .help.yellow {
-		  background:            var(--dark-yellow);
-		  border-left: 6px solid var(--main-yellow);
-		  color:                 var(--light-yellow);
-	 }
-
-	 .help.green {
-		  background:            var(--dark-green);
-		  border-left: 6px solid var(--main-green);
-		  color:                 var(--light-green);
 	 }
 
 	 /* FLASH MESSAGES */
