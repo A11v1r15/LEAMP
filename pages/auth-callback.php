@@ -35,7 +35,7 @@
 					token: session.access_token
 			})});
 
-		window.location = "/perfil";
+		window.location = "<?=htmlspecialchars(previousPage())?>";
 	}
 
 	finalizarLogin();

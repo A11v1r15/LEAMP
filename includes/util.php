@@ -1,4 +1,31 @@
 <?php
+	if (!isset($_SESSION["history"])) {
+		$_SESSION["history"] = [];
+	}
+
+	$current = $_SERVER["REQUEST_URI"];
+
+	if (
+		empty($_SESSION["history"]) ||
+		end($_SESSION["history"]) !== $current
+	) {
+		$_SESSION["history"][] = $current;
+
+		if (count($_SESSION["history"]) > 10) {
+			array_shift($_SESSION["history"]);
+		}
+	}
+
+	function previousPage(): string {
+		$history = $_SESSION["history"] ?? [];
+
+		if (count($history) < 2) {
+			return "/";
+		}
+
+		return $history[count($history) - 2];
+	}
+
 	function flash($type, $message) {
 		$_SESSION["flash"] = [
 			"type" => $type,

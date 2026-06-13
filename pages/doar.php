@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			>↞ Registrar doação e doar outro livro
 		</button>
 
-		<a href="/" class="button red">
+		<a href="<?=htmlspecialchars(previousPage())?>" class="button red">
 			⨯ Cancelar
 		</a>
 

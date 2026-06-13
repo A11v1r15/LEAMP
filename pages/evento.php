@@ -39,9 +39,10 @@
 			flash("error", "Erro ao ".$_POST["action"]." evento: " . $result["message"]);
 		} else {
 			flash("success", $event["title"].(!empty($event["edition"])?" - ".toRoman((int)$event["edition"]):"")." ".substr($_POST["action"], 0, -1)."do com sucesso!");
-			cacheDelete("livros");
+			cacheDelete("eventos");
+			session_write_close();
+			header("Location: /eventos");
 		}
-		session_write_close();
 		exit;
 	}
 

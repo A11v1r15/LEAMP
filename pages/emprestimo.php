@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			→ Registrar empréstimo
 		</button>
 
-		<a href="/livro?id=<?=$book_id?>" class="button red">
+		<a href="<?=htmlspecialchars(previousPage())?>" class="button red">
 			⨯ Cancelar
 		</a>
 

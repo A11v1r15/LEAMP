@@ -321,7 +321,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			</button>
 		<?php endif; ?>
 
-		<a href="/perfil" class="button red">
+		<a href="<?=htmlspecialchars(previousPage())?>" class="button red">
 			⨯ Cancelar
 		</a>
 

@@ -198,7 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		>↩ Confirmar devolução
 		</button>
 
-		<a href="/livro?id=<?=$book["id"]?>" class="button red">
+		<a href="<?=htmlspecialchars(previousPage())?>" class="button red">
 			⨯ Cancelar
 		</a>
 	</form>
