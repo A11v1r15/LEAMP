@@ -352,6 +352,10 @@ form {
 	box-shadow: var(--box-shadow);
 }
 
+form.inline-form {
+	display: contents;
+}
+
 form input {
 	padding: 12px;
 	border-radius: 12px;

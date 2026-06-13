@@ -19,10 +19,6 @@
 	font-size: 1.1rem;
 }
 
-form.inline-form {
-	display: contents;
-}
-
 .review-card {
 	background: var(--light-gray);
 	border-radius: 16px;

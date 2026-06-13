@@ -98,7 +98,6 @@
 			)
 		);
 
-
 		if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? "") === "approve") {
 			$result = supabasePatch(
 				"books?".

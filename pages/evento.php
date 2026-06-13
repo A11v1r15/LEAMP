@@ -24,6 +24,27 @@
 	$event = $event[0];
 
 	$page_title = $event["title"].(!empty($event["edition"])?" - ".toRoman((int)$event["edition"]):"")." - LÉAMP";
+
+	if ($_SERVER["REQUEST_METHOD"] === "POST" && isAdmin()) {
+		$result = supabasePatch(
+			"events?".
+			"id=eq.$id",
+			[
+				"status" => ucfirst(substr($_POST["action"], 0, -1)."do")
+			],
+			$_SESSION["user"]["token"]
+		);
+
+		if (hasErrorCode($result)) {
+			flash("error", "Erro ao ".$_POST["action"]." evento: " . $result["message"]);
+		} else {
+			flash("success", $event["title"].(!empty($event["edition"])?" - ".toRoman((int)$event["edition"]):"")." ".substr($_POST["action"], 0, -1)."do com sucesso!");
+			cacheDelete("livros");
+		}
+		session_write_close();
+		exit;
+	}
+
 ?>
 
 <h2><?=htmlspecialchars($event["title"].(!empty($event["edition"])?" - ".toRoman((int)$event["edition"]):""))?></h2>
@@ -79,5 +100,21 @@
 			class="button blue"
 		>→ Editar evento ou lançar nova edição
 		</a>
+		<form method="POST" class="inline-form">
+			<button
+				type="submit"
+				name="action"
+				value="finalizar"
+				class="button green"
+			>✓ Finalizar evento
+			</button>
+			<button
+				type="submit"
+				name="action"
+				value="cancelar"
+				class="button red"
+			>⨯ Cancelar evento
+			</button>
+		</form>
 	<?php endif;?>
 </div>
