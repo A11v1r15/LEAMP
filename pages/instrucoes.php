@@ -1,5 +1,5 @@
 <?php
-	$title = "Instruções - LÉAMP";
+	$page_title = "Instruções - LÉAMP";
 ?>
 
 <h2>Como usar o sistema</h2>

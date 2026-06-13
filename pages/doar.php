@@ -4,7 +4,7 @@ require_once "includes/cache.php";
 
 requireAdmin();
 
-$title = "Doação - LÉAMP";
+$page_title = "Doação - LÉAMP";
 
 $books = getCacheOrFetch(
 	"livros",

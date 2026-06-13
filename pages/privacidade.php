@@ -1,5 +1,5 @@
 <?php
-$title = "Política de Privacidade LÉAMP";
+$page_title = "Política de Privacidade LÉAMP";
 ?>
 
 <h2>Política de Privacidade</h2>

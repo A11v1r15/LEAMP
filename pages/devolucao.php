@@ -70,7 +70,7 @@ $ranking = supabaseGet(
 
 $user = $user[0] ?? null;
 
-$title = "Devolução: ".(($book["title"] ?? "Livro"))." - LÉAMP";
+$page_title = "Devolução: ".(($book["title"] ?? "Livro"))." - LÉAMP";
 
 /* ações */
 

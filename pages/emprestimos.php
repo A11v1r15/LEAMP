@@ -5,7 +5,7 @@
 
 	requireAdmin();
 
-	$title = "Empréstimos - LÉAMP";
+	$page_title = "Empréstimos - LÉAMP";
 
 	/* empréstimos */
 

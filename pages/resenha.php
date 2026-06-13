@@ -42,13 +42,13 @@ $review = supabaseGet(
 $loan = $loan[0] ?? null;
 $review = $review[0] ?? null;
 
-$title = "Resenha - LÉAMP";
+$page_title = "Resenha - LÉAMP";
 
 if ($loan === null) {
 	echo "<h2 class='error'>Empréstimo não encontrado</h2>";
 	return;
 } else {
-	$title = "Resenha: ".$loan["book"]["title"]." - LÉAMP";
+	$page_title = "Resenha: ".$loan["book"]["title"]." - LÉAMP";
 }
 
 function isNotTheReader() {

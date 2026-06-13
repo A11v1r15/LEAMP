@@ -1,6 +1,6 @@
 <?php
 
-	$title = "Ler é a Minha Praia";
+	$page_title = "Ler é a Minha Praia";
 
 ?>
 

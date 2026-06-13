@@ -5,7 +5,7 @@ require_once "includes/cache.php";
 
 requireAdmin();
 
-$title = "Empréstimo - LÉAMP";
+$page_title = "Empréstimo - LÉAMP";
 
 $users = supabaseGet(
 	"users?".
@@ -20,7 +20,7 @@ $book = supabaseGet(
 	"&select=*"
 );
 if ($book[0]["title"]) {
-	$title = "Empréstimo: ".$book[0]["title"]." - LÉAMP";
+	$page_title = "Empréstimo: ".$book[0]["title"]." - LÉAMP";
 }
 
 /* envia formulário */

@@ -1,5 +1,5 @@
 <?php
-	$title = "Não autorizado - LÉAMP";
+	$page_title = "Não autorizado - LÉAMP";
 	$quotes = array(
 		"Todos os animais são iguais, mas alguns são mais iguais que outros→A revolução dos bichos",
 		"Não há barreira, fechadura ou ferrolho que possas impor à liberdade da minha mente→As pupilas do senhor reitor",

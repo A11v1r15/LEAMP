@@ -4,7 +4,7 @@
 	include_once "includes/util.php";
 	requireLogged();
 
-	$title = "Perfil - LÉAMP";
+	$page_title = "Perfil - LÉAMP";
 
 	$loans = supabaseGet(
 	"loans?".

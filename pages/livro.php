@@ -24,7 +24,7 @@
 
 	$book = $book[0];
 
-	$title = $book["title"]." - LÉAMP";
+	$page_title = $book["title"]." - LÉAMP";
 
 	if (isLogged()) {
 

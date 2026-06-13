@@ -1,6 +1,6 @@
 <?php
 
-	$title = "Equipe - LÉAMP";
+	$page_title = "Equipe - LÉAMP";
 
 ?>
 

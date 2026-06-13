@@ -1,5 +1,5 @@
 <?php
-	$title = "Eu sou um bule de chá - LÉAMP";
+	$page_title = "Eu sou um bule de chá - LÉAMP";
 	$quotes = array(
 		"Quando certa manhã Gregor Samsa acordou de sonhos intranquilos, encontrou-se em sua cama metamorfoseado num inseto monstruoso→A metamorfose"
 		);

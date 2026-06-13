@@ -4,7 +4,7 @@ require_once "includes/cache.php";
 
 requireAdmin();
 
-$title = "Criar evento - LÉAMP";
+$page_title = "Criar evento - LÉAMP";
 
 $events = getCacheOrFetch(
 	"eventos",

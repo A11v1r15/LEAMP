@@ -3,7 +3,7 @@
 	require_once "includes/cache.php";
 	include_once "includes/util.php";
 
-	$title = "Livros - LÉAMP";
+	$page_title = "Livros - LÉAMP";
 
 	$books = getCacheOrFetch(
 		"livros",
