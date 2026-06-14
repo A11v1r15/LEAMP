@@ -2,7 +2,7 @@
 
 include_once "includes/util.php";
 
-function buildStatus($type) {
+function buildStatus(string $type) {
 	return
 		"<span class='status ".
 		colorClass($type).
@@ -11,14 +11,14 @@ function buildStatus($type) {
 		"</span>";
 }
 
-function buidEventTitle($event) {
+function buidEventTitle(array $event): string {
 	return
 		htmlspecialchars($event["title"]).
 		(!empty($event["edition"])?
 		" - ".toRoman((int)$event["edition"]):"");
 }
 
-function buildAButton($color, $href, $label) {
+function buildAButton(string $color, string $href, string $label) {
 	return
 		"<a class='button ".$color.
 			"' href='".htmlspecialchars($href)."'>".
@@ -26,7 +26,7 @@ function buildAButton($color, $href, $label) {
 		"</a>";
 }
 
-function buildFormButton($color, $action, $label) {
+function buildFormButton(string $color, string $action, string $label) {
 	return
 		"<button".
 			" class='button ".$color."'".
@@ -37,7 +37,7 @@ function buildFormButton($color, $action, $label) {
 		"</button>";
 }
 
-function buildAvatar($user, $ranking = null, $dynamic = false) {
+function buildAvatar(array $user, $ranking = null, $dynamic = false) {
 	ob_start();
 	?>
 		<div class="avatar-wrapper">
@@ -60,7 +60,7 @@ function buildAvatar($user, $ranking = null, $dynamic = false) {
 	return ob_get_clean();
 }
 
-function buildSmallCard($card) {
+function buildSmallCard(array $card) {
 	$dynamic = isset($card["dynamic"]);
 	$user = $card["user"]??[];
 	ob_start();
@@ -126,7 +126,7 @@ function buildSmallCard($card) {
 	return ob_get_clean();
 }
 
-function buildBigCard($card) {
+function buildBigCard(array $card) {
 	$user = $card["user"]??[];
 	ob_start();
 	?>

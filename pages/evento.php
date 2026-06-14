@@ -53,7 +53,7 @@
 			<h2>
 				<?=buidEventTitle($event)?>
 			</h2>
-			<?=buildStatus($event["status"])?>
+			<?=buildStatus(getEventStatus($event))?>
 		</div>
 
 		<p class="event-time">

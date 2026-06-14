@@ -38,7 +38,7 @@
 		<?php foreach ($published as $event): ?>
 			<?=buildBigCard([
 				"title" => buidEventTitle($event),
-				"status" => $event["status"],
+				"status" => getEventStatus($event),
 				"labelsText" => [
 					["Data: ", date("d/m/Y H:i", strtotime($event["start_time"])).
 						(empty($event["end_time"])?"":
@@ -77,7 +77,7 @@
 					</td>
 
 					<td>
-						<?=buildStatus($event["status"])?>
+						<?=buildStatus(getEventStatus($event))?>
 					</td>
 				</tr>
 			<?php endforeach; ?>

@@ -27,14 +27,14 @@ function previousPage(): string {
 	return $history[count($history) - 2];
 }
 
-function flash($type, $message) {
+function flash(string $type, string $message) {
 	$_SESSION["flash"] = [
 		"type" => $type,
 		"message" => $message
 	];
 }
 
-function hasErrorCode($result) {
+function hasErrorCode(array $result) {
 	return (is_array($result) &&
 		isset($result["code"]));
 }
@@ -43,7 +43,30 @@ function isOverdue($deadline, $isActive) {
 	return $isActive && strtotime($deadline) < time();
 }
 
-function toRoman($number) {
+function getEventStatus(array $event): string {
+	if (($event["status"] ?? "") !== "Publicado") {
+		return $event["status"] ?? "Rascunho";
+	}
+
+	$now = time();
+	$start = strtotime($event["start_time"]);
+
+	$end = !empty($event["end_time"])?
+				strtotime($event["end_time"]):
+				$start + 7200; // +2 horas
+
+	if ($now < $start) {
+		return "Publicado";
+	}
+
+	if ($now <= $end) {
+		return "Em andamento";
+	}
+
+	return "Extemporâneo";
+}
+
+function toRoman(int $number): string {
 	$map = [
 		1000 => "M",
 		900 => "CM",
@@ -69,7 +92,7 @@ function toRoman($number) {
 	return $result;
 }
 
-function colorClass($string): string {
+function colorClass(string $string): string {
 	return match (
 		strtolower($string)
 	) {
@@ -85,6 +108,8 @@ function colorClass($string): string {
 
 		"emprestado",
 		"revisor",
+		"extemporâneo",
+		"extemporaneo",
 		"rascunho",
 		"yellow"
 			=> "yellow",
@@ -96,19 +121,19 @@ function colorClass($string): string {
 		"red"
 			=> "red",
 
-		"finalizado",
-		"finished",
-		"cinza",
-		"grey",
-		"gray"
-			=> "gray",
-
 		"informação",
 		"informacao",
 		"em andamento",
 		"leitor",
 		"blue"
 			=> "blue",
+
+		"finalizado",
+		"finished",
+		"cinza",
+		"grey",
+		"gray"
+			=> "gray",
 
 		default
 			=> "gray"
