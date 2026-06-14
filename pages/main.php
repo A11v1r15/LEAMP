@@ -76,6 +76,19 @@
 		});
 	}
 
+	function localStorageGetItem(key, value) {
+		const storage = localStorage.getItem(key);
+		if (storage == null ||
+			storage == 'NaN' ||
+			storage == '' ||
+			storage == 'undefined' ||
+			storage == undefined) {
+			//console.log("Getting default value for " + key);
+			return value;
+		}
+		return storage;
+	}
+
 	function showFlash(message, type = "warning") {
 		let flash = document.querySelector(".flash.js-flash");
 		if (!flash) {
@@ -192,4 +205,25 @@
 	</footer>
 
 </body>
+<script>
+	const termos_version = 1;
+	const privacidade_version = 1;
+// Mudar ↑ quando atualizar os Termos de Uso e Política de privacidade
+
+	let seen_termos_version = Number(localStorageGetItem("seen_termos_version", termos_version));
+	let seen_privacidade_version = Number(localStorageGetItem("seen_privacidade_version", privacidade_version));
+
+	if((termos_version != seen_termos_version) &&
+		(privacidade_version != seen_privacidade_version)
+	) {
+		showFlash("Os Termos de Uso e Políticas de privacidade foram atualizados");
+	} else if(termos_version != seen_termos_version) {
+		showFlash("Os Termos de Uso foram atualizados");
+	} else if(privacidade_version != seen_privacidade_version) {
+		showFlash("As Políticas de privacidade foram atualizados");
+	}
+
+	localStorage.setItem("seen_termos_version", termos_version);
+	localStorage.setItem("seen_privacidade_version", privacidade_version);
+</script>
 </html>

@@ -1,5 +1,7 @@
 <?php
 $page_title = "Política de Privacidade LÉAMP";
+// Lembrar de atualizar a data de atualização no final da página
+// Lembrar de atualizar a variável "privacidade_version" no final do /pages/main.php
 ?>
 
 <h2>Política de Privacidade</h2>
