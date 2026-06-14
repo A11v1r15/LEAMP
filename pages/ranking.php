@@ -19,7 +19,7 @@
 
 <h2>Ranking de leitores</h2>
 
-<div class="ranking-list">
+<div class="small-card-container">
 	<?php foreach ($ranking as $i => $user): ?>
 		<?=buildSmallCard([
 			"color" => "yellow",

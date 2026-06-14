@@ -61,13 +61,6 @@
 	box-shadow: 0 4px 16px rgba(#5d9b98,0.25);
 }
 
-.profile-loans {
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
-	margin-top: 20px;
-}
-
 @media (prefers-color-scheme: dark) {
 	.profile-header {
 		background:

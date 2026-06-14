@@ -34,49 +34,23 @@
 <h2>Eventos</h2>
 
 <?php if (!empty($published)): ?>
-	<?php foreach ($published as $event): ?>
-		<div class="event-card">
-			<div class="event-header">
-				<h3>
-					<?=buidEventTitle($event)?>
-				</h3>
-				<?=buildStatus($event["status"])?>
-			</div>
-
-			<p class="event-time">
-				<b>Data:</b>
-				<?= date("d/m/Y H:i", strtotime($event["start_time"]))?>
-				<?php if (
-					!empty($event["end_time"])
-				): ?> até
-					<?= date("d/m/Y H:i", strtotime($event["end_time"]))?>
-				<?php endif; ?>
-			</p>
-
-			<?php if (
-				!empty($event["location"])
-			): ?>
-				<b>Local:</b>
-				<?=htmlspecialchars($event["location"])?>
-			<?php endif; ?>
-			<br>
-			<?php if (
-				!empty($event["description"])
-			): ?>
-				<b>Descrição:</b>
-				<p class="event-description">
-					<?= nl2br(
-						htmlspecialchars(
-							$event["description"]
-						)
-					) ?>
-				</p>
-			<?php endif; ?>
-
-			<?=buildAButton("blue",
-				"/evento?id=".$event["id"], "→ Visualizar evento")?>
-		</div>
-	<?php endforeach; ?>
+	<div class="big-card-container">
+		<?php foreach ($published as $event): ?>
+			<?=buildBigCard([
+				"title" => buidEventTitle($event),
+				"status" => $event["status"],
+				"labelsText" => [
+					["Data: ", date("d/m/Y H:i", strtotime($event["start_time"])).
+						(empty($event["end_time"])?"":
+							" até ".date("d/m/Y H:i", strtotime($event["end_time"])))],
+					["Local: ", $event["location"]],
+					["Descrição:", "\n".$event["description"]]
+				],
+				"extra" => buildAButton("blue",
+					"/evento?id=".$event["id"], "→ Visualizar evento")
+			])?>
+		<?php endforeach; ?>
+	</div>
 <?php else:?>
 	<p>Nenhum evento publicado.</p>
 <?php endif;?>

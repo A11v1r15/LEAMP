@@ -48,22 +48,9 @@
 <link rel="stylesheet" href="/css/perfil.css">
 
 <div class="profile-header">
-	<div class="avatar-wrapper">
-		<img
-			src="<?= htmlspecialchars(
-				$_SESSION["user"]["avatar"]
-			) ?>"
-			class="avatar"
-		>
-			<?php if ($_SESSION["user"]["uuid"] === $ranking[0]["uuid"]):?>
-			<img
-				class="crown"
-				src="/img/Crown.png"
-				alt="Crown"
-			>
-		<?php endif; ?>
-	</div>
-
+	<?=buildAvatar(
+		$_SESSION["user"],
+		$ranking)?>
 	<div class="profile-info">
 		<h2 class="profile-name">
 			Olá,
@@ -89,7 +76,7 @@
 </div>
 
 <h2>Empréstimos:</h2>
-<div class="profile-loans">
+<div class="small-card-container">
 	<?php foreach ($loans as $loan):?>
 		<?php
 			$book = $loan["book"];

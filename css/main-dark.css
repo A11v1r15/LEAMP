@@ -40,6 +40,44 @@
 		background-color: var(--dark-gray) !important;
 	}
 
+	/* FORMULÁRIOS */
+
+	form {
+		background: black;
+	}
+
+	form input {
+		border: 1px solid #444;
+	}
+
+	form select {
+		border: 1px solid #444;
+	}
+
+	form textarea {
+		border: 1px solid #444;
+	}
+
+	.status.green {
+		background: var(--dark-green);
+		color:      var(--light-green);
+	}
+
+	.status.yellow {
+		background: var(--dark-yellow);
+		color:      var(--light-yellow);
+	}
+
+	.status.red {
+		background: var(--dark-red);
+		color:      var(--light-red);
+	}
+
+	.status.gray {
+		background: var(--dark-gray);
+		color:      var(--light-gray);
+	}
+
 	/* SMALL CARD */
 
 	.small-card {
@@ -72,51 +110,26 @@
 		color:             var(--light-yellow);
 	}
 
+	.title {
+		color: var(--text-white) !important;
+	}
+
+	.subtitle {
+		color: var(--text-white);
+	}
+
+	/* BIG CARD */
+
+	.big-card {
+		background: black;
+	}
+
 	.small-card .title {
 		color: var(--text-white) !important;
 	}
 
 	.small-card .subtitle {
 		color: var(--text-white);
-	}
-
-	/* FORMULÁRIOS */
-
-	form {
-		background: black;
-	}
-
-	form input {
-		border: 1px solid #444;
-	}
-
-	form select {
-		border: 1px solid #444;
-	}
-
-	form textarea {
-		border: 1px solid #444;
-	}
-
-
-	.status.green {
-		background: var(--dark-green);
-		color:      var(--light-green);
-	}
-
-	.status.yellow {
-		background: var(--dark-yellow);
-		color:      var(--light-yellow);
-	}
-
-	.status.red {
-		background: var(--dark-red);
-		color:      var(--light-red);
-	}
-
-	.status.gray {
-		background: var(--dark-gray);
-		color:      var(--light-gray);
 	}
 
 	/* FLASH MESSAGES */

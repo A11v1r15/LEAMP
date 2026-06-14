@@ -18,39 +18,3 @@
 	color: var(--main-gray);
 	font-size: 1.1rem;
 }
-
-.review-card {
-	background: var(--light-gray);
-	border-radius: 16px;
-	padding: 16px;
-	margin-bottom: 16px;
-	box-shadow: var(--box-shadow);
-}
-
-.review-header {
-	display: flex;
-	gap: 12px;
-	align-items: center;
-	margin-bottom: 12px;
-}
-
-.review-reader {
-	font-weight: bold;
-}
-
-.review-rating {
-	font-size: 1.3rem;
-	background-image: var(--fancy-orange);
-	color: transparent;
-	background-clip: text;
-}
-
-.review-comment {
-	margin: 12px 0;
-}
-
-@media (prefers-color-scheme: dark) {
-	.review-card {
-		background: var(--dark-gray);
-	}
-}

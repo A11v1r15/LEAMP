@@ -73,6 +73,7 @@
 		"reviews?".
 			"loan_id=not.is.null".
 			"&select=".
+				"loan_id,".
 				"rating,".
 				"comment,".
 				"status,".
@@ -146,10 +147,8 @@
 <?php
 	elseif (isAdmin() && $book["status"] === "Disponível"):
 ?>
-
-<?=buildAButton("blue",
-	"/emprestimo?id=".$book["id"], "→ Emprestar livro")?>
-
+	<?=buildAButton("blue",
+		"/emprestimo?id=".$book["id"], "→ Emprestar livro")?>
 <?php endif;?>
 
 <?php if (isLogged() && $loan && $user):?>
@@ -166,75 +165,24 @@
 	])?>
 <?php endif;?>
 
-
 <?php if (!empty($reviews)): ?>
-	<h3>Resenhas dos leitores:</h3>
-	<?php foreach ($reviews as $review):
-		if ($review["status"] === "Aprovado"): ?>
-		<div class="review-card">
-			<div class="review-header">
-				<div class="avatar-wrapper">
-					<img
-						src="<?= htmlspecialchars(
-							$review["loan"]["reader"]["avatar"]
-						) ?>"
-						class="avatar"
-					>
-					<?php if (
-						$review["loan"]["reader"]["uuid"] === $ranking[0]["uuid"]): ?>
-						<img
-							class="crown"
-							src="/img/Crown.png"
-							alt="Crown"
-						>
-					<?php endif; ?>
-				</div>
-				<div>
-					<div class="review-reader">
-						<?= htmlspecialchars(
-							$review["loan"]["reader"]["name"]
-						) ?>
-					</div>
-					<?php if (!empty($review["rating"]) && $review["rating"] !== 0): ?>
-						<div class="review-rating">
-							<?php
-							echo str_repeat(
-								"★",
-								(int)$review["rating"]
-							);
-							echo str_repeat(
-								"☆",
-								5 - (int)$review["rating"]
-							);
-							?>
-						</div>
-					<?php endif; ?>
-				</div>
-			</div>
-
-			<?php if (
-				!empty(
-					$review["comment"]
-				) && $review["comment"] !== ""
-			): ?>
-				<p class="review-comment">
-					<?= nl2br(
-						htmlspecialchars($review["comment"])) 
-					?>
-				</p>
-
-			<?php endif; ?>
-			<?php if (
-				!empty($review["favorite_excerpt"]) &&
-				$review["favorite_excerpt"] !== ""
-			): ?>
-				<blockquote>
-					<?= nl2br(
-						htmlspecialchars($review["favorite_excerpt"]))
-					?>
-				</blockquote>
-			<?php endif; ?>
-		</div>
-	<?php endif; 
+	<h3>Comentários dos leitores:</h3>
+	<div class="big-card-container">
+		<?php foreach ($reviews as $review):
+			if ($review["status"] === "Aprovado"): ?>
+				<?=buildBigCard([
+					"user" => $review["loan"]["reader"],
+					"ranking" => $ranking,
+					"title" => $review["loan"]["reader"]["name"],
+					"rating" => $review["rating"],
+					"big-text" => $review["comment"],
+					"quote" => $review["favorite_excerpt"],
+					"extra" => isReviewer()?
+						buildAButton("blue",
+							"/resenha?id=".$review["loan_id"], "🖉 Editar")
+						:null
+				])?>
+			<?php endif; 
 		endforeach; ?>
+	</div>
 <?php endif; ?>
