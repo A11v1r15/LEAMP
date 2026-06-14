@@ -144,8 +144,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <h2>Devolução de livro</h2>
 
-<div class="form-page">
-	<form method="POST">
+<div class="main-page-container">
+	<form class="main-page" method="POST">
 		<?=buildSmallCard([
 			"color" => isOverdue($loan["deadline"], $loan["is_active"])?"red":"green",
 			"user" => $user,

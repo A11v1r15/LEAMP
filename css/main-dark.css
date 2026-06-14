@@ -42,7 +42,7 @@
 
 	/* FORMULÁRIOS */
 
-	form {
+	.main-page {
 		background: black;
 	}
 
@@ -56,6 +56,11 @@
 
 	form textarea {
 		border: 1px solid #444;
+	}
+
+	.status {
+		background: var(--dark-gray);
+		color:      var(--light-gray);
 	}
 
 	.status.green {
@@ -73,9 +78,9 @@
 		color:      var(--light-red);
 	}
 
-	.status.gray {
-		background: var(--dark-gray);
-		color:      var(--light-gray);
+	.status.blue {
+		background: var(--dark-blue);
+		color:      var(--light-blue);
 	}
 
 	/* SMALL CARD */

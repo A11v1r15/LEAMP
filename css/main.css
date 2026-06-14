@@ -280,15 +280,15 @@ h2.error {
 	font-style: normal;
 }
 
-/* FORMULÁRIOS */
+/* MAIN PAGE */
 
-.form-page {
+.main-page-container {
 	max-width: 600px;
 	margin: auto;
 	padding: 24px;
 }
 
-form {
+.main-page {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
@@ -298,6 +298,8 @@ form {
 	box-shadow: var(--box-shadow);
 }
 
+
+/* FORMULÁRIOS */
 form.inline-form {
 	display: contents;
 }
@@ -331,7 +333,7 @@ form textarea {
 	padding: 12px 18px;
 	border: none;
 	border-radius: 14px;
-	background: var(--main-black);
+	background: var(--main-gray);
 	color: #FFFFFF !important;
 	text-decoration: none;
 	font-weight: bold;
@@ -372,6 +374,8 @@ button.button {
 	font-weight: bold;
 	font-size: 0.9rem;
 	width: fit-content;
+	background: var(--light-gray);
+	color:      var(--dark-gray);
 }
 
 .status.green {
@@ -389,9 +393,9 @@ button.button {
 	color:      var(--dark-red);
 }
 
-.status.gray {
-	background: var(--light-gray);
-	color:      var(--dark-gray);
+.status.blue {
+	background: var(--light-blue);
+	color:      var(--dark-blue);
 }
 
 /* AVATAR */

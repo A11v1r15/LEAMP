@@ -156,8 +156,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	:"<span class='status yellow'>Pendente</span>")
 ?>
 
-<div class="form-page">
-	<form class="review-form" method="POST">
+<div class="main-page-container">
+	<form class="main-page" method="POST">
 		<label>
 			<h3>Classificação:</h3>
 		</label>

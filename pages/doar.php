@@ -58,8 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <h2>Doação de livro</h2>
 
-<div class="form-page">
-	<form class="donation-form" method="POST">
+<div class="main-page-container">
+	<form class="main-page" method="POST">
 		<datalist id="authors">
 			<?php foreach ($authors as $author): ?>
 				<option

@@ -124,46 +124,50 @@
 ?>
 <link rel="stylesheet" href="/css/livro.css">
 
-<div class="book-header">
-	<div class="book-meta">
-		<h2><?=htmlspecialchars($book["title"])?></h2>
+<div class="main-page-container">
+	<div class="main-page">
+		<div class="book-header">
+			<div class="book-meta">
+				<h2><?=htmlspecialchars($book["title"])?></h2>
 
-		<div class="book-author">
-			<?=htmlspecialchars($book["author"])?>
+				<div class="book-author">
+					<?=htmlspecialchars($book["author"])?>
+				</div>
+				<?=buildStatus($book["status"])?>
+			</div>
 		</div>
-		<?=buildStatus($book["status"])?>
+
+		<?php
+			if (isAdmin() && $book["status"] === "Pendente"):
+		?>
+
+		<form method="POST" class="inline-form">
+			<?=buildFormButton("green",
+				"approve", "✓ Disponibilizar")?>
+		</form>
+
+		<?php
+			elseif (isAdmin() && $book["status"] === "Disponível"):
+		?>
+			<?=buildAButton("blue",
+				"/emprestimo?id=".$book["id"], "→ Emprestar livro")?>
+		<?php endif;?>
+
+		<?php if (isLogged() && $loan && $user):?>
+			<?=buildSmallCard([
+				"color" => isOverdue($loan["deadline"], $loan["is_active"])?"red":"green",
+				"user" => $user,
+				"ranking"=> $ranking,
+				"title" => "Emprestado para ".$user["name"],
+				"deadline" => "Até ".date("d/m/Y", strtotime($loan["deadline"])),
+				"extra" => isAdmin()?
+							buildAButton("blue",
+								"/devolucao?id=".$loan["id"], "↩ Devolver")
+							:null
+			])?>
+		<?php endif;?>
 	</div>
 </div>
-
-<?php 
-	if (isAdmin() && $book["status"] === "Pendente"):
-?>
-
-<form method="POST" class="inline-form">
-	<?=buildFormButton("green",
-		"approve", "✓ Disponibilizar")?>
-</form>
-
-<?php
-	elseif (isAdmin() && $book["status"] === "Disponível"):
-?>
-	<?=buildAButton("blue",
-		"/emprestimo?id=".$book["id"], "→ Emprestar livro")?>
-<?php endif;?>
-
-<?php if (isLogged() && $loan && $user):?>
-	<?=buildSmallCard([
-		"color" => isOverdue($loan["deadline"], $loan["is_active"])?"red":"green",
-		"user" => $user,
-		"ranking"=> $ranking,
-		"title" => "Emprestado para ".$user["name"],
-		"deadline" => "Até ".date("d/m/Y", strtotime($loan["deadline"])),
-		"extra" => isAdmin()?
-					buildAButton("blue",
-						"/devolucao?id=".$loan["id"], "↩ Devolver")
-					:null
-	])?>
-<?php endif;?>
 
 <?php if (!empty($reviews)): ?>
 	<h3>Comentários dos leitores:</h3>

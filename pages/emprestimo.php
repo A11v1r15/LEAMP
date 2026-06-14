@@ -67,8 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	Empréstimo de <?=$book[0]["title"]?>
 </h2>
 
-<div class="form-page">
-	<form method="POST">
+<div class="main-page-container">
+	<form class="main-page" method="POST">
 
 		<label for="reader">
 			<h3>Leitor:</h3>

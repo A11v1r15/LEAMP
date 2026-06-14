@@ -80,7 +80,6 @@ function colorClass($string): string {
 		"active",
 		"concedente",
 		"publicado",
-		"em andamento",
 		"green"
 			=> "green",
 
@@ -106,6 +105,7 @@ function colorClass($string): string {
 
 		"informação",
 		"informacao",
+		"em andamento",
 		"leitor",
 		"blue"
 			=> "blue",

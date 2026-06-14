@@ -94,8 +94,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <h2>Criar evento</h2>
 
-<div class="form-page">
-	<form method="POST">
+<div class="main-page-container">
+	<form class="main-page" method="POST">
 		<datalist id="events">
 			<?php foreach ($event_titles as $title): ?>
 				<option
@@ -160,25 +160,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		<input
 			type="datetime-local"
 			name="start_time"
+			<?php if (empty($event)): ?>
+				min="<?=date("Y-m-d\TH:i")?>"
+			<?php endif; ?>
 			value="<?=
-				!empty($event["start_time"])
-					? date("Y-m-d\TH:i",
-						strtotime($event["start_time"])
-					): ""?>"
+				empty($event["start_time"])?"":
+					date("Y-m-d\TH:i", strtotime($event["start_time"]))?>"
 			required
 		>
 
 		<label for="end_time">
 			<h3>Data de término:</h3>
 		</label>
-		<input 
-			type="datetime-local" 
-			name="end_time" 
+		<input
+			type="datetime-local"
+			name="end_time"
+			<?php if (empty($event)): ?>
+				min="<?=date("Y-m-d\TH:i")?>"
+			<?php endif; ?>
 			value="<?=
-				!empty($event["end_time"])
-					? date("Y-m-d\TH:i",
-						strtotime($event["end_time"])
-					): ""?>"
+				empty($event["end_time"])?"":
+					date("Y-m-d\TH:i", strtotime($event["end_time"]))?>"
 		>
 
 		<label for="draft">

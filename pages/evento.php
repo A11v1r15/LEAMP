@@ -47,54 +47,53 @@
 	}
 
 ?>
+<div class="main-page-container">
+	<div class="main-page">
+		<div class="event-header">
+			<h2>
+				<?=buidEventTitle($event)?>
+			</h2>
+			<?=buildStatus($event["status"])?>
+		</div>
 
-<h2><?=buidEventTitle($event)?></h2>
-
-<div class="event-card">
-	<div class="event-header">
-		<h3>
-			<?=buidEventTitle($event)?>
-		</h3>
-		<?=buildStatus($event["status"])?>
-	</div>
-
-	<p class="event-time">
-		<b>Data:</b>
-		<?= date("d/m/Y H:i", strtotime($event["start_time"]))?>
-		<?php if (
-			!empty($event["end_time"])
-		): ?> até
-			<?= date("d/m/Y H:i", strtotime($event["end_time"]))?>
-		<?php endif; ?>
-	</p>
-
-	<?php if (
-		!empty($event["location"])
-	): ?>
-		<b>Local:</b>
-		<?=htmlspecialchars($event["location"])?>
-	<?php endif; ?>
-	<br>
-	<?php if (
-		!empty($event["description"])
-	): ?>
-		<b>Descrição:</b>
-		<p class="event-description">
-			<?= nl2br(
-				htmlspecialchars(
-					$event["description"]
-				)
-			) ?>
+		<p class="event-time">
+			<b>Data:</b>
+			<?= date("d/m/Y H:i", strtotime($event["start_time"]))?>
+			<?php if (
+				!empty($event["end_time"])
+			): ?> até
+				<?= date("d/m/Y H:i", strtotime($event["end_time"]))?>
+			<?php endif; ?>
 		</p>
-	<?php endif; ?>
-	<?php if (isAdmin()):?>
-		<?=buildAButton("blue",
-			"/criar_evento?id=".$event["id"], "→ Editar evento ou lançar nova edição")?>
-		<form method="POST" class="inline-form">
-			<?=buildFormButton("green",
-				"finalizar", "✓ Finalizar evento")?>
-			<?=buildFormButton("red",
-				"cancelar", "⨯ Cancelar evento")?>
-		</form>
-	<?php endif;?>
+
+		<?php if (
+			!empty($event["location"])
+		): ?>
+			<b>Local:</b>
+			<?=htmlspecialchars($event["location"])?>
+		<?php endif; ?>
+		<br>
+		<?php if (
+			!empty($event["description"])
+		): ?>
+			<b>Descrição:</b>
+			<p class="event-description">
+				<?= nl2br(
+					htmlspecialchars(
+						$event["description"]
+					)
+				) ?>
+			</p>
+		<?php endif; ?>
+		<?php if (isAdmin()):?>
+			<?=buildAButton("blue",
+				"/criar_evento?id=".$event["id"], "→ Editar evento ou lançar nova edição")?>
+			<form method="POST" class="inline-form">
+				<?=buildFormButton("green",
+					"finalizar", "✓ Finalizar evento")?>
+				<?=buildFormButton("red",
+					"cancelar", "⨯ Cancelar evento")?>
+			</form>
+		<?php endif;?>
+	</div>
 </div>
