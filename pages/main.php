@@ -160,6 +160,9 @@
 					<?php else:?>
 						<li><a onclick="loginGoogle()">Login</a></li>
 					<?php endif;?>
+					<?php if (isReviewer()):?>
+						<li><a href="/resenhas">Lista de Resenhas</a></li>
+					<?php endif;?>
 					<?php if (isAdmin()):?>
 						<li><a href="/emprestimos">Lista de empréstimos</a></li>
 						<li><a href="/doar">Adicionar livros</a></li>

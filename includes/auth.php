@@ -21,8 +21,8 @@ function isLogged() {
 function isReviewer() {
 return
 	isLogged() &&
-	$_SESSION["user"]["role"] === "Concedente" ||
-	$_SESSION["user"]["role"] === "Revisor";
+	($_SESSION["user"]["role"] === "Concedente" ||
+	$_SESSION["user"]["role"] === "Revisor");
 }
 
 function isAdmin() {

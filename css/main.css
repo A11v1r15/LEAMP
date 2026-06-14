@@ -262,11 +262,24 @@ table tbody tr:last-child td:last-child {
 	border-bottom-right-radius: 20px;
 }
 
+.user-inline {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
 .mini-avatar {
 	width: 32px;
 	height: 32px;
 	border-radius: 50%;
 	object-fit: cover;
+}
+
+.rating {
+	font-size: 1.3rem;
+	background-image: var(--fancy-orange);
+	color: transparent;
+	background-clip: text;
 }
 
 /* ERROS */
@@ -298,8 +311,8 @@ h2.error {
 	box-shadow: var(--box-shadow);
 }
 
-
 /* FORMULÁRIOS */
+
 form.inline-form {
 	display: contents;
 }
@@ -562,13 +575,6 @@ a.title:hover {
 	grid-column: 1 / -1;
 	grid-row: 2;
 	gap: 8px 0px;
-}
-
-.big-card .rating {
-	font-size: 1.3rem;
-	background-image: var(--fancy-orange);
-	color: transparent;
-	background-clip: text;
 }
 
 .big-card .extra {

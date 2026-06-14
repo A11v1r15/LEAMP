@@ -41,7 +41,6 @@
 		$loans = [];
 	}
 ?>
-<link rel="stylesheet" href="/css/emprestimos.css">
 
 <h2>Empréstimos</h2>
 
