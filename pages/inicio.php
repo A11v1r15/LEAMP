@@ -10,9 +10,7 @@
 	Este é o sistema do projeto
 	<strong>Ler é a Minha Praia</strong>.
 </p>
-
 <br>
-
 <p>
 	Aqui você poderá acompanhar leituras,
 	eventos, rankings e atividades do projeto.

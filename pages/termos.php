@@ -5,7 +5,6 @@ $page_title = "Termos de Serviço LÉAMP";
 <h2>Termos de Serviço</h2>
 
 <h3>Uso adequado</h3>
-
 <p>
 	O sistema deve ser utilizado
 	apenas para fins educacionais
@@ -13,7 +12,6 @@ $page_title = "Termos de Serviço LÉAMP";
 </p>
 
 <h3>Conduta</h3>
-
 <p>
 	Não é permitido publicar
 	conteúdo ofensivo, ilegal
@@ -21,7 +19,6 @@ $page_title = "Termos de Serviço LÉAMP";
 </p>
 
 <h3>Empréstimos</h3>
-
 <p>
 	O usuário é responsável pela
 	conservação e devolução dos
@@ -29,7 +26,6 @@ $page_title = "Termos de Serviço LÉAMP";
 </p>
 
 <h3>Suspensão</h3>
-
 <p>
 	Administradores podem remover
 	comentários ou restringir acesso
@@ -37,7 +33,6 @@ $page_title = "Termos de Serviço LÉAMP";
 </p>
 
 <h3>Disponibilidade</h3>
-
 <p>
 	O sistema pode sofrer manutenção,
 	interrupções ou alterações sem
@@ -45,7 +40,6 @@ $page_title = "Termos de Serviço LÉAMP";
 </p>
 
 <br>
-
 <p>
 	Última atualização:
 	24/05/2026

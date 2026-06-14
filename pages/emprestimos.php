@@ -112,7 +112,7 @@
 				<td>
 					<?=date("d/m/Y",strtotime($loan["deadline"]))?>
 				</td>
-				
+
 
 				<td data-order="<?=htmlspecialchars(
 					$loan["receiver"]["name"]

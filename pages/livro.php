@@ -182,7 +182,7 @@
 							"/resenha?id=".$review["loan_id"], "🖉 Editar")
 						:null
 				])?>
-			<?php endif; 
+			<?php endif;
 		endforeach; ?>
 	</div>
 <?php endif; ?>

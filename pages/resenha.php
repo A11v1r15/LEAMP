@@ -181,17 +181,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			<?=buildSmallCard($card=[
 				"color" => "blue",
 				"strong" => "Sobre aceitar a resenha:",
-				"text" => 
+				"text" =>
 					"Aceitar a resenha significa
 					que o comentário dela passará a ser exibida
 					na página do livro, contribuindo
 					para a avaliação geral da obra.
-					
+
 					Você pode aceitar resenhas que
 					estejam bem escritas, sejam
 					construtivas e reflitam uma
 					opinião honesta sobre o livro.
-					
+
 					Resenhas ofensivas, irrelevantes
 					ou que não agreguem valor à comunidade
 					podem ser rejeitadas."
@@ -200,7 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			<?=buildSmallCard($card=[
 				"color" => "blue",
 				"strong" => "Sobre o comentário:",
-				"text" => 
+				"text" =>
 					"Escreva com suas próprias
 					palavras.
 
@@ -250,7 +250,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			<?=buildSmallCard($card=[
 				"color" => "blue",
 				"strong" => "Sobre a resenha:",
-				"text" => 
+				"text" =>
 					"Escreva com suas próprias
 					palavras.
 
@@ -262,7 +262,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 					o livro.
 
 					A resenha serve para você
-					ser avaliado quanto ao seu 
+					ser avaliado quanto ao seu
 					entendimento sobre a obra."
 			])?>
 		<?php endif; ?>
@@ -286,7 +286,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			<?=buildSmallCard($card=[
 				"color" => "yellow",
 				"strong" => "Atenção!",
-				"text" => 
+				"text" =>
 					"Atualizar a resenha de um livro que já foi aprovada
 					fará com que ela volte para o status \"Pendente\",
 					ou seja, precisará ser aprovada novamente por ".(isReviewer() ? "outro" : "um")."

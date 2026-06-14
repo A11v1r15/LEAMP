@@ -3,7 +3,6 @@ $page_title = "Política de Privacidade LÉAMP";
 ?>
 
 <h2>Política de Privacidade</h2>
-
 <p>
 	Este sistema utiliza autenticação
 	via Google para identificar
@@ -11,7 +10,6 @@ $page_title = "Política de Privacidade LÉAMP";
 </p>
 
 <h3>Dados armazenados</h3>
-
 <ul>
 	<li>Nome</li>
 	<li>Email institucional</li>
@@ -20,21 +18,18 @@ $page_title = "Política de Privacidade LÉAMP";
 </ul>
 
 <h3>Comentários públicos</h3>
-
 <p>
 	Comentários podem ser exibidos
 	publicamente.
 </p>
 
 <h3>Compartilhamento</h3>
-
 <p>
 	Os dados não são vendidos nem
 	compartilhados com terceiros.
 </p>
 
 <h3>Segurança</h3>
-
 <p>
 	O sistema utiliza autenticação
 	do Google e infraestrutura do
@@ -42,7 +37,6 @@ $page_title = "Política de Privacidade LÉAMP";
 </p>
 
 <br>
-
 <p>
 	Última atualização:
 	24/05/2026

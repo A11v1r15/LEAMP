@@ -18,7 +18,7 @@
 	include_once "includes/supabase.php";
 	include_once "includes/util.php";
 	include_once "includes/elementBuilder.php";
-	
+
 	try {
 		ob_start();
 		require $arquivo;

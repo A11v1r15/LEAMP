@@ -83,7 +83,7 @@ function buildSmallCard($card) {
 			<?php endif; ?>
 			<div class="info">
 				<?php if(isset($card["title_url"]) && isset($card["title"])):?>
-					<a class="title" 
+					<a class="title"
 						href="<?=htmlspecialchars($card["title_url"])?>">
 							<?=htmlspecialchars($card["title"])?>
 					</a>
@@ -171,7 +171,7 @@ function buildBigCard($card) {
 				<?php endif;?>
 				<?php if (isset($card["big-text"]) && $card["big-text"] !== ""): ?>
 					<p><?= nl2br(
-							htmlspecialchars($card["big-text"])) 
+							htmlspecialchars($card["big-text"]))
 						?></p>
 				<?php endif; ?>
 				<?php if (isset($card["quote"]) && $card["quote"] !== ""): ?>

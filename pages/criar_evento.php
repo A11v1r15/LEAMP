@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			header("Location: /eventos");
 		}
 	}
-	
+
 //	file_put_contents("php://stderr", print_r($result, true));
 	exit;
 }
@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		<label for="title">
 			<h3>Título:</h3>
 		</label>
-		<input 
+		<input
 			type="text"
 			name="title"
 			list="events"
@@ -146,10 +146,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		<label for ="location">
 			<h3>Local:</h3>
 		</label>
-		<input 
-			type="text" 
-			name="location" 
-			list="locations" 
+		<input
+			type="text"
+			name="location"
+			list="locations"
 			required
 			value="<?=htmlspecialchars($event["location"]?? "") ?>"
 		>
@@ -157,8 +157,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		<label for="start_time">
 			<h3>Data de início:</h3>
 		</label>
-		<input 
-			type="datetime-local" 
+		<input
+			type="datetime-local"
 			name="start_time"
 			value="<?=
 				!empty($event["start_time"])
