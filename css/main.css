@@ -22,7 +22,7 @@
 	--main-white:   #f4f4f4;
 
 	--fancy-orange:  linear-gradient(#f0cc74, #f0865f); /* logo léamp */
-	--fancy-teal:	 linear-gradient(#acdccc, #5d9b98); /* logo léamp */
+	--fancy-teal:    linear-gradient(#acdccc, #5d9b98); /* logo léamp */
 	--fancy-green:   linear-gradient(#8fa754, #1c4032); /* logo léamp */
 	--fancy-magenta: linear-gradient(#f0a6c1, #e04e9c);
 
@@ -384,8 +384,9 @@ button.button {
 	width: fit-content;
 	gap: 0px 16px;
 
-	border-left: 6px solid var(--main-gray);
 	background:            var(--light-gray);
+	border-left: 6px solid var(--main-gray);
+	color:                 var(--dark-gray);
 
 	animation: fadeIn 0.2s ease;
 }

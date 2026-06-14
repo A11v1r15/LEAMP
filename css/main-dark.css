@@ -1,146 +1,150 @@
 @media (prefers-color-scheme: dark) {
-	 body {
-		  background-color: var(--main-black);
-		  color:            var(--main-white);
-	 }
+	:root {
+		--box-shadow: 0 4px 16px rgba(255,255,255,0.08);
+	}
 
-	 nav a {
-		  color: var(--text-white);
-	 }
+	body {
+		background-color: var(--main-black);
+		color:            var(--main-white);
+	}
 
-	 /* SIDEBAR */
+	nav a {
+		color: var(--text-white);
+	}
 
-	 aside {
-		  background-color: black;
-		  border-right: 1px solid var(--dark-gray);
-	 }
+	/* SIDEBAR */
 
-	 aside a {
-		  color: var(--light-gray);
-	 }
+	aside {
+		background-color: black;
+		border-right: 1px solid var(--dark-gray);
+	}
 
-	 /* MAIN */
+	aside a {
+		color: var(--light-gray);
+	}
 
-	 blockquote {
-		  border-left: 4px solid var(--main-gray);
-		  color: var(--light-gray);
-	 }
+	/* MAIN */
 
-	 /* TABELAS */
+	blockquote {
+		border-left: 4px solid var(--main-gray);
+		color: var(--light-gray);
+	}
 
-	 tbody tr:nth-child(even) {
-		  background-color: black !important;
-	 }
+	/* TABELAS */
 
-	 table tbody tr:hover {
-		  background-color: var(--dark-gray) !important;
-	 }
+	tbody tr:nth-child(even) {
+		background-color: black !important;
+	}
 
-	 /* SMALL CARD */
+	table tbody tr:hover {
+		background-color: var(--dark-gray) !important;
+	}
 
-	 .small-card {
-		  background:            var(--dark-gray);
-		  border-left: 6px solid var(--main-gray);
-	 }
+	/* SMALL CARD */
 
-	 .small-card.green {
-		  background:        var(--dark-green);
-		  border-left-color: var(--main-green);
-		  color:             var(--light-green);
-	 }
+	.small-card {
+		background:            var(--dark-gray);
+		border-left: 6px solid var(--main-gray);
+		color:                 var(--light-gray);
+	}
 
-	 .small-card.red {
-		  background:        var(--dark-red);
-		  border-left-color: var(--main-red);
-		  color:             var(--light-red);
-	 }
+	.small-card.green {
+		background:        var(--dark-green);
+		border-left-color: var(--main-green);
+		color:             var(--light-green);
+	}
 
-	 .small-card.blue {
-		  background:        var(--dark-blue);
-		  border-left-color: var(--main-blue);
-		  color:             var(--light-blue);
-	 }
+	.small-card.red {
+		background:        var(--dark-red);
+		border-left-color: var(--main-red);
+		color:             var(--light-red);
+	}
 
-	 .small-card.yellow {
-		  background:        var(--dark-yellow);
-		  border-left-color: var(--main-yellow);
-		  color:             var(--light-yellow);
-	 }
+	.small-card.blue {
+		background:        var(--dark-blue);
+		border-left-color: var(--main-blue);
+		color:             var(--light-blue);
+	}
 
-	 .small-card .title {
-		  color: var(--text-white) !important;
-	 }
+	.small-card.yellow {
+		background:        var(--dark-yellow);
+		border-left-color: var(--main-yellow);
+		color:             var(--light-yellow);
+	}
 
-	 .small-card .subtitle {
-		  color: var(--text-white);
-	 }
+	.small-card .title {
+		color: var(--text-white) !important;
+	}
 
-	 /* FORMULÁRIOS */
+	.small-card .subtitle {
+		color: var(--text-white);
+	}
 
-	 form {
-		  background: black;
-	 }
+	/* FORMULÁRIOS */
 
-	 form input {
-		  border: 1px solid #444;
-	 }
+	form {
+		background: black;
+	}
 
-	 form select {
-		  border: 1px solid #444;
-	 }
+	form input {
+		border: 1px solid #444;
+	}
 
-	 form textarea {
-		  border: 1px solid #444;
-	 }
+	form select {
+		border: 1px solid #444;
+	}
+
+	form textarea {
+		border: 1px solid #444;
+	}
 
 
-	 .status.green {
-		  background: var(--dark-green);
-		  color:      var(--light-green);
-	 }
+	.status.green {
+		background: var(--dark-green);
+		color:      var(--light-green);
+	}
 
-	 .status.yellow {
-		  background: var(--dark-yellow);
-		  color:      var(--light-yellow);
-	 }
+	.status.yellow {
+		background: var(--dark-yellow);
+		color:      var(--light-yellow);
+	}
 
-	 .status.red {
-		  background: var(--dark-red);
-		  color:      var(--light-red);
-	 }
+	.status.red {
+		background: var(--dark-red);
+		color:      var(--light-red);
+	}
 
-	 .status.gray {
-		  background: var(--dark-gray);
-		  color:      var(--light-gray);
-	 }
+	.status.gray {
+		background: var(--dark-gray);
+		color:      var(--light-gray);
+	}
 
-	 /* FLASH MESSAGES */
+	/* FLASH MESSAGES */
 
-	 .flash.success {
-		  background: var(--dark-green);
-		  color:      var(--light-green);
-	 }
+	.flash.success {
+		background: var(--dark-green);
+		color:      var(--light-green);
+	}
 
-	 .flash.error {
-		  background: var(--dark-red);
-		  color:      var(--light-red);
-	 }
+	.flash.error {
+		background: var(--dark-red);
+		color:      var(--light-red);
+	}
 
-	 .flash.warning {
-		  background: var(--dark-yellow);
-		  color:      var(--light-yellow);
-	 }
+	.flash.warning {
+		background: var(--dark-yellow);
+		color:      var(--light-yellow);
+	}
 
-	 /* RESPONSIVO */
+	/* RESPONSIVO */
 
-	 @media (max-width: 768px) {
+	@media (max-width: 768px) {
+		aside {
+			border-bottom: 1px solid #444;
+		}
 
-		  aside {
-				border-bottom: 1px solid #444;
-		  }
-
-		  nav li {
-				border-top: 1px solid rgba(var(--main-black),0.2);
-		  }
-	 }
+		nav li {
+			border-top: 1px solid rgba(var(--main-black),0.2);
+		}
+	}
 }
