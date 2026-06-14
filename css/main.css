@@ -497,7 +497,7 @@ a.title:hover {
 }
 
 .subtitle {
-	margin-top: 6px;
+	margin-top: -6px;
 	color: var(--text-black);
 }
 

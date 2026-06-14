@@ -82,26 +82,21 @@
 			$book = $loan["book"];
 			$review_url = "/resenha?"."id=".$loan["id"];
 		?>
-		<?php
-			$extra =
-				(isOverdue($loan["deadline"], $loan["is_active"])?
-					buildStatus("Atrasado"):
-					($loan["is_active"]?
-						buildStatus("Em andamento"):
-						buildStatus("Finalizado"))).
-				"\n".
-				buildAButton("blue",
-					$review_url, "🖉 ".(in_array($loan["id"], $reviewedLoans)?
-							"Editar resenha" : "Escrever resenha"));
-		?>
 		<?=buildSmallCard([
-			"color" => isOverdue($loan["deadline"], $loan["is_active"])?"red":"green",
+			"color" => (!$loan["is_active"])?"gray":
+							(isOverdue($loan["deadline"], $loan["is_active"])?
+								"red":"green"),
 			"title" => $book["title"],
 			"title_url" => "/livro?id=".$book["id"],
 			"deadline" => ($loan["is_active"])?
 				"Até ".date("d/m/Y", strtotime($loan["deadline"])):
 				"Entregue ".date("d/m/Y", strtotime($loan["end_date"])),
-			"extra" => $extra
+			"subtitle" => (!$loan["is_active"])?"Finalizado":
+							(isOverdue($loan["deadline"], $loan["is_active"])?
+								"Atrasado":"Em andamento"),
+			"extra" => buildAButton("blue",
+							$review_url, "🖉 ".(in_array($loan["id"], $reviewedLoans)?
+									"Editar resenha" : "Escrever resenha"))
 		])?>
 	<?php endforeach;?>
 </div>
