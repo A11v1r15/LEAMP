@@ -34,7 +34,7 @@ function flash(string $type, string $message) {
 	];
 }
 
-function hasErrorCode(array $result) {
+function hasErrorCode($result) {
 	return (is_array($result) &&
 		isset($result["code"]));
 }
