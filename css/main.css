@@ -380,6 +380,10 @@ button.button {
 	background: var(--main-blue);
 }
 
+.button.yellow {
+	background: var(--main-yellow);
+}
+
 .status {
 	display: inline-block;
 	padding: 4px 10px;

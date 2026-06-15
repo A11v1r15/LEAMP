@@ -56,7 +56,7 @@
 			<?=buildStatus(getEventStatus($event))?>
 		</div>
 
-		<p class="event-time">
+		<p>
 			<b>Data:</b>
 			<?= date("d/m/Y H:i", strtotime($event["start_time"]))?>
 			<?php if (
@@ -69,8 +69,10 @@
 		<?php if (
 			!empty($event["location"])
 		): ?>
-			<b>Local:</b>
-			<?=htmlspecialchars($event["location"])?>
+			<p>
+				<b>Local:</b>
+				<?=htmlspecialchars($event["location"])?>
+			</p>
 		<?php endif; ?>
 		<br>
 		<?php if (

@@ -194,13 +194,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		</label>
 
 		<?php if($event !== null):?>
-			<?=buildFormButton("blue",
+			<?=buildFormButton("yellow",
 				"edit", "↑ Editar evento")?>
 			<?=buildFormButton("green",
-				"publish", "← Registrar nova edição")?>
+				"publish", "↳ Registrar nova edição")?>
 		<?php else: ?>
 			<?=buildFormButton("green",
-				"publish", "← Registrar evento")?>
+				"publish", "↳ Registrar evento")?>
 		<?php endif; ?>
 
 		<?=buildAButton("red",

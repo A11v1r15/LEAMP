@@ -154,10 +154,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			"subtitle" => "Com ".$user["name"],
 			"deadline" => "Até ".date("d/m/Y", strtotime($loan["deadline"]))
 		])?>
-		<?=buildFormButton("blue",
-			"renew", "↺ Renovar +10 dias")?>
 		<?=buildFormButton("green",
 			"return", "↩ Confirmar devolução")?>
+		<?=buildFormButton("yellow",
+			"renew", "↺ Renovar +10 dias")?>
 		<?=buildAButton("red",
 			previousPage(), "⨯ Cancelar")?>
 	</form>

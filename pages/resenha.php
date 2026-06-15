@@ -293,12 +293,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 					revisor para voltar a ser exibida na página do livro."
 			])?>
 		<?php endif; ?>
-		<?=buildFormButton(isNotTheReader()?"blue":"green",
-			"submit", "↑ ".($review?
-				(isNotTheReader()?
-					"Modificar":"Atualizar")
-				:"Enviar").
-				" resenha")?>
+		<?php if (!$review && !isNotTheReader()): ?>
+			<?=buildFormButton("green",
+				"submit", "↑ Enviar resenha")?>
+		<?php else: ?>
+			<?=buildFormButton("yellow",
+				"submit", "🖉 ".(isNotTheReader()?
+						"Modificar":"Atualizar").
+					" resenha")?>
+		<?php endif; ?>
 		<?php if (isNotTheReader()): ?>
 			<?=buildFormButton("green",
 				"accept", "✓ Aceitar resenha")?>
