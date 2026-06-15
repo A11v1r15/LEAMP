@@ -114,8 +114,9 @@
 			} else {
 				flash("success", $book["title"]." disponibilizado com sucesso!");
 				cacheDelete("livros");
+				session_write_close();
+				header("Location: /livro?id=".$book["id"]);
 			}
-			session_write_close();
 			exit;
 		}
 	}
