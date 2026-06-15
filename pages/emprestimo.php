@@ -61,7 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 ?>
-<link rel="stylesheet" href="/css/emprestimo.css">
 
 <h2>
 	Empréstimo de <?=$book[0]["title"]?>

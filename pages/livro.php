@@ -112,7 +112,7 @@
 			if (hasErrorCode($result)) {
 				flash("error", "Erro ao disponibilizar livro: " . $result["message"]);
 			} else {
-				flash("success", $book[0]["title"]." disponibilizado com sucesso!");
+				flash("success", $book["title"]." disponibilizado com sucesso!");
 				cacheDelete("livros");
 			}
 			session_write_close();
