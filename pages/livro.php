@@ -183,7 +183,7 @@
 					"quote" => $review["favorite_excerpt"],
 					"extra" => isReviewer()?
 						buildAButton("blue",
-							"/resenha?id=".$review["loan_id"], "🖉 Editar")
+							"/resenha?id=".$review["loan_id"], "👓 Revisar")
 						:null
 				])?>
 			<?php endif;

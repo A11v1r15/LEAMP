@@ -97,6 +97,12 @@
 		color:             var(--light-green);
 	}
 
+	.small-card.yellow {
+		background:        var(--dark-yellow);
+		border-left-color: var(--main-yellow);
+		color:             var(--light-yellow);
+	}
+
 	.small-card.red {
 		background:        var(--dark-red);
 		border-left-color: var(--main-red);
@@ -107,12 +113,6 @@
 		background:        var(--dark-blue);
 		border-left-color: var(--main-blue);
 		color:             var(--light-blue);
-	}
-
-	.small-card.yellow {
-		background:        var(--dark-yellow);
-		border-left-color: var(--main-yellow);
-		color:             var(--light-yellow);
 	}
 
 	.title {

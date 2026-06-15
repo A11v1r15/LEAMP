@@ -229,7 +229,7 @@ blockquote:after {
 /* TABELAS */
 
 table {
-	border-radius: 20px;
+	border-radius: 16px;
 	box-shadow: var(--box-shadow);
 }
 
@@ -239,11 +239,11 @@ table thead {
 }
 
 table thead th:first-child {
-	border-top-left-radius: 20px;
+	border-top-left-radius: 16px;
 }
 
 table thead th:last-child {
-	border-top-right-radius: 20px;
+	border-top-right-radius: 16px;
 }
 
 tbody tr:nth-child(even) {
@@ -255,11 +255,11 @@ table tbody tr:hover {
 }
 
 table tbody tr:last-child td:first-child {
-	border-bottom-left-radius: 20px;
+	border-bottom-left-radius: 16px;
 }
 
 table tbody tr:last-child td:last-child {
-	border-bottom-right-radius: 20px;
+	border-bottom-right-radius: 16px;
 }
 
 .user-inline {
@@ -368,20 +368,20 @@ button.button {
 	filter: brightness(1.05);
 }
 
-.button.red {
-	background: var(--main-red);
-}
-
 .button.green {
 	background: var(--main-green);
 }
 
-.button.blue {
-	background: var(--main-blue);
-}
-
 .button.yellow {
 	background: var(--main-yellow);
+}
+
+.button.red {
+	background: var(--main-red);
+}
+
+.button.blue {
+	background: var(--main-blue);
 }
 
 .status {
@@ -475,6 +475,12 @@ button.button {
 	color:             var(--dark-green);
 }
 
+.small-card.yellow {
+	background:        var(--light-yellow);
+	border-left-color: var(--main-yellow);
+	color:             var(--dark-yellow);
+}
+
 .small-card.red {
 	background:        var(--light-red);
 	border-left-color: var(--main-red);
@@ -485,12 +491,6 @@ button.button {
 	background:        var(--light-blue);
 	border-left-color: var(--main-blue);
 	color:             var(--dark-blue);
-}
-
-.small-card.yellow {
-	background:        var(--light-yellow);
-	border-left-color: var(--main-yellow);
-	color:             var(--dark-yellow);
 }
 
 .small-card .info {
@@ -562,6 +562,8 @@ a.title:hover {
 	width: fit-content;
 	max-width: 500px;
 	gap: 16px;
+
+	animation: fadeIn 0.2s ease;
 }
 
 .big-card .avatar-wrapper {
@@ -615,14 +617,14 @@ a.title:hover {
 	color:      var(--dark-green);
 }
 
-.flash.error {
-	background: var(--light-red);
-	color:      var(--dark-red);
-}
-
 .flash.warning {
 	background: var(--light-yellow);
 	color:      var(--dark-yellow);
+}
+
+.flash.error {
+	background: var(--light-red);
+	color:      var(--dark-red);
 }
 
 /* FOOTER */
@@ -653,7 +655,7 @@ footer {
 	object-fit: contain;
 	background: white;
 	padding: 4px;
-	border-radius: 6px;
+	border-radius: 16px;
 }
 
 .footer-text {

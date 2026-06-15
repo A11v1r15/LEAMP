@@ -71,13 +71,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		<label for="title">
 			<h3>Título:</h3>
 		</label>
-		<input type="text" name="title" required>
-
+		<input
+			type="text"
+			name="title"
+			required
+			>
 		<label for="author">
 			<h3>Autor:</h3>
 		</label>
-		<input type="text" name="author" list="authors" required>
-
+		<input
+			type="text"
+			autocapitalize="words"
+			name="author"
+			list="authors"
+			required
+			>
 		<label>
 			<input
 				type="checkbox"
@@ -88,10 +96,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			Livro à receber
 		</label>
 
-		<?=buildFormButton("blue",
-			"finish", "← Registrar doação e sair")?>
 		<?=buildFormButton("green",
 			"continue", "↞ Registrar doação e doar outro livro")?>
+		<?=buildFormButton("blue",
+			"finish", "← Registrar doação e sair")?>
 		<?=buildAButton("red",
 			previousPage(), "⨯ Cancelar")?>
 	</form>

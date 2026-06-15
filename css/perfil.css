@@ -39,7 +39,7 @@
 .profile-role-badge {
 	display: inline-block;
 	padding: 8px 14px;
-	border-radius: 999px;
+	border-radius: 50%;
 	color: var(--text-white);
 	font-weight: bold;
 	font-size: 0.95rem;
