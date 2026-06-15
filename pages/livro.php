@@ -42,7 +42,8 @@
 
 		$user = null;
 
-		$ranking = supabaseGet(
+		$ranking = getCacheOrFetch(
+			"primeiro_lugar",
 			"ranking?".
 			"select=".
 				"uuid".

@@ -35,7 +35,8 @@
 		"loan_id"
 	);
 
-	$ranking = supabaseGet(
+	$ranking = getCacheOrFetch(
+		"primeiro_lugar",
 		"ranking?".
 		"select=".
 			"uuid".

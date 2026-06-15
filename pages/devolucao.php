@@ -58,7 +58,8 @@ $user = supabaseGet(
 	$_SESSION["user"]["token"]
 );
 
-$ranking = supabaseGet(
+$ranking = getCacheOrFetch(
+	"primeiro_lugar",
 	"ranking?".
 	"select=".
 		"uuid".
