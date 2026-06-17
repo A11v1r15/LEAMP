@@ -1,5 +1,6 @@
 
 <?php
+	include_once "includes/cache.php";
 	include_once "includes/auth.php";
 	include_once "includes/util.php";
 	requireLogged();
