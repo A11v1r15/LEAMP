@@ -101,6 +101,7 @@ function colorClass(string $string): string {
 		"disponivel",
 		"ativo",
 		"active",
+		"aprovado",
 		"concedente",
 		"publicado",
 		"green"

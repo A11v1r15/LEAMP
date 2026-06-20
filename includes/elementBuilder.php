@@ -60,6 +60,23 @@ function buildAvatar(array $user, $ranking = null, $dynamic = false) {
 	return ob_get_clean();
 }
 
+function buildMiniAvatar(array $user) {
+	ob_start();
+	?>
+		<div class="user-inline">
+			<img
+				src="<?=htmlspecialchars($user["avatar"])?>"
+				class="mini-avatar"
+				alt=""
+			>
+			<span>
+				<?=htmlspecialchars($user["name"])?>
+			</span>
+		</div>
+	<?php
+	return ob_get_clean();
+}
+
 function buildSmallCard(array $card) {
 	$dynamic = isset($card["dynamic"]);
 	$user = $card["user"]??[];

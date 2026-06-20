@@ -52,8 +52,7 @@
 			<th>Emprestado em</th>
 			<th>Concedente</th>
 			<th>Data limite</th>
-			<th>Recebedor</th>
-			<th>Devolvido em</th>
+			<th>Recebido</th>
 			<th>Status</th>
 			<th>Ações</th>
 		</tr>
@@ -76,16 +75,7 @@
 					$loan["reader"]["name"]
 					?? "Desconhecido"
 				)?>">
-					<div class="user-inline">
-						<img
-							src="<?=htmlspecialchars($loan["reader"]["avatar"])?>"
-							class="mini-avatar"
-							alt=""
-						>
-						<span>
-							<?=htmlspecialchars($loan["reader"]["name"])?>
-						</span>
-					</div>
+					<?=buildMiniAvatar($loan["reader"])?>
 				</td>
 
 				<td>
@@ -96,16 +86,7 @@
 					$loan["grantor"]["name"]
 					?? "Desconhecido"
 				)?>">
-					<div class="user-inline">
-						<img
-							src="<?=htmlspecialchars($loan["grantor"]["avatar"])?>"
-							class="mini-avatar"
-							alt=""
-						>
-						<span>
-							<?=htmlspecialchars($loan["grantor"]["name"])?>
-						</span>
-					</div>
+					<?=buildMiniAvatar($loan["grantor"])?>
 				</td>
 
 				<td>
@@ -118,28 +99,12 @@
 					?? "Desconhecido"
 				)?>">
 					<?php if ($loan["is_active"]):?>
-						—
+						Não
 					<?php else:?>
-						<div class="user-inline">
-							<img
-								src="<?=htmlspecialchars($loan["receiver"]["avatar"])?>"
-								class="mini-avatar"
-								alt=""
-							>
-							<span>
-								<?=htmlspecialchars($loan["receiver"]["name"])?>
-							</span>
-						</div>
-					<?php endif;?>
-				</td>
-
-				<td>
-					<?php if (
-						$loan["is_active"]
-					):?>
-						—
-					<?php else:?>
-						<?=date("d/m/Y H:i",strtotime($loan["end_date"]))?>
+						<?=buildMiniAvatar($loan["receiver"])?>
+						<small>
+							<?=date("d/m/Y H:i", strtotime($loan["end_date"]))?>
+						</small>
 					<?php endif;?>
 				</td>
 
