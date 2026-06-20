@@ -80,6 +80,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			"loan_id=eq.".$review["loan_id"],
 			[
 				"status" => "Aprovado",
+				"moderated_by" => $_SESSION["user"]["uuid"],
+				"moderated_at" => date("c")
 			],
 			$_SESSION["user"]["token"]
 		);
@@ -129,7 +131,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				$_SESSION["user"]["token"]
 			);
 		}
+
 	//	file_put_contents("php://stderr", print_r($result, true));
+
 		if (hasErrorCode($result)) {
 			flash("error", "Erro ao ".($review?"atualizar":"registrar")." resenha: ".$result["message"]);
 		} else {

@@ -10,25 +10,30 @@
 	/* resenhas */
 
 	$reviews = supabaseGet(
-	"reviews?".
-	"select=".
-		"loan_id,".
-		"rating,".
-		"status,".
-		"loan:loan_id(".
-			"id,".
-			"book:book_id(".
-				"id,".
-				"title".
-			"),".
-			"reader:reader(".
+		"reviews?".
+		"select=".
+			"loan_id,".
+			"rating,".
+			"status,".
+			"moderated_at,".
+			"moderator:moderated_by(".
 				"name,".
 				"avatar".
-			")".
-		")",
+			"),".
+			"loan:loan_id(".
+				"id,".
+				"book:book_id(".
+					"id,".
+					"title".
+				"),".
+				"reader:reader(".
+					"name,".
+					"avatar".
+				")".
+			")",
 
-	$_SESSION["user"]["token"]
-);
+		$_SESSION["user"]["token"]
+	);
 
 	if (!is_array($reviews)) {
 		$reviews = [];
@@ -44,6 +49,7 @@
 			<th>Leitor</th>
 			<th>Nota</th>
 			<th>Status</th>
+			<th>Moderador</th>
 			<th>Ações</th>
 		</tr>
 	</thead>
@@ -65,16 +71,7 @@
 					$review["loan"]["reader"]["name"]
 					?? "Desconhecido"
 				)?>">
-					<div class="user-inline">
-						<img
-							src="<?=htmlspecialchars($review["loan"]["reader"]["avatar"])?>"
-							class="mini-avatar"
-							alt=""
-						>
-						<span>
-							<?=htmlspecialchars($review["loan"]["reader"]["name"])?>
-						</span>
-					</div>
+					<?=buildMiniAvatar($review["loan"]["reader"])?>
 				</td>
 
 				<td>
@@ -90,6 +87,20 @@
 
 				<td>
 					<?=buildStatus($review["status"])?>
+				</td>
+
+				<td>
+					<?php if (empty($review["moderator"])):?>
+						—
+					<?php else:?>
+					<?=buildMiniAvatar($review["moderator"])?>
+					<small>
+						<?=date(
+							"d/m/Y H:i",
+							strtotime($review["moderated_at"])
+						)?>
+					</small>
+					<?php endif;?>
 				</td>
 
 				<td>

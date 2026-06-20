@@ -161,7 +161,7 @@
 						<li><a onclick="loginGoogle()">Login</a></li>
 					<?php endif;?>
 					<?php if (isReviewer()):?>
-						<li><a href="/resenhas">Lista de Resenhas</a></li>
+						<li><a href="/resenhas">Lista de resenhas</a></li>
 					<?php endif;?>
 					<?php if (isAdmin()):?>
 						<li><a href="/emprestimos">Lista de empréstimos</a></li>
