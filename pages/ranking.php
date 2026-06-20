@@ -15,7 +15,6 @@
 	);
 
 ?>
-<link rel="stylesheet" href="/css/ranking.css">
 
 <h2>Ranking de leitores</h2>
 

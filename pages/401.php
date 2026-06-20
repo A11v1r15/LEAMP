@@ -7,6 +7,7 @@
 		);
 	$quote = $quotes[array_rand($quotes)];
 	http_response_code(401);
+	session_destroy();
 ?>
 
 <h2 class="error">Erro 401: Não autorizado</h2>

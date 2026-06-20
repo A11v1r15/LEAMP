@@ -114,12 +114,14 @@
 		<?php if (isAdmin()):?>
 			<?=buildAButton("blue",
 				"/criar_evento?id=".$event["id"], "→ Editar evento ou lançar nova edição")?>
-			<form method="POST" class="inline-form">
-				<?=buildFormButton("green",
-					"finalizar", "✓ Finalizar evento")?>
-				<?=buildFormButton("red",
-					"cancelar", "⨯ Cancelar evento")?>
-			</form>
+			<?php if(($event["status"] ?? "") === "Publicado"):?>
+				<form method="POST" class="inline-form">
+					<?=buildFormButton("green",
+						"finalizar", "✓ Finalizar evento")?>
+					<?=buildFormButton("red",
+						"cancelar", "⨯ Cancelar evento")?>
+				</form>
+			<?php endif;?>
 		<?php endif;?>
 	</div>
 </div>
