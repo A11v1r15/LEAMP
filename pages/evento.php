@@ -25,6 +25,23 @@
 
 	$page_title = buidEventTitle($event)." - LÉAMP";
 
+	if (isLogged()){
+		$presences = supabaseGet(
+			"presences?".
+			"event_id=eq.".$event["id"].
+			"&select=".
+				"created_at,".
+				"attendee:attendee(".
+					"uuid,".
+					"name,".
+					"avatar".
+				")".
+				"&order=created_at.asc",
+
+			$_SESSION["user"]["token"]
+		);
+	}
+
 	if ($_SERVER["REQUEST_METHOD"] === "POST" && isAdmin()) {
 		$result = supabasePatch(
 			"events?".
@@ -46,6 +63,13 @@
 		exit;
 	}
 
+	function canRegisterPresence($event) {
+		if ($event["status"] !== "Publicado") {
+			return false;
+		}
+		$start = strtotime($event["start_time"]);
+		return time() >= ($start - 1800);
+	}
 ?>
 <div class="main-page-container">
 	<div class="main-page">
@@ -99,3 +123,34 @@
 		<?php endif;?>
 	</div>
 </div>
+<?php if (isLogged()):?>
+	<h2>Participantes:</h2>
+	<?php if (isAdmin()):?>
+		<?php if (canRegisterPresence($event)):?>
+			<?=buildAButton("blue",
+				"/presenca?id=".$event["id"], "↓ Adicionar presença")?>
+		<?php elseif(($event["status"] ?? "") === "Publicado"):?>
+			<?=buildSmallCard([
+				"color" => "yellow",
+				"text" => "O registro de presença será liberado 30 minutos antes do início do evento."
+			])?>
+		<?php endif;?>
+	<?php endif;?>
+	<?php if (empty($presences)): ?>
+		<?=buildSmallCard([
+			"color" => "gray",
+			"text" => "Nenhuma presença registrada."
+		])?>
+	<?php else: ?>
+		<div class="small-card-container">
+			<?php foreach ($presences as $presence): ?>
+				<?=buildSmallCard([
+					"user" => $presence["attendee"],
+					"title" => $presence["attendee"]["name"],
+					"deadline" =>
+						"Registrado em ".
+						date("d/m/Y H:i", strtotime($presence["created_at"]))])?>
+			<?php endforeach;?>
+		</div>
+	<?php endif; ?>
+<?php endif;?>
