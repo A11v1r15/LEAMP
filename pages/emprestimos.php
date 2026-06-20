@@ -52,7 +52,7 @@
 			<th>Emprestado em</th>
 			<th>Concedente</th>
 			<th>Data limite</th>
-			<th>Recebido</th>
+			<th>Recebimento</th>
 			<th>Status</th>
 			<th>Ações</th>
 		</tr>
@@ -99,7 +99,7 @@
 					?? "Desconhecido"
 				)?>">
 					<?php if ($loan["is_active"]):?>
-						Não
+						—
 					<?php else:?>
 						<?=buildMiniAvatar($loan["receiver"])?>
 						<small>

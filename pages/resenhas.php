@@ -49,7 +49,7 @@
 			<th>Leitor</th>
 			<th>Nota</th>
 			<th>Status</th>
-			<th>Moderador</th>
+			<th>Moderação</th>
 			<th>Ações</th>
 		</tr>
 	</thead>
@@ -89,23 +89,23 @@
 					<?=buildStatus($review["status"])?>
 				</td>
 
-				<td>
+				<td data-order="<?=htmlspecialchars(
+					$review["moderator"]["name"] ?? ""
+				)?>">
 					<?php if (empty($review["moderator"])):?>
 						—
 					<?php else:?>
-					<?=buildMiniAvatar($review["moderator"])?>
-					<small>
-						<?=date(
-							"d/m/Y H:i",
-							strtotime($review["moderated_at"])
-						)?>
-					</small>
+						<?=buildMiniAvatar($review["moderator"])?>
+						<small>
+							<?=date("d/m/Y H:i", strtotime($review["moderated_at"]))?>
+						</small>
 					<?php endif;?>
 				</td>
 
 				<td>
 					<?=buildAButton("blue",
-						"/resenha?id=".$review["loan_id"], "👓 Revisar")?>
+						"/resenha?id=".$review["loan_id"], empty($review["moderator"])?
+							"👓 Revisar" : "👁 Visualizar")?>
 				</td>
 			</tr>
 		<?php endforeach;?>
