@@ -39,7 +39,7 @@ $event = supabaseGet(
 );
 $event = $event[0]?? null;
 if ($event["title"]) {
-	$page_title = "Presença: ".buidEventTitle($event)." - LÉAMP";
+	$page_title = "Presença: ".buildEventTitle($event)." - LÉAMP";
 }
 
 /* envia formulário */
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	if (hasErrorCode($result)) {
 		flash("error", "Erro ao registrar presença: " . $result["message"]);
 	} else {
-		flash("success", "Presença de ".$attendee["name"]." em ".buidEventTitle($event)." registrada com sucesso!");
+		flash("success", "Presença de ".$attendee["name"]." em ".buildEventTitle($event)." registrada com sucesso!");
 		session_write_close();
 		header("Location: /evento?id=".$event_id);
 		exit;
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 <h2>
-	Presença em <?=buidEventTitle($event)?>
+	Presença em <?=buildEventTitle($event)?>
 </h2>
 
 <div class="main-page-container">

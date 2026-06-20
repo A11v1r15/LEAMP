@@ -37,7 +37,7 @@
 	<div class="big-card-container">
 		<?php foreach ($published as $event): ?>
 			<?=buildBigCard([
-				"title" => buidEventTitle($event),
+				"title" => buildEventTitle($event),
 				"status" => getEventStatus($event),
 				"labelsText" => [
 					["Data: ", date("d/m/Y H:i", strtotime($event["start_time"])).
@@ -72,7 +72,7 @@
 				<tr>
 					<td>
 						<a href="/evento?id=<?=$event["id"]?>"
-						><?=buidEventTitle($event)?>
+						><?=buildEventTitle($event)?>
 						</a>
 					</td>
 

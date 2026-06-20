@@ -11,7 +11,7 @@ function buildStatus(string $type) {
 		"</span>";
 }
 
-function buidEventTitle(array $event): string {
+function buildEventTitle(array $event): string {
 	return
 		htmlspecialchars($event["title"]).
 		(!empty($event["edition"])?

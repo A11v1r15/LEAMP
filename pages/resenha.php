@@ -178,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		</div>
 
 		<?php if (isNotTheReader()): ?>
-			<?=buildSmallCard($card=[
+			<?=buildSmallCard([
 				"color" => "blue",
 				"strong" => "Sobre aceitar a resenha:",
 				"text" =>
@@ -197,7 +197,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 					podem ser rejeitadas."
 			])?>
 		<?php else: ?>
-			<?=buildSmallCard($card=[
+			<?=buildSmallCard([
 				"color" => "blue",
 				"strong" => "Sobre o comentário:",
 				"text" =>
@@ -247,7 +247,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		><?= $review["favorite_excerpt"] ?? "" ?></textarea>
 
 		<?php if (!isNotTheReader()): ?>
-			<?=buildSmallCard($card=[
+			<?=buildSmallCard([
 				"color" => "blue",
 				"strong" => "Sobre a resenha:",
 				"text" =>
@@ -283,7 +283,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		><?= $review["review"] ?? "" ?></textarea>
 
 		<?php if (!isNotTheReader() && $review["status"] === "Aprovado"): ?>
-			<?=buildSmallCard($card=[
+			<?=buildSmallCard([
 				"color" => "yellow",
 				"strong" => "Atenção!",
 				"text" =>

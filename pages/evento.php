@@ -23,7 +23,7 @@
 
 	$event = $event[0];
 
-	$page_title = buidEventTitle($event)." - LÉAMP";
+	$page_title = buildEventTitle($event)." - LÉAMP";
 
 	if (isLogged()){
 		$presences = supabaseGet(
@@ -55,7 +55,7 @@
 		if (hasErrorCode($result)) {
 			flash("error", "Erro ao ".$_POST["action"]." evento: " . $result["message"]);
 		} else {
-			flash("success", buidEventTitle($event)." ".substr($_POST["action"], 0, -1)."do com sucesso!");
+			flash("success", buildEventTitle($event)." ".substr($_POST["action"], 0, -1)."do com sucesso!");
 			cacheDelete("eventos");
 			session_write_close();
 			header("Location: /eventos");
@@ -75,7 +75,7 @@
 	<div class="main-page">
 		<div class="event-header">
 			<h2>
-				<?=buidEventTitle($event)?>
+				<?=buildEventTitle($event)?>
 			</h2>
 			<?=buildStatus(getEventStatus($event))?>
 		</div>
