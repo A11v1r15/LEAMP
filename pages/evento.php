@@ -116,8 +116,10 @@
 				"/criar_evento?id=".$event["id"], "→ Editar evento ou lançar nova edição")?>
 			<?php if(($event["status"] ?? "") === "Publicado"):?>
 				<form method="POST" class="inline-form">
-					<?=buildFormButton("green",
-						"finalizar", "✓ Finalizar evento")?>
+					<?php if(time() >= strtotime($event["start_time"])):?>
+						<?=buildFormButton("green",
+							"finalizar", "✓ Finalizar evento")?>
+					<?php endif;?>
 					<?=buildFormButton("red",
 						"cancelar", "⨯ Cancelar evento")?>
 				</form>
@@ -135,22 +137,25 @@
 			<?=buildSmallCard([
 				"color" => "yellow",
 				"text" => "O registro de presença será liberado 30 minutos antes do início do evento."
-			])?>
+			]);
+			$adminYellowCard = true;?>
 		<?php endif;?>
 	<?php endif;?>
 	<?php if (empty($presences)): ?>
-		<?=buildSmallCard([
-			"color" => "gray",
-			"text" => "Nenhuma presença registrada."
-		])?>
+		<?php if (!isset($adminYellowCard)): ?>
+			<?=buildSmallCard([
+				"color" => "gray",
+				"text" => (time() >= strtotime($event["start_time"]))?
+					"Nenhuma presença registrada.":"O evento ainda não está aceitando presenças."
+			])?>
+		<?php endif;?>
 	<?php else: ?>
 		<div class="small-card-container">
 			<?php foreach ($presences as $presence): ?>
 				<?=buildSmallCard([
 					"user" => $presence["attendee"],
 					"title" => $presence["attendee"]["name"],
-					"deadline" =>
-						"Registrado em ".
+					"deadline" => "Registrado em ".
 						date("d/m/Y H:i", strtotime($presence["created_at"]))])?>
 			<?php endforeach;?>
 		</div>
