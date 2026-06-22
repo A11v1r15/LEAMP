@@ -18,6 +18,11 @@ function isLogged() {
 	return isset($_SESSION["user"]);
 }
 
+function isAuthorised() {
+	return isLogged() &&
+	$_SESSION["user"]["role"] !== "Pendente";
+}
+
 function isReviewer() {
 return
 	isLogged() &&
@@ -29,6 +34,14 @@ function isAdmin() {
 return
 	isLogged() &&
 	$_SESSION["user"]["role"] === "Concedente";
+}
+
+function requireAuthorised() {
+	if (!isAuthorised()) {
+		throw new HttpError(
+			403, "pages/403.php"
+		);
+	}
 }
 
 function requireLogged() {

@@ -23,16 +23,19 @@ $user = supabaseGet(
 $result = null;
 
 if (empty($user)) {
+	$role = str_ends_with($email, "ifce.edu.br")?
+		"Leitor" : "Pendente";
+
 	$result = supabasePost(
 		"users", [
 			"uuid" => $uuid,
-			"role" => "Leitor",
+			"role" => $role,
 			"name" => $name,
-			"avatar" => $avatar
+			"avatar" => $avatar,
+			"email" => $email
 		],
 		$token
 	);
-	$role = "Leitor";
 
 	if (is_array($result)
 		&& !isset($result["code"])) {

@@ -2,7 +2,7 @@
 
 	require_once "includes/supabase.php";
 
-	requireLogged();
+	requireAuthorised();
 
 	$page_title = "Ranking - LÉAMP";
 

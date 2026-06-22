@@ -25,7 +25,7 @@
 
 	$page_title = buildEventTitle($event)." - LÉAMP";
 
-	if (isLogged()){
+	if (isAuthorised()){
 		$presences = supabaseGet(
 			"presences?".
 			"event_id=eq.".$event["id"].
@@ -127,7 +127,7 @@
 		<?php endif;?>
 	</div>
 </div>
-<?php if (isLogged()):?>
+<?php if (isAuthorised()):?>
 	<h2>Participantes:</h2>
 	<?php if (isAdmin()):?>
 		<?php if (canRegisterPresence($event)):?>

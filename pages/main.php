@@ -135,7 +135,7 @@
 					<li><a href="/">Início</a></li>
 					<li><a href="/instrucoes">Instruções</a></li>
 					<li><a href="/livros">Livros</a></li>
-					<?php if (isLogged()):?>
+					<?php if (isAuthorised()):?>
 						<li><a href="/ranking">Ranking</a></li>
 					<?php endif;?>
 					<li><a href="/eventos">Eventos</a></li>

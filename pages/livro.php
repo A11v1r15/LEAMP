@@ -25,7 +25,7 @@
 
 	$page_title = $book["title"]." - LÉAMP";
 
-	if (isLogged()) {
+	if (isAuthorised()) {
 
 		$loan = supabaseGet(
 			"loans?" .
@@ -155,7 +155,7 @@
 				"/emprestimo?id=".$book["id"], "→ Emprestar livro")?>
 		<?php endif;?>
 
-		<?php if (isLogged() && $loan && $user):?>
+		<?php if (isAuthorised() && $loan && $user):?>
 			<?=buildSmallCard([
 				"color" => isOverdue($loan["deadline"], $loan["is_active"])?"red":"green",
 				"user" => $user,
