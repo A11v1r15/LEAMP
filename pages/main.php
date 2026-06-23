@@ -165,6 +165,7 @@
 					<?php endif;?>
 					<?php if (isAdmin()):?>
 						<li><a href="/emprestimos">Lista de empréstimos</a></li>
+						<li><a href="/usuarios">Lista de usuários</a></li>
 						<li><a href="/doar">Adicionar livros</a></li>
 						<li><a href="/criar_evento">Criar evento</a></li>
 					<?php endif;?>
