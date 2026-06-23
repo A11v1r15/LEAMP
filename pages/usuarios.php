@@ -103,14 +103,16 @@
 
 				<td>
 					<select
-						class="role-select"
+						class="role-select<?=str_ends_with($user["email"], "ifce.edu.br")?"":" Externo"?>"
 						data-uuid="<?=htmlspecialchars($user["uuid"])?>"
 						data-current="<?=htmlspecialchars($user["role"])?>"
 					>
 						<option value="Pendente" <?=$user["role"] === "Pendente" ? "selected" : ""?>>Pendente</option>
 						<option value="Leitor" <?=str_starts_with($user["role"], "Leitor")? "selected" : ""?>>Leitor</option>
 						<option value="Revisor" <?=$user["role"] === "Revisor" ? "selected" : ""?>>Revisor</option>
-						<option value="Concedente" <?=$user["role"] === "Concedente" ? "selected" : ""?>>Concedente</option>
+						<?php if(str_ends_with($user["email"], "ifce.edu.br")):?>
+							<option value="Concedente" <?=$user["role"] === "Concedente" ? "selected" : ""?>>Concedente</option>
+						<?php endif;?>
 					</select>
 				</td>
 
@@ -126,6 +128,31 @@
 </table>
 
 <script>
+	const ROLE_CLASSES = ["Pendente", "Leitor", "Revisor", "Concedente"];
+
+	function updateSelectClass(select) {
+		const currentRole = select.value;
+		const roleClass = currentRole;
+		
+		ROLE_CLASSES.forEach((cls) => {
+			select.classList.remove(cls);
+		});
+		
+		select.classList.add(roleClass);
+	}
+
+	function initRoleSelectClasses() {
+		document.querySelectorAll(".role-select").forEach((select) => {
+			updateSelectClass(select);
+			
+			select.addEventListener("change", () => {
+				updateSelectClass(select);
+			});
+		});
+	}
+
+	document.addEventListener("DOMContentLoaded", initRoleSelectClasses);
+
 	new DataTable(
 		"#tabelaUsers",
 		{
@@ -166,6 +193,7 @@
 						"error"
 					);
 					select.value = currentRole;
+					updateSelectClass(select);
 					return;
 				}
 
@@ -174,6 +202,7 @@
 			} catch (err) {
 				showFlash("Erro na requisição: " + err.message, "error");
 				select.value = currentRole;
+				updateSelectClass(select);
 			}
 		});
 	});

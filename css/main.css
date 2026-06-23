@@ -317,14 +317,14 @@ form input {
 	font-size: 1rem;
 }
 
-form select {
+select {
 	padding: 12px;
 	border-radius: 12px;
 	border: 1px solid #ccc;
 	font-size: 1rem;
 }
 
-form textarea {
+textarea {
 	padding: 12px;
 	border-radius: 12px;
 	border: 1px solid #ccc;
