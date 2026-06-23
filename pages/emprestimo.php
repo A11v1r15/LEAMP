@@ -9,7 +9,7 @@ $page_title = "Empréstimo - LÉAMP";
 
 $users = supabaseGet(
 	"users?".
-	"select=uuid,name,avatar",
+	"select=*",
 
 	$_SESSION["user"]["token"]
 );
@@ -81,8 +81,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 					value="<?=$u["uuid"]?>"
 					data-name="<?=htmlspecialchars($u["name"])?>"
 					data-avatar="<?=htmlspecialchars($u["avatar"])?>"
+					data-role="<?=htmlspecialchars($u["role"])?>"
 				>
-					<?=$u["name"]?>
+					<?=$u["name"]?> (<?=$u["email"]?>)
 				</option>
 			<?php endforeach;?>
 		</select>

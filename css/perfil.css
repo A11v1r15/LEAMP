@@ -36,31 +36,6 @@
 	margin-top: 6px;
 }
 
-.profile-role-badge {
-	display: inline-block;
-	padding: 8px 14px;
-	border-radius: 16px;
-	color: var(--text-white);
-	font-weight: bold;
-	font-size: 0.95rem;
-	letter-spacing: 0.3px;
-}
-
-.profile-role-badge.Concedente {
-	background: var(--fancy-magenta);
-	box-shadow: 0 4px 16px rgba(#e04e9c,0.25);
-}
-
-.profile-role-badge.Revisor {
-	background: var(--fancy-orange);
-	box-shadow: 0 4px 16px rgba(#f0865f,0.25);
-}
-
-.profile-role-badge.Leitor {
-	background: var(--fancy-teal);
-	box-shadow: 0 4px 16px rgba(#5d9b98,0.25);
-}
-
 @media (prefers-color-scheme: dark) {
 	.profile-header {
 		background:

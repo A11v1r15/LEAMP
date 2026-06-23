@@ -55,6 +55,11 @@ function buildAvatar(array $user, $ranking = null, $dynamic = false) {
 					src="/img/Crown.png"
 					alt="Crown">
 			<?php endif; ?>
+
+			<span
+				class="badge <?=$user["role"]??""?>"
+				<?=$dynamic?"id='preview-role'":""?>
+				><?=htmlspecialchars($user["role"]??"")?></span>
 		</div>
 	<?php
 	return ob_get_clean();

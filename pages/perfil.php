@@ -66,14 +66,6 @@
 				$_SESSION["user"]["email"]
 			)?>
 		</div>
-
-		<div class="profile-role">
-			<span class="profile-role-badge <?=$_SESSION["user"]["role"]?>">
-				<?=htmlspecialchars(
-					$_SESSION["user"]["role"]
-				)?>
-			</span>
-		</div>
 	</div>
 </div>
 

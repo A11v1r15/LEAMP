@@ -444,6 +444,50 @@ button.button {
 	pointer-events: none;
 }
 
+.avatar-wrapper .badge {
+	position: absolute;
+	left: 28px;
+	transform: translateX(-50%);
+	bottom: -7px;
+	margin: 0;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 7px;
+    border-radius: 16px;
+    color: var(--text-white);
+    font-weight: bold;
+    font-size: 0.5rem;
+    letter-spacing: 0.3px;
+    margin: 0px -7px;
+}
+
+.badge.Concedente {
+	background: var(--fancy-magenta);
+	box-shadow: 0 4px 16px rgba(#e04e9c, 0.25);
+}
+
+.badge.Revisor {
+	background: var(--fancy-orange);
+	box-shadow: 0 4px 16px rgba(#f0865f, 0.25);
+}
+
+.badge.Leitor {
+	background: var(--fancy-green);
+	box-shadow: 0 4px 16px rgba(#1c4032, 0.25);
+}
+
+.badge.Leitor.Externo {
+	background: var(--fancy-teal);
+	box-shadow: 0 4px 16px rgba(#5d9b98, 0.25);
+}
+
+.badge.Pendente {
+	background: var(--main-gray);
+	box-shadow: 0 4px 16px rgba(var(--main-gray), 0.25);
+}
+
 /* SMALL CARD */
 
 .small-card-container {
