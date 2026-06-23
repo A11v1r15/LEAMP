@@ -45,8 +45,7 @@
 	if ($_SERVER["REQUEST_METHOD"] === "POST" && isAdmin()) {
 		$result = supabasePatch(
 			"events?".
-			"id=eq.$id",
-			[
+			"id=eq.$id", [
 				"status" => ucfirst(substr($_POST["action"], 0, -1)."do")
 			],
 			$_SESSION["user"]["token"]

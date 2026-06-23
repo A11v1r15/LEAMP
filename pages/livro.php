@@ -103,8 +103,7 @@
 		if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? "") === "approve") {
 			$result = supabasePatch(
 				"books?".
-				"id=eq.$id",
-				[
+				"id=eq.$id", [
 					"status" => "Disponível"
 				],
 				$_SESSION["user"]["token"]

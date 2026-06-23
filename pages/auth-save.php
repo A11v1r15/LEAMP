@@ -50,8 +50,8 @@ if (empty($user)) {
 		$user[0]["avatar"] !== $avatar
 		) {
 			$result = supabasePatch(
-				"users?uuid=eq.$uuid",
-				[
+				"users?".
+				"uuid=eq.$uuid",[
 					"name" => $name,
 					"avatar" => $avatar
 				],

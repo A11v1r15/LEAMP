@@ -86,8 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 		$result = supabasePatch(
 			"loans?".
-			"id=eq.$loan_id",
-			[
+			"id=eq.$loan_id", [
 				"deadline" => $new_deadline
 			],
 			$_SESSION["user"]["token"]
@@ -110,8 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	if ($action === "return") {
 		$result = supabasePatch(
 			"loans?".
-			"id=eq.$loan_id",
-			[
+			"id=eq.$loan_id", [
 				"is_active" => false,
 				"receiver" => $_SESSION["user"]["uuid"],
 				"end_date" => date("c")
@@ -121,8 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 		$result = supabasePatch(
 			"books?".
-			"id=eq.".$loan["book_id"],
-			[
+			"id=eq.".$loan["book_id"], [
 				"status" => "Disponível"
 			],
 			$_SESSION["user"]["token"]

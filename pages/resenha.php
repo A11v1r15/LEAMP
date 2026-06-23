@@ -77,8 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 		$result = supabasePatch(
 			"reviews?".
-			"loan_id=eq.".$review["loan_id"],
-			[
+			"loan_id=eq.".$review["loan_id"], [
 				"status" => "Aprovado",
 				"moderated_by" => $_SESSION["user"]["uuid"],
 				"moderated_at" => date("c")
@@ -118,8 +117,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				$data["status"] = $review["status"];
 			}
 			$result = supabasePatch(
-				"reviews?loan_id=eq.".$review["loan_id"],
-				$data,
+				"reviews?".
+				"loan_id=eq.".$review["loan_id"],
+					$data,
+
 				$_SESSION["user"]["token"]
 			);
 		} else {
@@ -141,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			session_write_close();
 			header("Location: /livro?id=".$loan["book"]["id"]);
 		}
-			exit;
+		exit;
 	}
 }
 
