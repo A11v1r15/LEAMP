@@ -71,7 +71,7 @@ function buildMiniAvatar(array $user) {
 		<div class="user-inline">
 			<img
 				src="<?=htmlspecialchars($user["avatar"])?>"
-				class="mini-avatar"
+				class="mini-avatar <?=htmlspecialchars($user["role"])?>"
 				alt=""
 			>
 			<span>

@@ -268,13 +268,6 @@ table tbody tr:last-child td:last-child {
 	gap: 10px;
 }
 
-.mini-avatar {
-	width: 32px;
-	height: 32px;
-	border-radius: 50%;
-	object-fit: cover;
-}
-
 .rating {
 	font-size: 1.3rem;
 	background-image: var(--fancy-orange);
@@ -432,6 +425,14 @@ button.button {
 	object-fit: cover;
 }
 
+.mini-avatar {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	object-fit: cover;
+    padding: 4px;
+}
+
 .avatar + .crown {
 	display: block;
 }
@@ -463,27 +464,27 @@ button.button {
     margin: 0px -7px;
 }
 
-.badge.Concedente {
+.Concedente {
 	background: var(--fancy-magenta);
 	box-shadow: 0 4px 16px rgba(#e04e9c, 0.25);
 }
 
-.badge.Revisor {
+.Revisor {
 	background: var(--fancy-orange);
 	box-shadow: 0 4px 16px rgba(#f0865f, 0.25);
 }
 
-.badge.Leitor {
+.Leitor {
 	background: var(--fancy-green);
 	box-shadow: 0 4px 16px rgba(#1c4032, 0.25);
 }
 
-.badge.Leitor.Externo {
+.Leitor.Externo {
 	background: var(--fancy-teal);
 	box-shadow: 0 4px 16px rgba(#5d9b98, 0.25);
 }
 
-.badge.Pendente {
+.Pendente {
 	background: var(--main-gray);
 	box-shadow: 0 4px 16px rgba(var(--main-gray), 0.25);
 }

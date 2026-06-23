@@ -23,15 +23,18 @@
 			"),".
 			"reader:reader(".
 				"name,".
-				"avatar".
+				"avatar,".
+				"role".
 			"),".
 			"grantor:grantor(".
 				"name,".
-				"avatar".
+				"avatar,".
+				"role".
 			"),".
 			"receiver:receiver(".
 				"name,".
-				"avatar".
+				"avatar,".
+				"role".
 			")",
 
 		$_SESSION["user"]["token"]

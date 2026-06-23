@@ -18,7 +18,8 @@
 			"moderated_at,".
 			"moderator:moderated_by(".
 				"name,".
-				"avatar".
+				"avatar,".
+				"role".
 			"),".
 			"loan:loan_id(".
 				"id,".
@@ -28,7 +29,8 @@
 				"),".
 				"reader:reader(".
 					"name,".
-					"avatar".
+					"avatar,".
+					"role".
 				")".
 			")",
 
