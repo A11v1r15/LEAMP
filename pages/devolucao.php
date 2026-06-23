@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			"loans?".
 			"id=eq.$loan_id",
 			[
-				"deadline" => $new_deadline."-03:00"
+				"deadline" => $new_deadline
 			],
 			$_SESSION["user"]["token"]
 		);
@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			[
 				"is_active" => false,
 				"receiver" => $_SESSION["user"]["uuid"],
-				"end_date" => date("c")."-03:00"
+				"end_date" => date("c")
 			],
 			$_SESSION["user"]["token"]
 		);

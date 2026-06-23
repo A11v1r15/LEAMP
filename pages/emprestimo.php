@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		"loans", [
 			"reader" => $reader,
 			"grantor" => $grantor,
-			"deadline" => $deadline."-03:00",
+			"deadline" => $deadline,
 			"book_id" => $book_id
 		],
 		$_SESSION["user"]["token"]
