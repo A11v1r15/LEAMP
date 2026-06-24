@@ -109,8 +109,8 @@
 					>
 						<option value="Pendente" <?=$user["role"] === "Pendente" ? "selected" : ""?>>Pendente</option>
 						<option value="Leitor" <?=str_starts_with($user["role"], "Leitor")? "selected" : ""?>>Leitor</option>
-						<option value="Revisor" <?=$user["role"] === "Revisor" ? "selected" : ""?>>Revisor</option>
 						<?php if(str_ends_with($user["email"], "ifce.edu.br")):?>
+							<option value="Revisor" <?=$user["role"] === "Revisor" ? "selected" : ""?>>Revisor</option>
 							<option value="Concedente" <?=$user["role"] === "Concedente" ? "selected" : ""?>>Concedente</option>
 						<?php endif;?>
 					</select>
