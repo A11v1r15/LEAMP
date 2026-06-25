@@ -53,7 +53,8 @@ $user = supabaseGet(
 	"&select=".
 		"uuid,".
 		"name,".
-		"avatar",
+		"avatar,".
+		"role",
 
 	$_SESSION["user"]["token"]
 );

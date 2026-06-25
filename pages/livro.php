@@ -59,8 +59,12 @@
 
 			$user = supabaseGet(
 				"users?" .
-				"uuid=eq.$reader_id" .
-				"&select=uuid,name,avatar",
+				"uuid=eq.$reader_id".
+				"&select=".
+					"uuid,".
+					"name,".
+					"avatar,".
+					"role",
 
 				$_SESSION["user"]["token"] ?? null
 			);
