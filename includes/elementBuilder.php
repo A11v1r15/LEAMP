@@ -82,6 +82,21 @@ function buildMiniAvatar(array $user) {
 	return ob_get_clean();
 }
 
+function buildRating($rating) {
+	ob_start();
+	?>
+		<div class="rating" title="<?=$rating?>">
+			<?php
+				echo str_repeat("★",
+					(int)$rating);
+				echo str_repeat("☆",
+					5 - (int)$rating);
+			?>
+		</div>
+	<?php
+	return ob_get_clean();
+}
+
 function buildSmallCard(array $card) {
 	$dynamic = isset($card["dynamic"]);
 	$user = $card["user"]??[];
@@ -171,14 +186,7 @@ function buildBigCard(array $card) {
 					</div>
 				<?php endif;?>
 				<?php if(isset($card["rating"]) && $card["rating"] != "0"):?>
-					<div class="rating">
-						<?php
-							echo str_repeat("★",
-								(int)$card["rating"]);
-							echo str_repeat("☆",
-								5 - (int)$card["rating"]);
-						?>
-					</div>
+					<?=buildRating($card["rating"])?>
 				<?php endif;?>
 				<?php if(isset($card["status"])):?>
 					<?=buildStatus($card["status"])?>

@@ -77,14 +77,7 @@
 				</td>
 
 				<td>
-					<div class="rating">
-						<?php
-							echo str_repeat("★",
-								(int)$review["rating"]);
-							echo str_repeat("☆",
-								5 - (int)$review["rating"]);
-						?>
-					</div>
+					<?=buildRating($review["rating"])?>
 				</td>
 
 				<td>

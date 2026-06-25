@@ -42,8 +42,8 @@
 				<td>
 					<?=htmlspecialchars($book["reviews_count"])?>
 				</td>
-				<td>
-					<?=$book["rating_avg"]?>
+				<td data-order="<?=$book["rating_avg"]??""?>">
+					<?=$book["rating_avg"]?buildRating($book["rating_avg"]):"—"?>
 				</td>
 				<td>
 					<?=buildStatus($book["status"])?>
