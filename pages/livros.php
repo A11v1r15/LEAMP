@@ -7,7 +7,7 @@
 
 	$books = getCacheOrFetch(
 		"livros",
-		"books?".
+		"books_ranked?".
 		"select=*"
 	);
 ?>
@@ -20,6 +20,9 @@
 		<tr>
 			<th>Título</th>
 			<th>Autores</th>
+			<th>Empréstimos</th>
+			<th>Resenhas</th>
+			<th>Classificação</th>
 			<th>Status</th>
 		</tr>
 	</thead>
@@ -30,7 +33,18 @@
 				<td><a href="/livro?id=<?=$book["id"]?>">
 					<?=htmlspecialchars($book["title"])?>
 				</a></td>
-				<td><?=htmlspecialchars($book["author"])?></td>
+				<td>
+					<?=htmlspecialchars($book["author"])?>
+				</td>
+				<td>
+					<?=htmlspecialchars($book["loans_count"])?>
+				</td>
+				<td>
+					<?=htmlspecialchars($book["reviews_count"])?>
+				</td>
+				<td>
+					<?=$book["rating_avg"]?>
+				</td>
 				<td>
 					<?=buildStatus($book["status"])?>
 				</td>

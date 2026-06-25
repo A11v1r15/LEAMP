@@ -1,6 +1,7 @@
 <?php
 
 require_once "includes/supabase.php";
+require_once "includes/cache.php";
 
 requireLogged();
 
@@ -89,6 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			flash("error", "Erro ao aceitar resenha: ".$result["message"]);
 		} else {
 			flash("success", "Resenha aceita com sucesso!");
+			cacheDelete("livros");
 			session_write_close();
 			header("Location: /livro?id=".$loan["book"]["id"]);
 		}
@@ -139,6 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			flash("error", "Erro ao ".($review?"atualizar":"registrar")." resenha: ".$result["message"]);
 		} else {
 			flash("success", "Resenha ".($review?"atualizada":"registrada")." com sucesso!");
+			if ($review) cacheDelete("livros");
 			session_write_close();
 			header("Location: /livro?id=".$loan["book"]["id"]);
 		}
