@@ -697,10 +697,10 @@ footer {
 }
 
 .footer-logos img {
-	height: 100px;
+	height: 70px;
 	object-fit: contain;
 	background: white;
-	padding: 4px;
+	padding: 10px;
 	border-radius: 16px;
 }
 
