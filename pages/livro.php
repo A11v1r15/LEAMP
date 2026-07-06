@@ -11,7 +11,7 @@
 	}
 
 	$book = supabaseGet(
-		"books?".
+		"books_ranked?".
 		"id=eq.$id".
 		"&select=*"
 	);
@@ -134,7 +134,7 @@
 		<div class="book-header">
 			<div class="book-meta">
 				<h2><?=htmlspecialchars($book["title"])?></h2>
-
+				<?=buildRating($book["rating_avg"])?>
 				<div class="book-author">
 					<?=htmlspecialchars($book["author"])?>
 				</div>
