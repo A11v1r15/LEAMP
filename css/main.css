@@ -11,6 +11,12 @@
 	--light-blue:   #e4ebf4;
 	--main-blue:    #0d6efd;
 	--dark-blue:    #0d3b66;
+	--light-orange: #fccd87;
+	--main-orange:  #ff9900;
+	--dark-orange:  #995c00;
+	--light-purple: #f0a6c1;
+	--main-purple:  #8f1c4b;
+	--dark-purple:  #410c22;
 	--light-gray:   #e2e3e5;
 	--main-gray:    #999999;
 	--dark-gray:    #41464b;
@@ -378,6 +384,14 @@ button.button {
 	background: var(--main-blue);
 }
 
+.button.orange {
+	background: var(--main-orange);
+}
+
+.button.purple {
+	background: var(--main-purple);
+}
+
 .status {
 	display: inline-block;
 	padding: 4px 10px;
@@ -407,6 +421,16 @@ button.button {
 .status.blue {
 	background: var(--light-blue);
 	color:      var(--dark-blue);
+}
+
+.status.orange {
+	background: var(--light-orange);
+	color:      var(--dark-orange);
+}
+
+.status.purple {
+	background: var(--light-purple);
+	color:      var(--dark-purple);
 }
 
 /* AVATAR */
@@ -537,6 +561,18 @@ button.button {
 	background:        var(--light-blue);
 	border-left-color: var(--main-blue);
 	color:             var(--dark-blue);
+}
+
+.small-card.orange {
+	background:        var(--light-orange);
+	border-left-color: var(--main-orange);
+	color:             var(--dark-orange);
+}
+
+.small-card.purple {
+	background:        var(--light-purple);
+	border-left-color: var(--main-purple);
+	color:             var(--dark-purple);
 }
 
 .small-card .info {

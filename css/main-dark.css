@@ -83,6 +83,16 @@
 		color:      var(--light-blue);
 	}
 
+	.status.orange {
+		background: var(--dark-orange);
+		color:      var(--light-orange);
+	}
+
+	.status.purple {
+		background: var(--dark-purple);
+		color:      var(--light-purple);
+	}
+
 	/* SMALL CARD */
 
 	.small-card {
@@ -113,6 +123,18 @@
 		background:        var(--dark-blue);
 		border-left-color: var(--main-blue);
 		color:             var(--light-blue);
+	}
+
+	.small-card.orange {
+		background:        var(--dark-orange);
+		border-left-color: var(--main-orange);
+		color:             var(--light-orange);
+	}
+
+	.small-card.purple {
+		background:        var(--dark-purple);
+		border-left-color: var(--main-purple);
+		color:             var(--light-purple);
 	}
 
 	.title {

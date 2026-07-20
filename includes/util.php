@@ -112,6 +112,7 @@ function colorClass(string $string): string {
 		"extemporâneo",
 		"extemporaneo",
 		"rascunho",
+		"devolvido",
 		"yellow"
 			=> "yellow",
 

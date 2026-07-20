@@ -35,7 +35,13 @@ $loan = supabaseGet(
 $review = supabaseGet(
 	"reviews?".
 	"loan_id=eq.$loan_id".
-	"&select=*",
+	"&select=*,".
+		"moderator:moderated_by(".
+			"uuid,".
+			"name,".
+			"avatar,".
+			"role".
+		")",
 
 	$_SESSION["user"]["token"]
 );
@@ -52,16 +58,38 @@ if ($loan === null) {
 	$page_title = "Resenha: ".$loan["book"]["title"]." - LÉAMP";
 }
 
-function isNotTheReader() {
+function isTheReviewer() {
 	global $loan;
 	return $loan["reader"]["uuid"] !== $_SESSION["user"]["uuid"];
 }
 
-if (isNotTheReader() && !isReviewer()) {
+function isTheReader() {
+	return !isTheReviewer();
+}
+
+if (isTheReviewer() && !isReviewer()) {
 	throw new HttpError(
 		403, "pages/403.php"
 	);
 }
+
+$defaultFeedbackText =
+	"Escreva com suas próprias palavras.
+
+	Este comentário será utilizado para avaliar
+	sua compreensão da obra e, após aprovação,
+	também será exibido na página do livro para
+	ajudar outros leitores.
+
+	Você pode comentar sobre a história,
+	personagens, temas, momentos marcantes,
+	o que sentiu durante a leitura e se
+	recomendaria o livro.
+
+	Seja cordial e respeitoso, mesmo que tenha
+	opiniões negativas, e evite spoilers ou
+	detalhes que possam prejudicar a experiência
+	de quem ainda não leu a obra.";
 
 /* envia formulário */
 
@@ -100,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$data = [
 			"comment" => $_POST["comment"],
 			"favorite_excerpt" => $_POST["favorite_excerpt"],
-			"review" => $_POST["review"],
+			"feedback" => $_POST["feedback"],
 			"rating" => $_POST["rating"],
 			"typing_time" => $_POST["typing_time"],
 			"used_paste" => $_POST["used_paste"],
@@ -115,8 +143,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		// se já existe resenha, atualiza. senão, cria nova
 		if ($review) {
 			$data["updated_at"] = date("c");
-			if (isNotTheReader()) {
-				$data["status"] = $review["status"];
+			if (isTheReviewer()) {
+				$data["status"] = "Devolvido";
+				$data["comment"] = $review["comment"];
+				$data["rating"] = $review["rating"];
 			}
 			$result = supabasePatch(
 				"reviews?".
@@ -153,39 +183,40 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <link rel="stylesheet" href="/css/resenha.css">
 
 <h2>Resenha de: <?=$loan["book"]["title"]?></h2>
-<?php if (isNotTheReader() && $review === null): ?>
+<?php if (isTheReviewer() && $review === null): ?>
 	<h3><?=$loan["reader"]["name"]?> ainda não escreveu uma resenha para este livro.</h3>
 <?php return;
 	endif; ?>
-<?= ($review === null)?
-	"<span class='status gray'>Nova</span>"
-	:(($review["status"] === "Aprovado")?
-	"<span class='status green'>Aprovado</span>"
-	:"<span class='status yellow'>Pendente</span>")
+<?= ($review === null)?	buildStatus("Novo")	: buildStatus($review["status"]);
 ?>
 
 <div class="main-page-container">
 	<form class="main-page" method="POST">
-		<label>
+		<?php if (isTheReviewer()): ?>
 			<h3>Classificação:</h3>
-		</label>
-		<?php $rating = $review["rating"] ?? 0;?>
-		<div class="stars">
-			<input type="radio" name="rating" value="0" id="star0" <?= $rating == 0 ? "checked" : "" ?>>
-			<label for="star0">Não classificar ∣ </label>
-			<label for="star1">☆</label>
-			<input type="radio" name="rating" value="1" id="star1" hidden <?= $rating == 1 ? "checked" : "" ?>>
-			<label for="star2">☆</label>
-			<input type="radio" name="rating" value="2" id="star2" hidden <?= $rating == 2 ? "checked" : "" ?>>
-			<label for="star3">☆</label>
-			<input type="radio" name="rating" value="3" id="star3" hidden <?= $rating == 3 ? "checked" : "" ?>>
-			<label for="star4">☆</label>
-			<input type="radio" name="rating" value="4" id="star4" hidden <?= $rating == 4 ? "checked" : "" ?>>
-			<label for="star5">☆</label>
-			<input type="radio" name="rating" value="5" id="star5" hidden <?= $rating == 5 ? "checked" : "" ?>>
-		</div>
+			<?= buildRating($review["rating"]) ?>
+		<?php else: ?>
+			<label>
+				<h3>Classificação:</h3>
+			</label>
+			<?php $rating = $review["rating"] ?? 0;?>
+			<div class="stars">
+				<input type="radio" name="rating" value="0" id="star0" <?= $rating == 0 ? "checked" : "" ?>>
+				<label for="star0">Não classificar ∣ </label>
+				<label for="star1">☆</label>
+				<input type="radio" name="rating" value="1" id="star1" hidden <?= $rating == 1 ? "checked" : "" ?>>
+				<label for="star2">☆</label>
+				<input type="radio" name="rating" value="2" id="star2" hidden <?= $rating == 2 ? "checked" : "" ?>>
+				<label for="star3">☆</label>
+				<input type="radio" name="rating" value="3" id="star3" hidden <?= $rating == 3 ? "checked" : "" ?>>
+				<label for="star4">☆</label>
+				<input type="radio" name="rating" value="4" id="star4" hidden <?= $rating == 4 ? "checked" : "" ?>>
+				<label for="star5">☆</label>
+				<input type="radio" name="rating" value="5" id="star5" hidden <?= $rating == 5 ? "checked" : "" ?>>
+			</div>
+		<?php endif; ?>
 
-		<?php if (isNotTheReader()): ?>
+		<?php if (isTheReviewer()): ?>
 			<?=buildSmallCard([
 				"color" => "blue",
 				"strong" => "Sobre aceitar a resenha:",
@@ -205,40 +236,43 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 					podem ser rejeitadas."
 			])?>
 		<?php else: ?>
-			<?=buildSmallCard([
-				"color" => "blue",
-				"strong" => "Sobre o comentário:",
-				"text" =>
-					"Escreva com suas próprias
-					palavras.
-
-					Seja cordial e respeitoso,
-					mesmo que tenha opiniões negativas
-					sobre a obra. Lembre-se de que
-					o comentário é para ajudar outros
-					leitores e não para atacar o autor
-					ou a obra.
-
-					Apenas o comentário será exibido
-					na página do livro, então evite
-					spoilers ou detalhes que possam
-					estragar a experiência de outros leitores."
-			])?>
+			<?php if ($review && !empty($review["feedback"])): ?>
+				<?=buildSmallCard([
+					"color" => "blue",
+					"title" => "Feedback do revisor",
+					"user" => $review["moderator"],
+					"strong" => $review["moderator"]["name"] ?? "Revisor",
+					"text" => $review["feedback"]
+				])?>
+				<?php else: ?>
+					<?=buildSmallCard([
+						"color" => "blue",
+						"strong" => "Sobre o comentário:",
+						"text" => $defaultFeedbackText
+					])?>
+				<?php endif; ?>
 		<?php endif; ?>
-		<label for="comment">
+
+		<?php if (isTheReviewer()): ?>
 			<h3>Comentário:</h3>
-		</label>
-		<textarea
-			name="comment"
-			spellcheck="true"
-			lang="pt-BR"
-			autocapitalize="sentences"
-			autocomplete="on"
-			autocorrect="on"
-			rows="7"
-			placeholder="O que você achou do livro?"
-			class="protegido"
-		><?= $review["comment"] ?? "" ?></textarea>
+			<p><?= $review["comment"] ?? "" ?></p>
+		<?php else: ?>
+			<label for="comment">
+				<h3>Comentário:</h3>
+			</label>
+			<textarea
+				name="comment"
+				spellcheck="true"
+				lang="pt-BR"
+				autocapitalize="sentences"
+				autocomplete="on"
+				autocorrect="on"
+				rows="7"
+				placeholder="Escreva seu comentário sobre o livro. Ele será avaliado e, se aprovado, poderá ser exibido na página da obra."
+				class="protegido"
+				required
+			><?= $review["comment"] ?? "" ?></textarea>
+		<?php endif;?>
 
 		<label for="favorite_excerpt">
 			<h3>Trecho favorito:</h3>
@@ -254,43 +288,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			placeholder="Transcreva a sua parte favorita do livro '<?=$loan["book"]["title"]?>': Pode ser uma frase, um parágrafo ou uma cena inteira."
 		><?= $review["favorite_excerpt"] ?? "" ?></textarea>
 
-		<?php if (!isNotTheReader()): ?>
+		<?php if (isTheReviewer()): ?>
 			<?=buildSmallCard([
 				"color" => "blue",
-				"strong" => "Sobre a resenha:",
+				"strong" => "Sobre o feedback:",
 				"text" =>
-					"Escreva com suas próprias
-					palavras.
-
-					Vale comentar:
-					personagens,
-					partes favoritas,
-					o que sentiu lendo
-					ou se recomendaria
-					o livro.
-
-					A resenha serve para você
-					ser avaliado quanto ao seu
-					entendimento sobre a obra."
+					"Escreva o motivo da aceitação ou rejeição da resenha do leitor.
+					Seja cordial e respeitoso, lembre-se de que o objetivo é ajudar
+					o leitor a melhorar sua escrita e compreensão da obra."
 			])?>
+			<label for="feedback">
+				<h3>Feedback:</h3>
+			</label>
+			<textarea
+				name="feedback"
+				spellcheck="true"
+				lang="pt-BR"
+				autocapitalize="sentences"
+				autocomplete="on"
+				autocorrect="on"
+				rows="13"
+				placeholder="Por favor, expanda seu comentário"
+				required
+			><?= $review["feedback"] ?? $defaultFeedbackText ?></textarea>
 		<?php endif; ?>
-		<label for="review">
-			<h3>Resenha:</h3>
-		</label>
-		<textarea
-			name="review"
-			spellcheck="true"
-			lang="pt-BR"
-			autocapitalize="sentences"
-			autocomplete="on"
-			autocorrect="on"
-			rows="13"
-			placeholder="Resenha extendida sobre o livro, usada para avaliação detalhada. Escreva sobre o enredo, personagens, temas, estilo de escrita e sua opinião geral."
-			class="protegido"
-			required
-		><?= $review["review"] ?? "" ?></textarea>
-
-		<?php if (!isNotTheReader() && $review["status"] === "Aprovado"): ?>
+		<?php if (isTheReader() && $review["status"] === "Aprovado"): ?>
 			<?=buildSmallCard([
 				"color" => "yellow",
 				"strong" => "Atenção!",
@@ -301,16 +323,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 					revisor para voltar a ser exibida na página do livro."
 			])?>
 		<?php endif; ?>
-		<?php if (!$review && !isNotTheReader()): ?>
+		<?php if (!$review && isTheReader()): ?>
 			<?=buildFormButton("green",
 				"submit", "↑ Enviar resenha")?>
 		<?php else: ?>
 			<?=buildFormButton("yellow",
-				"submit", "🖉 ".(isNotTheReader()?
+				"submit", "🖉 ".(isTheReviewer()?
 						"Modificar":"Atualizar").
 					" resenha")?>
 		<?php endif; ?>
-		<?php if (isNotTheReader()): ?>
+		<?php if (isTheReviewer()): ?>
 			<?=buildFormButton("green",
 				"accept", "✓ Aceitar resenha")?>
 		<?php endif; ?>

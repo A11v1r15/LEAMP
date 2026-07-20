@@ -109,7 +109,7 @@
 				"subtitle" => (!$loan["is_active"])?"Finalizado":
 								(isOverdue($loan["deadline"], $loan["is_active"])?
 									"Atrasado":"Em andamento"),
-				"extra" => buildAButton("blue",
+				"extra" => buildAButton($reviewMap[$loan["id"]]["status"] === "Devolvido" ? "orange" : "blue",
 								$review_url, "🖉 ".(in_array($loan["id"], $reviewedLoans)?
 										"Editar resenha" : "Escrever resenha"))
 			])?>
