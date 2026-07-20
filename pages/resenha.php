@@ -147,6 +147,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				$data["status"] = "Devolvido";
 				$data["comment"] = $review["comment"];
 				$data["rating"] = $review["rating"];
+				$data["favorite_excerpt"] = $review["favorite_excerpt"];
+				$data["moderated_by"] = $_SESSION["user"]["uuid"];
+				$data["moderated_at"] = date("c");
 			}
 			$result = supabasePatch(
 				"reviews?".
@@ -233,7 +236,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 					Resenhas ofensivas, irrelevantes
 					ou que não agreguem valor à comunidade
-					podem ser rejeitadas."
+					podem ser devolvidas com feedback."
 			])?>
 		<?php else: ?>
 			<?php if ($review && !empty($review["feedback"])): ?>
@@ -256,6 +259,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		<?php if (isTheReviewer()): ?>
 			<h3>Comentário:</h3>
 			<p><?= $review["comment"] ?? "" ?></p>
+			<h3>Trecho favorito:</h3>
+			<p><?= $review["favorite_excerpt"] ?? "" ?></p>
 		<?php else: ?>
 			<label for="comment">
 				<h3>Comentário:</h3>
@@ -272,21 +277,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				class="protegido"
 				required
 			><?= $review["comment"] ?? "" ?></textarea>
-		<?php endif;?>
 
-		<label for="favorite_excerpt">
-			<h3>Trecho favorito:</h3>
-		</label>
-		<textarea
-			name="favorite_excerpt"
-			spellcheck="true"
-			lang="pt-BR"
-			autocapitalize="sentences"
-			autocomplete="on"
-			autocorrect="on"
-			rows="3"
-			placeholder="Transcreva a sua parte favorita do livro '<?=$loan["book"]["title"]?>': Pode ser uma frase, um parágrafo ou uma cena inteira."
-		><?= $review["favorite_excerpt"] ?? "" ?></textarea>
+			<label for="favorite_excerpt">
+				<h3>Trecho favorito:</h3>
+			</label>
+			<textarea
+				name="favorite_excerpt"
+				spellcheck="true"
+				lang="pt-BR"
+				autocapitalize="sentences"
+				autocomplete="on"
+				autocorrect="on"
+				rows="3"
+				placeholder="Transcreva a sua parte favorita do livro '<?=$loan["book"]["title"]?>': Pode ser uma frase, um parágrafo ou uma cena inteira."
+			><?= $review["favorite_excerpt"] ?? "" ?></textarea>
+		<?php endif;?>
 
 		<?php if (isTheReviewer()): ?>
 			<?=buildSmallCard([
@@ -312,7 +317,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				required
 			><?= $review["feedback"] ?? $defaultFeedbackText ?></textarea>
 		<?php endif; ?>
-		<?php if (isTheReader() && $review["status"] === "Aprovado"): ?>
+		<?php if (isTheReader() && !empty($review) && $review["status"] === "Aprovado"): ?>
 			<?=buildSmallCard([
 				"color" => "yellow",
 				"strong" => "Atenção!",
