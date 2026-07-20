@@ -7,19 +7,18 @@
 <h3>Leitura e busca</h3>
 
 <p>
-	Use a página de livros para
-	procurar obras disponíveis.
+	&emsp;Use a página de livros para procurar obras disponíveis.
 </p>
 
 <h3>Login</h3>
 
 <p>
-	O login é realizado usando
-	contas Google institucionais
-	do IFCE.
+	&emsp;O login é realizado usando
+	contas Google "@gmail.com" e institucionais
+	do IFCE "@ifce.edu.br" ou "@aluno.ifce.edu.br".
 </p>
 <p>
-	Se tiver problemas em acessar sua conta, entre em contato pelo e-mail
+	&emsp;Se tiver problemas em acessar sua conta instituconal, entre em contato pelo e-mail
 	<a href="mailto:cti.camocim@ifce.edu.br?subject=Ler é a minha praia">cti.camocim@ifce.edu.br</a>
 	ou presencialmente no setor de CTI no campus.
 </p>
@@ -27,21 +26,21 @@
 <h3>Empréstimos</h3>
 
 <p>
-	Os empréstimos são registrados
+	&emsp;Os empréstimos são registrados
 	pela equipe responsável.
 </p>
 
 <h3>Comentários</h3>
 
 <p>
-	Comentários podem ser públicos.
+	&emsp;Comentários serão públicos quando aprovados.
 	Mantenha respeito e bom senso.
 </p>
 
 <h3>Responsabilidade</h3>
 
 <p>
-	O usuário é responsável pelos
+	&emsp;O usuário é responsável pelos
 	livros emprestados em seu nome.
 </p>
 <br>
