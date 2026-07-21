@@ -137,6 +137,40 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 		exit;
 	}
+
+	/* dar baixa em livro avariado/extraviado */
+
+	if ($action === "remove") {
+		$result = supabasePatch(
+			"loans?".
+			"id=eq.$loan_id", [
+				"is_active" => false,
+				"book_disabled" => true,
+				"receiver" => $_SESSION["user"]["uuid"],
+				"end_date" => date("c")
+			],
+			$_SESSION["user"]["token"]
+		);
+
+		$result = supabasePatch(
+			"books?".
+			"id=eq.".$loan["book_id"], [
+				"status" => "Indisponível"
+			],
+			$_SESSION["user"]["token"]
+		);
+
+		if (hasErrorCode($result)) {
+			flash("error", "Erro ao registrar devolução: " . $result["message"]);
+		} else {
+			flash("success", "Devolução de ".$book["title"]." registrada com sucesso!");
+			cacheDelete("livros");
+			session_write_close();
+			header("Location: ".previousPage());
+		}
+
+		exit;
+	}
 }
 
 ?>
@@ -157,6 +191,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			"return", "↩ Confirmar devolução")?>
 		<?=buildFormButton("yellow",
 			"renew", "↺ Renovar +10 dias")?>
+		<?=buildFormButton("orange",
+			"remove", "♻ Livro avariado/extraviado")?>
 		<?=buildAButton("red",
 			previousPage(), "⨯ Cancelar")?>
 	</form>

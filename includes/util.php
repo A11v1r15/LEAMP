@@ -109,6 +109,7 @@ function colorClass(string $string): string {
 
 		"emprestado",
 		"revisor",
+		"pendente",
 		"extemporâneo",
 		"extemporaneo",
 		"rascunho",
@@ -117,9 +118,10 @@ function colorClass(string $string): string {
 			=> "yellow",
 
 		"erro",
-		"pendente",
 		"bloqueado",
 		"cancelado",
+		"indisponível",
+		"indisponivel",
 		"red"
 			=> "red",
 

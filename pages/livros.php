@@ -29,26 +29,28 @@
 
 	<tbody>
 		<?php foreach ($books as $book):?>
-			<tr>
-				<td><a href="/livro?id=<?=$book["id"]?>">
-					<?=htmlspecialchars($book["title"])?>
-				</a></td>
-				<td>
-					<?=htmlspecialchars($book["author"])?>
-				</td>
-				<td>
-					<?=htmlspecialchars($book["loans_count"])?>
-				</td>
-				<td>
-					<?=htmlspecialchars($book["reviews_count"])?>
-				</td>
-				<td data-order="<?=$book["rating_avg"]??""?>">
-					<?=$book["rating_avg"]?buildRating($book["rating_avg"]):"—"?>
-				</td>
-				<td>
-					<?=buildStatus($book["status"])?>
-				</td>
-			</tr>
+			<?php if ($book["status"] !== "Indisponível"):?>
+				<tr>
+					<td><a href="/livro?id=<?=$book["id"]?>">
+						<?=htmlspecialchars($book["title"])?>
+					</a></td>
+					<td>
+						<?=htmlspecialchars($book["author"])?>
+					</td>
+					<td>
+						<?=htmlspecialchars($book["loans_count"])?>
+					</td>
+					<td>
+						<?=htmlspecialchars($book["reviews_count"])?>
+					</td>
+					<td data-order="<?=$book["rating_avg"]??""?>">
+						<?=$book["rating_avg"]?buildRating($book["rating_avg"]):"—"?>
+					</td>
+					<td>
+						<?=buildStatus($book["status"])?>
+					</td>
+				</tr>
+			<?php endif;?>
 		<?php endforeach;?>
 	</tbody>
 </table>
