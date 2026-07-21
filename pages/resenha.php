@@ -206,15 +206,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			<div class="stars">
 				<input type="radio" name="rating" value="0" id="star0" <?= $rating == 0 ? "checked" : "" ?>>
 				<label for="star0">Não classificar ∣ </label>
-				<label for="star1">☆</label>
+				<label for="star1" title="1 estrela - Não gostei. O livro não me interessou ou foi muito difícil de acompanhar.">☆</label>
 				<input type="radio" name="rating" value="1" id="star1" hidden <?= $rating == 1 ? "checked" : "" ?>>
-				<label for="star2">☆</label>
+				<label for="star2" title="2 estrelas - Mais ou menos. Algumas partes me interessaram, outras não. Consegui terminar sem muito entusiasmo.">☆</label>
 				<input type="radio" name="rating" value="2" id="star2" hidden <?= $rating == 2 ? "checked" : "" ?>>
-				<label for="star3">☆</label>
+				<label for="star3" title="3 estrelas - Gostei razoavelmente. A leitura foi ok. Indicaria, mas sem muito entusiasmo.">☆</label>
 				<input type="radio" name="rating" value="3" id="star3" hidden <?= $rating == 3 ? "checked" : "" ?>>
-				<label for="star4">☆</label>
+				<label for="star4" title="4 estrelas - Gostei muito! A leitura foi envolvente. Me identifiquei com a história ou aprendi bastante.">☆</label>
 				<input type="radio" name="rating" value="4" id="star4" hidden <?= $rating == 4 ? "checked" : "" ?>>
-				<label for="star5">☆</label>
+				<label for="star5" title="5 estrelas - Excelente! Curti demais! Esta leitura me marcou e indicaria para qualquer pessoa sem hesitar!">☆</label>
 				<input type="radio" name="rating" value="5" id="star5" hidden <?= $rating == 5 ? "checked" : "" ?>>
 			</div>
 		<?php endif; ?>
