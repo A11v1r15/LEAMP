@@ -74,22 +74,22 @@ if (isTheReviewer() && !isReviewer()) {
 }
 
 $defaultFeedbackText =
-	"Escreva com suas próprias palavras.
+	"Escreva com suas próprias palavras. ".
 
-	Este comentário será utilizado para avaliar
-	sua compreensão da obra e, após aprovação,
-	também será exibido na página do livro para
-	ajudar outros leitores.
+	"Este comentário será utilizado para avaliar ".
+	"sua compreensão da obra e, após aprovação, ".
+	"também será exibido na página do livro para ".
+	"ajudar outros leitores. ".
 
-	Você pode comentar sobre a história,
-	personagens, temas, momentos marcantes,
-	o que sentiu durante a leitura e se
-	recomendaria o livro.
+	"Você pode comentar sobre a história, ".
+	"personagens, temas, momentos marcantes, ".
+	"o que sentiu durante a leitura e se ".
+	"recomendaria o livro. ".
 
-	Seja cordial e respeitoso, mesmo que tenha
-	opiniões negativas, e evite spoilers ou
-	detalhes que possam prejudicar a experiência
-	de quem ainda não leu a obra.";
+	"Seja cordial e respeitoso, mesmo que tenha ".
+	"opiniões negativas, e evite spoilers ou ".
+	"detalhes que possam prejudicar a experiência ".
+	"de quem ainda não leu a obra.";
 
 /* envia formulário */
 
@@ -219,41 +219,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			</div>
 		<?php endif; ?>
 
-		<?php if (isTheReviewer()): ?>
+		<?php if (isTheReader() && $review && !empty($review["feedback"])): ?>
 			<?=buildSmallCard([
 				"color" => "blue",
-				"strong" => "Sobre aceitar a resenha:",
-				"text" =>
-					"Aceitar a resenha significa
-					que o comentário dela passará a ser exibida
-					na página do livro, contribuindo
-					para a avaliação geral da obra.
-
-					Você pode aceitar resenhas que
-					estejam bem escritas, sejam
-					construtivas e reflitam uma
-					opinião honesta sobre o livro.
-
-					Resenhas ofensivas, irrelevantes
-					ou que não agreguem valor à comunidade
-					podem ser devolvidas com feedback."
+				"title" => "Feedback do revisor",
+				"user" => $review["moderator"],
+				"strong" => $review["moderator"]["name"] ?? "Revisor",
+				"text" => $review["feedback"]
 			])?>
-		<?php else: ?>
-			<?php if ($review && !empty($review["feedback"])): ?>
-				<?=buildSmallCard([
-					"color" => "blue",
-					"title" => "Feedback do revisor",
-					"user" => $review["moderator"],
-					"strong" => $review["moderator"]["name"] ?? "Revisor",
-					"text" => $review["feedback"]
-				])?>
-				<?php else: ?>
-					<?=buildSmallCard([
-						"color" => "blue",
-						"strong" => "Sobre o comentário:",
-						"text" => $defaultFeedbackText
-					])?>
-				<?php endif; ?>
+		<?php elseif (isTheReader()): ?>
+			<?=buildSmallCard([
+				"color" => "blue",
+				"strong" => "Sobre o comentário:",
+				"text" => $defaultFeedbackText
+			])?>
 		<?php endif; ?>
 
 		<?php if (isTheReviewer()): ?>
@@ -261,6 +240,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			<p><?= $review["comment"] ?? "" ?></p>
 			<h3>Trecho favorito:</h3>
 			<p><?= $review["favorite_excerpt"] ?? "" ?></p>
+			<h3><?= $review["used_paste"] === false ? "Não c" : "C" ?>olou texto no comentário.</h3>
 		<?php else: ?>
 			<label for="comment">
 				<h3>Comentário:</h3>
@@ -296,11 +276,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		<?php if (isTheReviewer()): ?>
 			<?=buildSmallCard([
 				"color" => "blue",
-				"strong" => "Sobre o feedback:",
+				"strong" => "Sobre a revisão da resenha:",
 				"text" =>
-					"Escreva o motivo da aceitação ou rejeição da resenha do leitor.
-					Seja cordial e respeitoso, lembre-se de que o objetivo é ajudar
-					o leitor a melhorar sua escrita e compreensão da obra."
+					"Avalie se o comentário está bem escrito, é respeitoso,
+					contribui para a comunidade e reflete uma opinião honesta
+					sobre a obra.
+					Se a resenha estiver adequada, você pode aceitá-la,
+					tornando o comentário visível na página do livro e contribuindo
+					para sua avaliação geral.
+					Caso encontre problemas, devolva-a com um feedback claro e cordial,
+					explicando o que precisa ser melhorado. O objetivo é orientar o
+					leitor e ajudá-lo a aprimorar sua escrita e compreensão da obra,
+					e não apenas apontar erros."
 			])?>
 			<label for="feedback">
 				<h3>Feedback:</h3>
