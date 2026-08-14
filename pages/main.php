@@ -72,7 +72,10 @@
 			options: {
 				redirectTo:
 					window.location.origin +
-					"/auth-callback"
+					"/auth-callback",
+				queryParams: {
+					prompt: "select_account"
+				}
 			}
 
 		});
