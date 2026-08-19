@@ -55,7 +55,11 @@ function buildAvatar(array $user, $ranking = null, $dynamic = false) {
 				class="avatar"
 				<?=$dynamic?"id='preview-avatar'":""?>
 				src="<?=htmlspecialchars($user["avatar"]??"")?>">
-			<?php if ( isUserNumberOne($user, $ranking) ): ?>
+			<?php if (
+				!empty($ranking) &&
+				!empty($user) &&
+				isUserNumberOne($user, $ranking)
+			): ?>
 				<img
 					class="crown"
 					src="/img/Crown.png"
