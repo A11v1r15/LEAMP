@@ -60,12 +60,12 @@ $user = supabaseGet(
 );
 
 $ranking = getCacheOrFetch(
-	"primeiro_lugar",
+	"primeiros_lugares",
 	"ranking?".
+	"position=eq.1&".
 	"select=".
-		"uuid".
-	"&order=total.desc".
-	"&limit=1",
+		"uuid,".
+		"position",
 
 	$_SESSION["user"]["token"]
 );

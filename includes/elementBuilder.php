@@ -37,6 +37,16 @@ function buildFormButton(string $color, string $action, string $label) {
 		"</button>";
 }
 
+function isUserNumberOne (array $user, array $ranking): bool {
+	if (!empty($ranking) && !empty($user)) {
+		foreach($ranking as $i){
+			if ($i["position"] === 1 && $i["uuid"] === $user["uuid"])
+				return true;
+		}
+	}
+	return false;
+}
+
 function buildAvatar(array $user, $ranking = null, $dynamic = false) {
 	ob_start();
 	?>
@@ -45,11 +55,7 @@ function buildAvatar(array $user, $ranking = null, $dynamic = false) {
 				class="avatar"
 				<?=$dynamic?"id='preview-avatar'":""?>
 				src="<?=htmlspecialchars($user["avatar"]??"")?>">
-			<?php if (
-				!empty($ranking) &&
-				!empty($user) &&
-				$user["uuid"] === $ranking[0]["uuid"]
-			): ?>
+			<?php if ( isUserNumberOne($user, $ranking) ): ?>
 				<img
 					class="crown"
 					src="/img/Crown.png"

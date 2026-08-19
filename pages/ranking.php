@@ -13,6 +13,7 @@
 
 		$_SESSION["user"]["token"]
 	);
+//	file_put_contents('php://stderr', print_r($ranking, TRUE));
 
 ?>
 
@@ -22,7 +23,7 @@
 	<?php foreach ($ranking as $i => $user): ?>
 		<?=buildSmallCard([
 			"color" => "yellow",
-			"ranking-position" => $i+1,
+			"ranking-position" => $user["position"],
 			"user" => $user,
 			"ranking" => $ranking,
 			"title" => $user["name"],
