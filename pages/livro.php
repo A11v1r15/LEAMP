@@ -123,6 +123,14 @@
 			}
 			exit;
 		}
+	} else {
+		/* comentarios */
+
+		$reviews = supabaseGet(
+		"anon_reviews?".
+			"book_id=eq.$id".
+			"&select=*"
+		);
 	}
 
 
@@ -177,21 +185,34 @@
 <?php if (!empty($reviews)): ?>
 	<h3>Comentários dos leitores:</h3>
 	<div class="big-card-container">
-		<?php foreach ($reviews as $review):
-			if ($review["status"] === "Aprovado"): ?>
-				<?=buildBigCard([
-					"user" => $review["loan"]["reader"],
-					"ranking" => $ranking,
-					"title" => $review["loan"]["reader"]["name"],
-					"rating" => $review["rating"],
-					"big-text" => $review["comment"],
-					"quote" => $review["favorite_excerpt"],
-					"extra" => isReviewer()?
-						buildAButton("blue",
-							"/resenha?id=".$review["loan_id"], "👓 Revisar")
-						:null
-				])?>
-			<?php endif;
-		endforeach; ?>
+		<?php if (isAuthorised()):?>
+			<?php foreach ($reviews as $review):
+				if ($review["status"] === "Aprovado"): ?>
+					<?=buildBigCard([
+						"user" => $review["loan"]["reader"],
+						"ranking" => $ranking,
+						"title" => $review["loan"]["reader"]["name"],
+						"rating" => $review["rating"],
+						"big-text" => $review["comment"],
+						"quote" => $review["favorite_excerpt"],
+						"extra" => isReviewer()?
+							buildAButton("blue",
+								"/resenha?id=".$review["loan_id"], "👓 Revisar")
+							:null
+					])?>
+				<?php endif;
+			endforeach; ?>
+		<?php else:?>
+			<?php foreach ($reviews as $review):
+				if ($review["status"] === "Aprovado"): ?>
+					<?=buildBigCard([
+						"title" => "Leitor anônimo",
+						"rating" => $review["rating"],
+						"big-text" => $review["comment"],
+						"quote" => $review["favorite_excerpt"]
+					])?>
+				<?php endif;
+			endforeach; ?>
+		<?php endif; ?>
 	</div>
 <?php endif; ?>

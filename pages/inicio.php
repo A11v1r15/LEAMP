@@ -17,7 +17,7 @@
 <br>
 <p>
 	Neste sistema você poderá acompanhar leituras, empréstimos, eventos,
-	rankings e demais atividades do projeto.
+	rankings e resenhas dos livros.
 </p>
 <br>
 <p>

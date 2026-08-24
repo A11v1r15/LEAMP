@@ -27,7 +27,7 @@
 			"user" => $user,
 			"ranking" => $ranking,
 			"title" => $user["name"],
-			"deadline" => $user["total"]." empréstimos"
+			"deadline" => $user["loans"]." empréstimos, ".$user["reviews"]." resenhas"
 		])?>
 	<?php endforeach; ?>
 </div>
