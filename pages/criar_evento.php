@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				"location" => $_POST["location"],
 				"description" => $_POST["description"],
 				"start_time" => $_POST["start_time"]."-03:00",
-				"end_time" => $_POST["end_time"]."-03:00",
+				"end_time" => empty($_POST["end_time"])?null:$_POST["end_time"]."-03:00",
 				"status" => isset($_POST["draft"]) ? "Rascunho" : "Publicado"
 			],
 			$_SESSION["user"]["token"]
