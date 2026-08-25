@@ -38,13 +38,13 @@
 						<?=htmlspecialchars($book["author"])?>
 					</td>
 					<td>
-						<?=htmlspecialchars($book["loans_count"])?>
+						<?=htmlspecialchars($book["loans_count"]?? 0)?>
 					</td>
 					<td>
-						<?=htmlspecialchars($book["reviews_count"])?>
+						<?=htmlspecialchars($book["reviews_count"]?? 0)?>
 					</td>
 					<td data-order="<?=$book["rating_avg"]??""?>">
-						<?=$book["rating_avg"]?buildRating($book["rating_avg"]):"—"?>
+						<?=isset($book["rating_avg"])?buildRating($book["rating_avg"]):"—"?>
 					</td>
 					<td>
 						<?=buildStatus($book["status"])?>
