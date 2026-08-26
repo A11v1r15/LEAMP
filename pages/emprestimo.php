@@ -9,7 +9,8 @@ $page_title = "Empréstimo - LÉAMP";
 
 $users = supabaseGet(
 	"users?".
-	"select=*",
+	"select=*".
+	"&order=name.asc",
 
 	$_SESSION["user"]["token"]
 );
