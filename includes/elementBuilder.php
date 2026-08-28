@@ -95,7 +95,7 @@ function buildMiniAvatar(array $user) {
 function buildRating($rating) {
 	ob_start();
 	?>
-		<div class="rating" title="<?=$rating?>">
+		<div class="rating" title="<?=$rating=="0"?"Sem nota":$rating?>">
 			<?php
 				echo str_repeat("★",
 					(int)$rating);

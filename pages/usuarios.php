@@ -111,6 +111,8 @@
 						<option value="Leitor" <?=str_starts_with($user["role"], "Leitor")? "selected" : ""?>>Leitor</option>
 						<?php if(str_ends_with($user["email"], "ifce.edu.br")):?>
 							<option value="Revisor" <?=$user["role"] === "Revisor" ? "selected" : ""?>>Revisor</option>
+						<?php endif;?>
+						<?php if(str_ends_with($user["email"], "@ifce.edu.br")):?>
 							<option value="Concedente" <?=$user["role"] === "Concedente" ? "selected" : ""?>>Concedente</option>
 						<?php endif;?>
 					</select>
@@ -151,17 +153,19 @@
 		});
 	}
 
-	document.addEventListener("DOMContentLoaded", initRoleSelectClasses);
+	document.addEventListener("DOMContentLoaded", () => {
+		initRoleSelectClasses();
 
-	new DataTable(
-		"#tabelaUsers",
-		{
-			order: [[1, "asc"]],
-			language: {
-				url: "https://cdn.datatables.net/plug-ins/2.3.1/i18n/pt-BR.json"
+		new DataTable(
+			"#tabelaUsers",
+			{
+				order: [[0, "asc"]],
+				language: {
+					url: "https://cdn.datatables.net/plug-ins/2.3.1/i18n/pt-BR.json"
+				}
 			}
-		}
-	);
+		);
+	});
 
 	document.querySelectorAll(".role-update-btn").forEach((btn) => {
 		btn.addEventListener("click", async () => {

@@ -194,14 +194,20 @@
 						"title" => $review["loan"]["reader"]["name"],
 						"rating" => $review["rating"],
 						"big-text" => $review["comment"],
-						"quote" => $review["favorite_excerpt"],
-						"extra" => isReviewer()?
-							buildAButton("blue",
-								"/resenha?id=".$review["loan_id"], "👓 Revisar")
-							:null
+						"quote" => $review["favorite_excerpt"]
 					])?>
-				<?php endif;
-			endforeach; ?>
+				<?php elseif(isReviewer()):?>
+					<?=buildSmallCard([
+						"color" => "yellow",
+						"user" => $review["loan"]["reader"],
+						"ranking" => $ranking,
+						"title" => $review["loan"]["reader"]["name"],
+						"deadline" => "Resenha pendente",
+						"extra" => buildAButton("blue",
+									"/resenha?id=".$review["loan_id"], "👓 Revisar")
+					])?>
+				<?php endif;?>
+			<?php endforeach;?>
 		<?php else:?>
 			<?php foreach ($reviews as $review):
 				if ($review["status"] === "Aprovado"): ?>

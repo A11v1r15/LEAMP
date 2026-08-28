@@ -38,10 +38,10 @@
 						<?=htmlspecialchars($book["author"])?>
 					</td>
 					<td>
-						<?=htmlspecialchars($book["loans_count"]?? 0)?>
+						<?=$book["loans_count"]?? 0?>
 					</td>
 					<td>
-						<?=htmlspecialchars($book["reviews_count"]?? 0)?>
+						<?=$book["reviews_count"]?? 0?>
 					</td>
 					<td data-order="<?=$book["rating_avg"]??""?>">
 						<?=isset($book["rating_avg"])?buildRating($book["rating_avg"]):"—"?>
