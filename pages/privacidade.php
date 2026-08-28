@@ -19,9 +19,9 @@ $page_title = "Política de Privacidade LÉAMP";
 	<li>Histórico de empréstimos</li>
 </ul>
 
-<h3>Comentários públicos</h3>
+<h3>Resenhas públicos</h3>
 <p>
-	&emsp;Comentários podem ser exibidos
+	&emsp;Resenhas podem ser exibidos
 	publicamente.
 </p>
 

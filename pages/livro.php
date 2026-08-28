@@ -183,7 +183,7 @@
 </div>
 
 <?php if (!empty($reviews)): ?>
-	<h3>Comentários dos leitores:</h3>
+	<h3>Resenhas dos leitores:</h3>
 	<div class="big-card-container">
 		<?php if (isAuthorised()):?>
 			<?php foreach ($reviews as $review):

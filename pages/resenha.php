@@ -76,7 +76,7 @@ if (isTheReviewer() && !isReviewer()) {
 $defaultFeedbackText =
 	"Escreva com suas próprias palavras. ".
 
-	"Este comentário será utilizado para avaliar ".
+	"Este resenha será utilizado para avaliar ".
 	"sua compreensão da obra e, após aprovação, ".
 	"também será exibido na página do livro para ".
 	"ajudar outros leitores. ".
@@ -196,11 +196,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <div class="main-page-container">
 	<form class="main-page" method="POST">
 		<?php if (isTheReviewer()): ?>
-			<h3>Classificação:</h3>
+			<h3>Nota:</h3>
 			<?= buildRating($review["rating"]) ?>
 		<?php else: ?>
 			<label>
-				<h3>Classificação:</h3>
+				<h3>Nota:</h3>
 			</label>
 			<?php $rating = $review["rating"] ?? 0;?>
 			<div class="stars">
@@ -230,20 +230,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		<?php elseif (isTheReader()): ?>
 			<?=buildSmallCard([
 				"color" => "blue",
-				"strong" => "Sobre o comentário:",
+				"strong" => "Sobre a resenha:",
 				"text" => $defaultFeedbackText
 			])?>
 		<?php endif; ?>
 
 		<?php if (isTheReviewer()): ?>
-			<h3>Comentário:</h3>
+			<h3>Resenha:</h3>
 			<p><?= $review["comment"] ?? "" ?></p>
 			<h3>Trecho favorito:</h3>
 			<p><?= $review["favorite_excerpt"] ?? "" ?></p>
-			<h3><?= $review["used_paste"] === false ? "Não c" : "C" ?>olou texto no comentário.</h3>
+			<h3><?= $review["used_paste"] === false ? "Não c" : "C" ?>olou texto no resenha.</h3>
 		<?php else: ?>
 			<label for="comment">
-				<h3>Comentário:</h3>
+				<h3>Resenha:</h3>
 			</label>
 			<textarea
 				name="comment"
@@ -253,7 +253,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				autocomplete="on"
 				autocorrect="on"
 				rows="7"
-				placeholder="Escreva seu comentário sobre o livro. Ele será avaliado e, se aprovado, poderá ser exibido na página da obra."
+				placeholder="Escreva sua resenha sobre o livro. Ele será avaliado e, se aprovado, poderá ser exibido na página da obra."
 				class="protegido"
 				required
 			><?= $review["comment"] ?? "" ?></textarea>
@@ -278,11 +278,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				"color" => "blue",
 				"strong" => "Sobre a revisão da resenha:",
 				"text" =>
-					"Avalie se o comentário está bem escrito, é respeitoso,
+					"Avalie se a resenha está bem escrito, é respeitoso,
 					contribui para a comunidade e reflete uma opinião honesta
 					sobre a obra.
 					Se a resenha estiver adequada, você pode aceitá-la,
-					tornando o comentário visível na página do livro e contribuindo
+					tornando a resenha visível na página do livro e contribuindo
 					para sua avaliação geral.
 					Caso encontre problemas, devolva-a com um feedback claro e cordial,
 					explicando o que precisa ser melhorado. O objetivo é orientar o
@@ -300,7 +300,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				autocomplete="on"
 				autocorrect="on"
 				rows="13"
-				placeholder="Por favor, expanda seu comentário"
+				placeholder="Por favor, expanda sua resenha"
 				required
 			><?= $review["feedback"] ?? $defaultFeedbackText ?></textarea>
 		<?php endif; ?>

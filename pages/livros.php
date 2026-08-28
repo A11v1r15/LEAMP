@@ -22,7 +22,7 @@
 			<th>Autores</th>
 			<th>Empréstimos</th>
 			<th>Resenhas</th>
-			<th>Classificação</th>
+			<th>Nota</th>
 			<th>Status</th>
 		</tr>
 	</thead>

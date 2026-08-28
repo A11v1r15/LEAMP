@@ -30,7 +30,7 @@ $page_title = "Termos de Serviço LÉAMP";
 <h3>Suspensão</h3>
 <p>
 	&emsp;Administradores podem remover
-	comentários ou restringir acesso
+	resenhas ou restringir acesso
 	em caso de abuso.
 </p>
 
