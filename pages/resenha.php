@@ -55,7 +55,7 @@ if ($loan === null) {
 	echo "<h2 class='error'>Empréstimo não encontrado</h2>";
 	return;
 } else {
-	$page_title = "Resenha: ".$loan["book"]["title"]." - LÉAMP";
+	$page_title = "Resenha de ".$loan["book"]["title"]." - LÉAMP";
 }
 
 function isTheReviewer() {
@@ -108,6 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			"reviews?".
 			"loan_id=eq.".$review["loan_id"], [
 				"status" => "Aprovado",
+				"feedback" => $_POST["feedback"],
 				"moderated_by" => $_SESSION["user"]["uuid"],
 				"moderated_at" => date("c")
 			],
@@ -185,7 +186,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 <link rel="stylesheet" href="/css/resenha.css">
 
-<h2>Resenha de: <?=$loan["book"]["title"]?></h2>
+<h2>Resenha de <?=$loan["book"]["title"]?></h2>
 <?php if (isTheReviewer() && $review === null): ?>
 	<h3><?=$loan["reader"]["name"]?> ainda não escreveu uma resenha para este livro.</h3>
 <?php return;
@@ -287,7 +288,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 					Caso encontre problemas, devolva-a com um feedback claro e cordial,
 					explicando o que precisa ser melhorado. O objetivo é orientar o
 					leitor e ajudá-lo a aprimorar sua escrita e compreensão da obra,
-					e não apenas apontar erros."
+					e não apenas apontar erros.
+					Ao aprovar a resenha, não se esqueça de mudar o feedback para
+					parabenizar o leitor e/ou explicar o que pode ser melhorado na
+					próxima resenha"
 			])?>
 			<label for="feedback">
 				<h3>Feedback:</h3>
@@ -320,9 +324,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				"submit", "↑ Enviar resenha")?>
 		<?php else: ?>
 			<?=buildFormButton("yellow",
-				"submit", "🖉 ".(isTheReviewer()?
-						"Modificar":"Atualizar").
-					" resenha")?>
+				"submit", (isTheReviewer()?
+						"↺ Atualizar feedback":
+						"🖉 Atualizar resenha"))?>
 		<?php endif; ?>
 		<?php if (isTheReviewer()): ?>
 			<?=buildFormButton("green",

@@ -72,7 +72,7 @@ $ranking = getCacheOrFetch(
 
 $user = $user[0] ?? null;
 
-$page_title = "Devolução: ".(($book["title"] ?? "Livro"))." - LÉAMP";
+$page_title = "Devolução de ".(($book["title"] ?? "Livro"))." - LÉAMP";
 
 /* ações */
 

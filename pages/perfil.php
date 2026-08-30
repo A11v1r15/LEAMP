@@ -66,6 +66,17 @@
 
 		$_SESSION["user"]["token"]
 	);
+	
+	$userRanking = supabaseGet(
+		"ranking?".
+			"uuid=eq.".$_SESSION["user"]["uuid"].
+			"&select=".
+				"position,".
+				"loans,".
+				"reviews",
+
+		$_SESSION["user"]["token"]
+	);
 ?>
 <link rel="stylesheet" href="/css/perfil.css">
 
@@ -86,6 +97,16 @@
 				$_SESSION["user"]["email"]
 			)?>
 		</div>
+		<?php if (!empty($userRanking)): ?>
+			<?=buildSmallCard([
+				"color" => "yellow",
+				"ranking-position" => $userRanking[0]["position"],
+				"title" => "Sua colocação no Ranking",
+				"deadline" =>
+					$userRanking[0]["loans"]." empréstimos, ".
+					$userRanking[0]["reviews"]." resenhas aprovadas"
+			])?>
+		<?php endif; ?>
 	</div>
 </div>
 

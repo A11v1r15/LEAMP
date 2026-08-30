@@ -21,7 +21,7 @@ $book = supabaseGet(
 	"&select=*"
 );
 if ($book[0]["title"]) {
-	$page_title = "Empréstimo: ".$book[0]["title"]." - LÉAMP";
+	$page_title = "Empréstimo de ".$book[0]["title"]." - LÉAMP";
 }
 
 /* envia formulário */
