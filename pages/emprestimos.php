@@ -81,7 +81,7 @@
 					<?=buildMiniAvatar($loan["reader"])?>
 				</td>
 
-				<td>
+				<td data-order="<?=date("Y-m-d-H-i",strtotime($loan["start_date"]))?>">
 					<?=date("d/m/Y H:i",strtotime($loan["start_date"]))?>
 				</td>
 
@@ -92,7 +92,7 @@
 					<?=buildMiniAvatar($loan["grantor"])?>
 				</td>
 
-				<td>
+				<td data-order="<?=date("Y-m-d-H-i",strtotime($loan["deadline"]))?>">
 					<?=date("d/m/Y",strtotime($loan["deadline"]))?>
 				</td>
 
